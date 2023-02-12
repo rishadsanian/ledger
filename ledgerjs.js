@@ -7,7 +7,7 @@ This code will attempt to output of an accounting system application software */
 const software = {}
 const softwareName = "Ledger"
 const version = [0.01]
-const releasedate = ""
+const releaseDate = ""
 let mission = []
 
  
@@ -17,15 +17,17 @@ user information collected/authenticated- and user profile role and group profil
 
 
 
-LandPage
+LandPage  
   userlogin+Profle
   homescreen : includes greeting, menu, quickbuttons
     menu  
-      Journal Entry
+      Ledger
+      Ledger Entry
         Title Description Instruction
         Entryform
+          transaction date/post date/
         Add Another
-        Entry Templates
+        Entry Templates*         
         Post
           checkvalidation
           post alert
@@ -34,16 +36,20 @@ LandPage
           Cancel Alert
           Back to homescreen 
       General Journal
-      Accounts 
-      Settings
-        User
-        Accounts
-        Templates
-      Reporting
+      General Ledger
+        Accounts 
+        Trial Balance
+            Reporting
         Balance Sheet
         Income Statement
         Cashflow Statement
         Dashboard with Keymetrics
+      Settings
+        User
+        Group 
+        Accounts
+        Entry Templates
+        Accounting Templates
       About Us
 
   Logout
@@ -78,7 +84,8 @@ userDatabase = [userId, userName, userEmail, userPassword, groupName, groupId, u
 
   entry = {}
 const entryNumber = ""  //Generated/Displayed/Stored
-const dateTime = "" //Generated
+const dateTime= "" //Generated
+const dateTimepost = ""//userinput
 const accNumber = [] //userselect
 const accCategories = [] //userselect
 const amount = Number("").toFixed(2);
@@ -89,9 +96,9 @@ const note = ""
 const noteCategory = []
 userId
 
-const vartypecheck = ()=> {}//checks variable types are correct
-const ledgercheck = () => {}//sum of debits and credits match to the same sum
-const balancesheetcheck = (datetimestamp) => { } //[Assets] = [Liabilities] + Equity]
+const vartypeCheck = ()=> {}//checks variable types are correct
+const ledgerCheck = () => {}//sum of debits and credits match to the same sum
+const trialbalanceCheck = (datetimestamp) => { } //[Assets] = [Liabilities] + Equity]
 
 
 ///Entry FrontEnd
@@ -101,8 +108,8 @@ generalJournal = {}
 balanceSheet={}
 incomeStatement={}
 
-const accountingcycle=()=>{}//range, default is calendar year
-
+const accountingCycle=()=>{}//range, default is calendar year
+let reportingPeriod={startperiod,endpeiod}
 
 
   //Quality Checks Functions
