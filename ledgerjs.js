@@ -3,7 +3,9 @@
 This code will attempt to output of an accounting system application software */
 
 //Core//
-const software = { Ledger }
+
+const software = {}
+const softwareName = "Ledger"
 const version = [0.01]
 const releasedate = ""
 let mission = []
@@ -56,12 +58,21 @@ Financial   Managerial Cost Accounting*/
 
 //User 
 
-userDatabase = [userId, userName, userEmail, userPassword, groupName, groupID, userRole,]
 userProfile = {}
 const userId = "" //generated/displayed
-const userName = [firstName, lastName]//Userinput//stored//concatenatefor
-const userEmail = ""
-const currency=""
+let userRole
+let firstName =""
+let lastName =""
+let userName =""
+let userEmail = ""
+let currency=""
+
+let userPassword=""
+
+let groupName
+let groupId
+
+userDatabase = [userId, userName, userEmail, userPassword, groupName, groupId, userRole,]
   //////Entry 
 
 
@@ -71,17 +82,17 @@ const dateTime = "" //Generated
 const accNumber = [] //userselect
 const accCategories = [] //userselect
 const amount = Number("").toFixed(2);
+const debit = 1
+const credit = -1
 const entryType = { debit: 1, credit: -1 }//
 const note = ""
 const noteCategory = []
 userId
 
-const vartypecheck = ()=> //checks variable types are correct
-const ledgercheck = () => { }//sum of debits and credits match to the same sum
+const vartypecheck = ()=> {}//checks variable types are correct
+const ledgercheck = () => {}//sum of debits and credits match to the same sum
 const balancesheetcheck = (datetimestamp) => { } //[Assets] = [Liabilities] + Equity]
 
-
-[debits]
 
 ///Entry FrontEnd
 
@@ -90,7 +101,7 @@ generalJournal = {}
 balanceSheet={}
 incomeStatement={}
 
-const accountingcycle=()=>//range, default is calendar year
+const accountingcycle=()=>{}//range, default is calendar year
 
 
 
@@ -98,9 +109,8 @@ const accountingcycle=()=>//range, default is calendar year
 
   //Front End
 
-  =
 
-  BackEnd
+
 ////Accounts
 
 ////Variables 
@@ -113,7 +123,6 @@ const majorAmount = []
 const object_amount = {}
 
 //loops
-cont
 
 //Front End
 ///Interface 
