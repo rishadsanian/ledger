@@ -98,7 +98,7 @@ userId
 
 
 const vartypeCheck = ()=> {}//checks variable types are correct
-const ledgerCheck = () => {}//sum of debits and credits match to the same sum
+const ledgerCheck = () => {}//sum of debits and credits match to the same sum, in entry ledger and trial balance
 const trialbalanceCheck = (datetimestamp) => { } //[Assets] = [Liabilities] + Equity]
 
 
