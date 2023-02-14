@@ -82,7 +82,7 @@ userDatabase = [userId, userName, userEmail, userPassword, groupName, groupId, u
   //////Entry 
 
 
-  entry = {}
+entry = {}
 const entryNumber = ""  //Generated/Displayed/Stored
 const dateTime= "" //Generated
 const dateTimepost = ""//userinput
@@ -95,6 +95,7 @@ const entryType = { debit: 1, credit: -1 }//
 const note = ""
 const noteCategory = []
 userId
+
 
 const vartypeCheck = ()=> {}//checks variable types are correct
 const ledgerCheck = () => {}//sum of debits and credits match to the same sum
@@ -133,5 +134,6 @@ const object_amount = {}
 
 //Front End
 ///Interface 
+
 
 
