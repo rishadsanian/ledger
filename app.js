@@ -7,33 +7,35 @@ $(document).ready(function () {
   $("#journalForm").submit(function (event) {
     event.preventDefault();
     var account = $("#account").val();
-    var amountDR = $("#amountDR").val();
-    var amountCR = $("#amountCR").val();
+    let amountDR = $("#amountDR").val();
+    let amountCR = $("#amountCR").val();
     var note = $("#note").val();
 
     if (account && amountDR) {
+      amountCR = 0;
       addJournalEntry(account, amountDR, amountCR, note);
       $("#account").val("");
       $("#amountDR").val("");
-      $("#amountCR").val("");
       $("#note").val("");
       
     } else if (account && amountCR) {
-      addJournalEntry(account, amountCR, amountDR);
+      amountDR = 0;
+      addJournalEntry(account, amountDR, amountCR, note);
       $("#account").val("");
-      $("#amountDR").val("");
       $("#amountCR").val("");
       $("#note").val("");
+      
    
     }
   });
 });
 
 // Function to add a new journal entry to the table
-function addJournalEntry(account, amountDR, amountCR) {
+function addJournalEntry(account, amountDR, amountCR, note) {
   var timestamp = new Date().toLocaleString();
   var transactionNumber = generateTransactionNumber();
   var userName = "User1";
+  
   var row =
     "<tr><td>" +
     userName +
