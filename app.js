@@ -12,14 +12,13 @@ $(document).ready(function () {
     var note = $("#note").val();
 
     if (account && amountDR) {
-      amountCR = 0;
+
       addJournalEntry(account, amountDR, amountCR, note);
       $("#account").val("");
       $("#amountDR").val("");
       $("#note").val("");
       
     } else if (account && amountCR) {
-      amountDR = 0;
       addJournalEntry(account, amountDR, amountCR, note);
       $("#account").val("");
       $("#amountCR").val("");
@@ -52,7 +51,7 @@ function addJournalEntry(account, amountDR, amountCR, note) {
     "</td><td>" +
     note +
     "</td><td></td></tr>";
-  $("#journalEntriesTableBody").append(row);
+  $("#journalEntriesTableBody").prepend(row);
   saveJournalEntries();
 }
 
@@ -83,3 +82,83 @@ function generateTransactionNumber() {
 function deleteJournalEntries() {
   localStorage.removeItem("journalEntries");
 }
+
+/*
+var journalEntriesArray = []; // Array to store journal entries
+
+// Function to add a new journal entry to the table
+function addJournalEntry(account, amountDR, amountCR, note) {
+  var timestamp = new Date().toLocaleString();
+  var transactionNumber = generateTransactionNumber();
+  var userName = "User1";
+  
+  var entry = {
+    userName: userName,
+    timestamp: timestamp,
+    transactionNumber: transactionNumber,
+    account: account,
+    amountDR: amountDR,
+    amountCR: amountCR,
+    note: note
+  };
+
+  // Append the row to the table
+  var row =
+    "<tr><td>" +
+    userName +
+    "</td><td>" +
+    timestamp +
+    "</td><td>" +
+    transactionNumber +
+    "</td><td>" +
+    account +
+    "</td><td>" +
+    amountDR +
+    "</td><td>" +
+    amountCR +
+    "</td><td>" +
+    note +
+    "</td><td></td></tr>";
+  $("#journalEntriesTableBody").prepend(row);
+
+  // Push the entry object into the journalEntriesArray
+  journalEntriesArray.push(entry);
+
+  // Save the journal entries array to localStorage
+  saveJournalEntries();
+}
+
+// Function to save journal entries to localStorage as an array of objects
+function saveJournalEntries() {
+  localStorage.setItem("journalEntries", JSON.stringify(journalEntriesArray));
+}
+
+// Function to load journal entries from localStorage
+function loadJournalEntries() {
+  var journalEntries = JSON.parse(localStorage.getItem("journalEntries"));
+  if (journalEntries) {
+    // Clear the table before loading entries
+    $("#journalEntriesTableBody").html("");
+    // Loop through the entries array and append rows to the table
+    $.each(journalEntries, function(index, entry) {
+      var row =
+        "<tr><td>" +
+        entry.userName +
+        "</td><td>" +
+        entry.timestamp +
+        "</td><td>" +
+        entry.transactionNumber +
+        "</td><td>" +
+        entry.account +
+        "</td><td>" +
+        entry.amountDR +
+        "</td><td>" +
+        entry.amountCR +
+        "</td><td>" +
+        entry.note +
+        "</td><td></td></tr>";
+      $("#journalEntriesTableBody").append(row);
+    });
+  }
+}
+*/

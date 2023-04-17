@@ -8,11 +8,12 @@ h1 {
 
 form {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 label,
 input {
-  display: block;
+  display: inline-block;
   margin-bottom: 10px;
 }
 
