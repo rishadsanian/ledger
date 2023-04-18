@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  // deleteJournalEntries() //Clears Journal Entries first
+  //deleteJournalEntries() //Clears Journal Entries first
 
   // Load journal entries from localStorage on page load
   loadJournalEntries();
@@ -44,10 +44,14 @@ $(document).ready(function () {
   //Create Buttons
   var buttons = $("<div>").addClass('buttons').css({ "display": "block" });
 
-  //Add row event button
+  // Create the Submit input button
+  var submitInput = $("<input>", { type: "submit", value: "Submit"});
+
+  //Add row  button
 
   // Create a button to add another instance of input fields
-  var addButton = $("<button>").text("Add Another").click(function () {
+  var addButton = $("<button>").text("Add Row").click(function (event) {
+    event.preventDefault(); 
     var newEntry = $("<div>").addClass('entry');
     var newAccountLabel = $("<label>", { for: "account" + (entryNumber + 2), html: "&nbsp Account: &nbsp" });
     var newAccountInput = $("<input>", { type: "text", id: "account" + (entryNumber + 2) });
@@ -60,10 +64,6 @@ $(document).ready(function () {
     entryNumber++;
   });
 
-  // Create the Submit input button
-  var submitInput = $("<input>", { type: "submit", value: "Submit" });
-
-
   //Append each button to buttons
   buttons.append(addButton, submitInput);
 
@@ -74,11 +74,6 @@ $(document).ready(function () {
   $("#entry").append(form);
 
 
-
-  //Add row event button function
-  $("#journalForm").submit(function (event) {
-
-  })
 
   // Submit form event handler
   $("#journalForm").submit(function (event) {
@@ -106,6 +101,7 @@ $(document).ready(function () {
         $("#amountCR" + (i + 1)).val("");
 
       }
+
     }
     $("#note").val("");
   });
