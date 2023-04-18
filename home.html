@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Double-Entry Accounting System</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Double-Entry Accounting System</h1>
-    <br>
-    <br>
-    <form id="journalForm">
-      <label for="account">Account:</label>
-      <input type="text" id="account">
-      <label for="amountDr">Debit Amount:</label>
-      <input type="number" id="amountDR">
-      <label for="amountCr">Credit Amount:</label>
-      <input type="number" id="amountCR">
-      <label for="note">Note:</label>
-      <input type="text" id="note">
-      <input type="submit" value="Submit">
-    </form>
-    <table id="journalEntriesTable">
-      <thead>
-        <tr>
-          <th>User ID</th>
-          <th>Timestamp</th>
-          <th>Transaction ID</th>
-          <th>Account</th>
-          <th>Debit</th>
-          <th>Credit</th>
-          <th>Note</th>
-        </tr>
-      </thead>
-      <tbody id="journalEntriesTableBody"></tbody>
-    </table>
-    <script src="app.js"></script>
-  </body>
+
+<head>
+  <title>Double-Entry Accounting System</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Double-Entry Accounting System</h1>
+  <br>
+
+  <h3>Journal Entry</h3>
+  <br>
+  <p id="entry">
+    <!--<form id="journalForm">
+    <label for="account">Account:</label>
+    <input type="text" id="account">
+    <label for="amountDr">Debit Amount:</label>
+    <input type="number" id="amountDR">
+    <label for="amountCr">Credit Amount:</label>
+    <input type="number" id="amountCR">
+    <label for="note">Note:</label>
+    <input type="text" id="note">
+    <input type="submit" value="Submit">
+  </form> -->
+  </p>
+  <h3>Ledger</h3>
+  <table id="journalEntriesTable">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Timestamp</th>
+        <th>Transaction ID</th>
+        <th>Account</th>
+        <th>Debit</th>
+        <th>Credit</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody id="journalEntriesTableBody"></tbody>
+  </table>
+  <script src="app.js"></script>
+</body>
+
 </html>
