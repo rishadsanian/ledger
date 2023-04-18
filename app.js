@@ -83,26 +83,31 @@ $(document).ready(function () {
   // Submit form event handler
   $("#journalForm").submit(function (event) {
     event.preventDefault();
-    var account = $("#account").val();
-    let amountDR = $("#amountDR").val();
-    let amountCR = $("#amountCR").val();
-    var note = $("#note").val();
 
-    if (account && amountDR) {
+    // Get the length of entries
+    var entryLength = $(".entry").length;
 
-      addJournalEntry(account, amountDR, amountCR, note);
-      $("#account").val("");
-      $("#amountDR").val("");
-      $("#note").val("");
+    // Loop through each entry
+    for (var i = 0; i < entryLength; i++) {
+      var account = $("#account" + (i + 1)).val();
+      var amountDR = $("#amountDR" + (i + 1)).val();
+      var amountCR = $("#amountCR" + (i + 1)).val();
+      var note = $("#note").val();
 
-    } else if (account && amountCR) {
-      addJournalEntry(account, amountDR, amountCR, note);
-      $("#account").val("");
-      $("#amountCR").val("");
-      $("#note").val("");
+      if (account && amountDR) {
+        addJournalEntry(account, amountDR, amountCR, note);
+        $("#account" + (i + 1)).val("");
+        $("#amountDR" + (i + 1)).val("");
 
 
+      } else if (account && amountCR) {
+        addJournalEntry(account, amountDR, amountCR, note);
+        $("#account" + (i + 1)).val("");
+        $("#amountCR" + (i + 1)).val("");
+
+      }
     }
+    $("#note").val("");
   });
 });
 
