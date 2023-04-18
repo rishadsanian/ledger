@@ -61,23 +61,8 @@ $(document).ready(function () {
     lengthEntry++;
   });
 
-
-
   // Create the Submit input button
   var submitInput = $("<input>", { type: "submit", value: "Submit" });
-
-
-
-  //Append each button to buttons
-  buttons.append(addButton, submitInput);
-
-  // Append all the input fields and labels to the form
-  form.append(entries, notes, buttons);
-
-  // Append the form to the desired DOM element
-  $("#entry").append(form);
-
-
 
   // Submit form event handler
   $("#journalForm").submit(function (event) {
@@ -98,17 +83,25 @@ $(document).ready(function () {
         $("#account" + (i + 1)).val("");
         $("#amountDR" + (i + 1)).val("");
 
-
       } else if (account && amountCR) {
         addJournalEntry(account, amountDR, amountCR, note);
         $("#account" + (i + 1)).val("");
         $("#amountCR" + (i + 1)).val("");
-
       }
-
     }
     $("#note").val("");
+    location.reload(true)
   });
+
+  //Append each button to buttons
+  buttons.append(addButton, submitInput);
+
+  // Append all the input fields and labels to the form
+  form.append(entries, notes, buttons);
+
+  // Append the form to the desired DOM element
+  $("#entry").append(form);
+
 });
 
 // Function to add a new journal entry to the table
