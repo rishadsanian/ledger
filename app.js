@@ -44,25 +44,29 @@ $(document).ready(function () {
   //Create Buttons
   var buttons = $("<div>").addClass('buttons').css({ "display": "block" });
 
-  // Create the Submit input button
-  var submitInput = $("<input>", { type: "submit", value: "Submit"});
-
   //Add row  button
 
   // Create a button to add another instance of input fields
   var addButton = $("<button>").text("Add Row").click(function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
     var newEntry = $("<div>").addClass('entry');
-    var newAccountLabel = $("<label>", { for: "account" + (entryNumber + 2), html: "&nbsp Account: &nbsp" });
-    var newAccountInput = $("<input>", { type: "text", id: "account" + (entryNumber + 2) });
-    var newAmountDRLabel = $("<label>", { for: "amountDR" + (entryNumber + 2), html: "&nbsp Debit Amount: &nbsp" });
-    var newAmountDRInput = $("<input>", { type: "number", id: "amountDR" + (entryNumber + 2) });
-    var newAmountCRLabel = $("<label>", { for: "amountCR" + (entryNumber + 2), html: "&nbsp Credit Amount: &nbsp" });
-    var newAmountCRInput = $("<input>", { type: "number", id: "amountCR" + (entryNumber + 2) });
+    var newAccountLabel = $("<label>", { for: "account" + (lengthEntry + 1), html: "&nbsp Account: &nbsp" });
+    var newAccountInput = $("<input>", { type: "text", id: "account" + (lengthEntry + 1) });
+    var newAmountDRLabel = $("<label>", { for: "amountDR" + (lengthEntry + 1), html: "&nbsp Debit Amount: &nbsp" });
+    var newAmountDRInput = $("<input>", { type: "number", id: "amountDR" + (lengthEntry + 1) });
+    var newAmountCRLabel = $("<label>", { for: "amountCR" + (lengthEntry + 1), html: "&nbsp Credit Amount: &nbsp" });
+    var newAmountCRInput = $("<input>", { type: "number", id: "amountCR" + (lengthEntry + 1) });
     newEntry.append(newAccountLabel, newAccountInput, newAmountDRLabel, newAmountDRInput, newAmountCRLabel, newAmountCRInput);
     entries.append(newEntry);
-    entryNumber++;
+    lengthEntry++;
   });
+
+
+
+  // Create the Submit input button
+  var submitInput = $("<input>", { type: "submit", value: "Submit" });
+
+
 
   //Append each button to buttons
   buttons.append(addButton, submitInput);
