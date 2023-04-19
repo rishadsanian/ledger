@@ -10,7 +10,7 @@ const version = [0.01]
 const releaseDate = ""
 let mission = []
 
- 
+
 
 /*Ledger Architecture and customer journey
 user information collected/authenticated- and user profile role and group profile created
@@ -19,7 +19,8 @@ user information collected/authenticated- and user profile role and group profil
 
 LandPage  
   userlogin+Profle
-  homescreen : includes greeting, menu, quickbuttons
+  homescreen : includes greeting, menu, quickbuttons,dashbaord
+          Dashboard with Keymetrics
     menu  
       Ledger
       Ledger Entry
@@ -28,6 +29,11 @@ LandPage
           transaction date/post date/
         Add Another
         Entry Templates*         
+        -sales
+        -payroll
+        -inventory
+        -Taxes
+        -Closing ann Period End
         Post
           checkvalidation
           post alert
@@ -43,7 +49,6 @@ LandPage
         Balance Sheet
         Income Statement
         Cashflow Statement
-        Dashboard with Keymetrics
       Settings
         User
         Group 
@@ -51,6 +56,8 @@ LandPage
         Entry Templates
         Accounting Templates
       About Us
+      Help
+      Contact
 
   Logout
 Landing Page
@@ -67,24 +74,24 @@ Financial   Managerial Cost Accounting*/
 userProfile = {}
 const userId = "" //generated/displayed
 let userRole
-let firstName =""
-let lastName =""
-let userName =""
+let firstName = ""
+let lastName = ""
+let userName = ""
 let userEmail = ""
-let currency=""
+let currency = ""
 
-let userPassword=""
+let userPassword = ""
 
 let groupName
 let groupId
 
 userDatabase = [userId, userName, userEmail, userPassword, groupName, groupId, userRole,]
-  //////Entry 
+//////Entry 
 
 
 entry = {}
 const entryNumber = ""  //Generated/Displayed/Stored
-const dateTime= "" //Generated
+const dateTime = "" //Generated
 const dateTimepost = ""//userinput
 const accNumber = [] //userselect
 const accCategories = [] //userselect
@@ -97,8 +104,8 @@ const noteCategory = []
 userId
 
 
-const vartypeCheck = ()=> {}//checks variable types are correct
-const ledgerCheck = () => {}//sum of debits and credits match to the same sum, in entry ledger and trial balance
+const vartypeCheck = () => { }//checks variable types are correct
+const ledgerCheck = () => { }//sum of debits and credits match to the same sum, in entry ledger and trial balance
 const trialbalanceCheck = (datetimestamp) => { } //[Assets] = [Liabilities] + Equity]
 
 
@@ -106,16 +113,16 @@ const trialbalanceCheck = (datetimestamp) => { } //[Assets] = [Liabilities] + Eq
 
 //Reporting 
 generalJournal = {}
-balanceSheet={}
-incomeStatement={}
+balanceSheet = {}
+incomeStatement = {}
 
-const accountingCycle=()=>{}//range, default is calendar year
-let reportingPeriod={startperiod,endpeiod}
+const accountingCycle = () => { }//range, default is calendar year
+let reportingPeriod = { startperiod, endpeiod }
 
 
-  //Quality Checks Functions
+//Quality Checks Functions
 
-  //Front End
+//Front End
 
 
 
