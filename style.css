@@ -58,11 +58,17 @@ thead th {
 
 
 tbody tr:nth-child(even) {
-  background-color: gray;
+  background-color: #808080;
+}
+
+tbody tr:nth-child(even):hover {
+  background-color: lightgray;
+  transition: 0.2s;
 }
 
 tr:hover {
-  background-color: #ddd;
+  background-color: lightgray;
+  transition: 0.2s;
 }
 
 /*Journal Entry Buttons*/
