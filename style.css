@@ -1,6 +1,6 @@
 /* Colour Palette Variables */
 
-.add-row {
+:root {
   --color-primary: #0d1b2a;
   --color-secondary: #1b263b;
   --color-tertiary: #415a77;
@@ -25,6 +25,8 @@ h3 {
   margin-left: 20px;
 }
 
+/* Table styles */
+
 table {
   margin-left: 20px;
   border-collapse: collapse;
@@ -39,6 +41,15 @@ th,
 td {
   border: 1px solid var(--color-quaternary);
   padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ccc;
+}
+
+table tbody tr:hover {
+  background-color: var(--color-quaternary);
+  color: #fff;
 }
 
 /* Form styles */
