@@ -1,87 +1,114 @@
-header {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color: white;
-  font-size: 100%;
-  text-align: left;
-  background-color: black;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  border-bottom: 6px solid black;
-  padding: 10px;
-  padding-bottom: 0px;
+:root {
+  --color-primary: #0d1b2a;
+  --color-secondary: #1b263b;
+  --color-tertiary: #415a77;
+  --color-quaternary: #778da9;
+  --color-background: #e0e1dd;
 }
 
+/* Global styles */
 body {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: Arial, sans-serif;
+  background-color: var(--color-background);
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
   text-align: center;
+  margin-top: 20px;
 }
 
-/*Journal Entry Form*/
-form {
-  display: block;
-  margin-bottom: 20px;
-  text-align: center;
+h3 {
+  margin-left: 20px;
 }
 
-label,
-input {
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-/*Ledger Table*/
 table {
-  width: 75%;
-  margin: 0 auto;
+  margin-left: 20px;
   border-collapse: collapse;
-  border: 1px solid;
+}
+
+thead {
+  background-color: var(--color-tertiary);
+  color: white;
 }
 
 th,
 td {
+  border: 1px solid var(--color-quaternary);
   padding: 8px;
-  text-align: left;
 }
 
-thead th {
-  background-color: black;
+/* Form styles */
+.form-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-wrapper input[type="text"],
+.form-wrapper input[type="number"] {
+  padding: 5px;
+  margin: 5px;
+  width: 120px;
+  border-radius: 5px;
+  border: none;
+}
+
+.form-wrapper label {
+  margin: 5px;
+  font-weight: bold;
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+}
+
+.form-wrapper .entry {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-wrapper .entry:last-of-type {
+  margin-bottom: 10px;
+}
+
+.form-wrapper .add-row {
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-primary);
   color: white;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #808080;
-}
-
-tbody tr:nth-child(even):hover {
-  background-color: lightgray;
-  transition: 0.2s;
-}
-
-tr:hover {
-  background-color: lightgray;
-  transition: 0.2s;
-}
-
-/*Journal Entry Buttons*/
-
-input[type="submit"] {
-  width: fit-content;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  border: solid white 10px;
   cursor: pointer;
 }
 
-.addRow {
-  width: fit-content;
-  padding: 10px;
-  background-color: black;
+.form-wrapper .add-row:hover {
+  background-color: var(--color-secondary);
+}
+
+.form-wrapper .notes {
+  margin: 10px 0;
+}
+
+.form-wrapper .notes label {
+  margin-right: 10px;
+}
+
+.form-wrapper .buttons {
+  margin-top: 10px;
+}
+
+/* Header styles */
+header {
+  background-color: var(--color-primary);
   color: white;
-  border: solid white 10px;
-  cursor: pointer;
+  padding: 10px;
+  text-align: center;
+}
+
+header img {
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  display: block;
 }

@@ -174,10 +174,15 @@ function addJournalEntry(account, amountDR, amountCR, note) {
     amountCR +
     "</td><td>" +
     note +
-    "</td><td></td></tr>";
+    "</td></tr>";
   $("#journalEntriesTableBody").prepend(row);
   saveJournalEntries();
 }
+
+form.appendTo($('h3:contains("Journal Entry")').first().parent());
+accountInput.appendTo(form);
+addButton.appendTo(form);
+
 
 // Function to load journal entries from localStorage
 function loadJournalEntries() {
