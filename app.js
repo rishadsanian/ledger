@@ -65,7 +65,7 @@ $(document).ready(function () {
   notes.append(noteLabel, noteInput);
 
   //Create Buttons
-  var buttons = $("<div>").addClass("buttons").css({ display: "block" });
+  var buttons = $("<div>").addClass("buttons")//.css({ display: "block" });
 
   //Add row  button
 
@@ -113,7 +113,7 @@ $(document).ready(function () {
     });
 
   // Create the Submit input button
-  var submitInput = $("<input>", { type: "submit", value: "Submit" });
+  var submitInput = $("<input>", {class:"submit", type: "submit", value: "Submit" });
 
   //Append each button to buttons
   buttons.append(addButton, submitInput);
