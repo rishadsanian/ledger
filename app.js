@@ -65,7 +65,7 @@ $(document).ready(function () {
   notes.append(noteLabel, noteInput);
 
   //Create Buttons
-  var buttons = $("<div>").addClass("buttons")//.css({ display: "block" });
+  var buttons = $("<div>").addClass("buttons"); //.css({ display: "block" });
 
   //Add row  button
 
@@ -113,7 +113,11 @@ $(document).ready(function () {
     });
 
   // Create the Submit input button
-  var submitInput = $("<input>", {class:"submit", type: "submit", value: "Submit" });
+  var submitInput = $("<input>", {
+    class: "submit",
+    type: "submit",
+    value: "Submit",
+  });
 
   //Append each button to buttons
   buttons.append(addButton, submitInput);
@@ -137,6 +141,10 @@ $(document).ready(function () {
       var amountDR = $("#amountDR" + (i + 1)).val();
       var amountCR = $("#amountCR" + (i + 1)).val();
       var note = $("#note").val();
+
+
+      //TODO - generate one transaction number instead of individual per submit.
+
 
       if (account && amountDR) {
         addJournalEntry(account, amountDR, amountCR, note);
@@ -183,7 +191,6 @@ form.appendTo($('h3:contains("Journal Entry")').first().parent());
 accountInput.appendTo(form);
 addButton.appendTo(form);
 
-
 // Function to load journal entries from localStorage
 function loadJournalEntries() {
   var journalEntries = JSON.parse(localStorage.getItem("journalEntries"));
@@ -198,6 +205,7 @@ function saveJournalEntries() {
   localStorage.setItem("journalEntries", JSON.stringify(journalEntries));
 }
 
+//TODO gernerate unique transaction number by validating against general journal
 // Function to generate a random transaction number
 function generateTransactionNumber() {
   var characters =
@@ -214,5 +222,3 @@ function generateTransactionNumber() {
 function deleteJournalEntries() {
   localStorage.removeItem("journalEntries");
 }
-
-
