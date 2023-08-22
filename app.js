@@ -23,6 +23,8 @@ $(document).ready(function () {
       id: "account" + (entryNumber + 1),
     });
 
+    //TODO allow decimals in amount input fields
+
     // Create the Debit Amount input field
     var amountDRLabel = $("<label>", {
       for: "amountDR" + (entryNumber + 1),
@@ -142,9 +144,7 @@ $(document).ready(function () {
       var amountCR = $("#amountCR" + (i + 1)).val();
       var note = $("#note").val();
 
-
       //TODO - generate one transaction number instead of individual per submit.
-
 
       if (account && amountDR) {
         addJournalEntry(account, amountDR, amountCR, note);
