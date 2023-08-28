@@ -5,6 +5,7 @@ CREATE TABLE accounts (
     balance DECIMAL(18, 2) NOT NULL,
     account_type VARCHAR(10) NOT NULL, -- Debit or Credit
     fk_class_id INT REFERENCES classes(id),
+    user_id INT REFERENCES users(id), -- Reference to the users table
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP
 );
