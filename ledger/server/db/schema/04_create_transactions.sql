@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS transactions CASCADE;
+
+DROP TABLE IF EXISTS transactions CASCADE;
+
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
     account_number VARCHAR(20) NOT NULL REFERENCES accounts(account_number),
