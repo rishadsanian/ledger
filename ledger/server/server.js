@@ -33,6 +33,11 @@ pool.query("SELECT NOW()", (err, res) => {
 });
 
 //----------------------------------------------------------------------------//
+//Routes
+const accountRoutes = require('./routes/accountRoutes');
+app.use('/api/accounts', accountRoutes);
+
+//----------------------------------------------------------------------------//
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
