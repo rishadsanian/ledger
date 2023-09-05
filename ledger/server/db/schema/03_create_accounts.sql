@@ -1,3 +1,4 @@
+-- 03_create_accounts.sql
 DROP TABLE IF EXISTS accounts CASCADE;
 
 CREATE TABLE accounts (

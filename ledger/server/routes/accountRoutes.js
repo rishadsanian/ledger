@@ -1,31 +1,29 @@
+//accountRoutes.js
 const express = require('express');
 const router = express.Router();
-
-// Import controllers and middleware here
 const accountController = require('../controllers/accountController');
-const authMiddleware = require('../middleware/authMiddleware');
 
 // Define your routes here
 
 // Create Account
-router.post('/', authMiddleware, accountController.createAccount);
+router.post('/', accountController.createAccount);
 
 // Get All Accounts
-router.get('/', authMiddleware, accountController.getAllAccounts);
+router.get('/', accountController.getAllAccounts);
 
-// Get Account by ID
-router.get('/:id', authMiddleware, accountController.getAccountById);
+// // Get Account by ID
+// router.get('/:id', accountController.getAccountById);
 
-// Update Account
-router.put('/:id', authMiddleware, accountController.updateAccount);
+// // Update Account
+// router.put('/:id', accountController.updateAccount);
 
-// Delete Account
-router.delete('/:id', authMiddleware, accountController.deleteAccount);
+// // Delete Account
+// router.delete('/:id', accountController.deleteAccount);
 
-// Get Accounts by User
-router.get('/user/:user_id', authMiddleware, accountController.getAccountsByUser);
+// // Get Accounts by User
+// router.get('/user/:user_id', accountController.getAccountsByUser);
 
-// Search Accounts
-router.get('/search', authMiddleware, accountController.searchAccounts);
+// // Search Accounts
+// router.get('/search', accountController.searchAccounts);
 
 module.exports = router;

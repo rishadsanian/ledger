@@ -1,27 +1,21 @@
+//server.js
 const express = require("express");
 const app = express();
-const { Pool, Client } = require("pg");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const pool = require("./db/config");
 
+const accountRoutes = require("./routes/accountRoutes");
 //--------------------------------------------------------------------------//
 dotenv.config();
 app.use(morgan("dev"));
+app.use(express.json());
 
 //-------------------------------------------------------------------------//
 
 const PORT = process.env.PORT || 8080;
 
 //----------------------------------------------------------------------------//
-
-// Create a new Pool instance
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  port: process.env.DB_PORT,
-});
 
 // Test the database connection
 pool.query("SELECT NOW()", (err, res) => {
@@ -34,8 +28,7 @@ pool.query("SELECT NOW()", (err, res) => {
 
 //----------------------------------------------------------------------------//
 //Routes
-const accountRoutes = require('./routes/accountRoutes');
-app.use('/api/accounts', accountRoutes);
+app.use("/api/accounts", accountRoutes);
 
 //----------------------------------------------------------------------------//
 // Start the server
