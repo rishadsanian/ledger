@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material";
 import {
-  TextField,
   Button,
   Select,
   MenuItem,
@@ -10,7 +10,10 @@ import {
 } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 
-// classesData.js
+//Account Types
+const accountTypeOptions = ["Debit", "Credit"];
+
+// classes
 const classesData = [
   { id: 1, name: "Assets" },
   { id: 2, name: "Liabilities" },
@@ -22,17 +25,16 @@ const classesData = [
 function CreateAccount() {
   const [name, setName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const [balance, setBalance] = useState("");
+  // const [balance, setBalance] = useState("");
   const [accountType, setAccountType] = useState("");
   const [selectedClass, setSelectedClass] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const newAccount = {
       name,
       account_number: accountNumber,
-      balance,
       account_type: accountType,
       fk_class_id: selectedClass ? selectedClass.id : null,
     };
@@ -47,7 +49,7 @@ function CreateAccount() {
       // Reset the form fields
       setName("");
       setAccountNumber("");
-      setBalance("");
+      // setBalance("");
       setAccountType("");
       setSelectedClass(null);
     } catch (error) {
@@ -76,26 +78,17 @@ function CreateAccount() {
           required
           fullWidth
         />
-        <TextField
-          label="Balance"
-          type="number"
-          value={balance}
-          onChange={(e) => setBalance(e.target.value)}
-          required
-          fullWidth
+
+        <Autocomplete
+          id="account-type-select"
+          options={accountTypeOptions}
+          value={accountType}
+          onChange={(event, newValue) => setAccountType(newValue)}
+          renderInput={(params) => (
+            <TextField {...params} label="Account Type" fullWidth />
+          )}
         />
-        <FormControl fullWidth>
-          <InputLabel>Account Type</InputLabel>
-          <Select
-            value={accountType}
-            onChange={(e) => setAccountType(e.target.value)}
-            required
-          >
-            <MenuItem value="">Select Account Type</MenuItem>
-            <MenuItem value="Debit">Debit</MenuItem>
-            <MenuItem value="Credit">Credit</MenuItem>
-          </Select>
-        </FormControl>
+
         <Autocomplete
           id="class-select"
           options={classesData}
