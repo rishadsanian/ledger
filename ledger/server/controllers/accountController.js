@@ -5,16 +5,16 @@ const pool = require("../db/config");
 
 const createAccount = async (req, res) => {
   try {
-    const { name, account_number, balance, account_type, fk_class_id, user_id } = req.body;
+    const { name, account_number, account_type, fk_class_id, user_id } = req.body;
 
     // Insert a new account into the accounts table
     const query = `
-      INSERT INTO accounts (name, account_number, balance, account_type, fk_class_id, user_id)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO accounts (name, account_number, account_type, fk_class_id, user_id)
+      VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `;
 
-    const values = [name, account_number, balance, account_type, fk_class_id, user_id];
+    const values = [name, account_number, account_type, fk_class_id, user_id];
 
     const result = await pool.query(query, values);
 
@@ -27,6 +27,7 @@ const createAccount = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 const getAllAccounts = async (req, res) => {
   try {
@@ -48,5 +49,4 @@ const getAllAccounts = async (req, res) => {
 module.exports = {
   createAccount,
   getAllAccounts,
-  // Add other controller functions here
 };
