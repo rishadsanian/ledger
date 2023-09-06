@@ -1,9 +1,9 @@
-// DashboardLayout.js
+// MainAccount.js
 import React from 'react';
 import CreateAccountForm from './CreateAccountForm';
 import AccountList from './AccountList';
 
-const DashboardLayout = () => {
+const MainAccounts = () => {
   return (
     <div>
     <h1> Accounts</h1>
@@ -21,4 +21,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default MainAccounts;
