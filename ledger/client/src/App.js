@@ -1,5 +1,5 @@
 // src/App.js
-import './App.css';
+import './styles/App.css';
 import React from 'react';
 import AppRouter from './components/AppRouter';
 import TopNavbar from './components/TopNavBar';
