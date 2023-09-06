@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import {
   Button,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
+  // Select,
+  // MenuItem,
+  // FormControl,
+  // InputLabel,
 } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 
@@ -60,7 +60,7 @@ function CreateAccount() {
 
   return (
     <div>
-      <h2>Create New Account</h2>
+      <h3>Create New Account</h3>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Name"
@@ -99,7 +99,13 @@ function CreateAccount() {
             <TextField {...params} label="Select Class" fullWidth />
           )}
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button
+          type="submit"
+          variant="contained"
+          color="tertiary"
+          className="buttons formwrapper"
+          style={{ color: 'background' }}
+        >
           Create Account
         </Button>
       </form>

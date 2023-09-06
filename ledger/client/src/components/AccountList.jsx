@@ -18,7 +18,7 @@ function AccountList() {
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
-      <h1 className="text-2xl font-semibold mb-4">Account List</h1>
+      <h3 className="text-2xl font-semibold mb-4">Account List</h3>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
           <thead>
