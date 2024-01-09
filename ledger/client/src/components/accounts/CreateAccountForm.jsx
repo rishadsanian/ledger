@@ -59,9 +59,14 @@ function CreateAccount() {
   };
 
   return (
-    <div>
-      <h3>Create New Account</h3>
+    <div className="flex flex-col gap-3">
+      <div className="text-2xl pt-2 pb-4 bg-gray-900 text-white w-full">Create New Account</div>
+
+      <div className="text-white ">
+        <i className="fas fa-times"></i>
+      </div>
       <form onSubmit={handleSubmit}>
+        <div class="flex flex-col gap-4">
         <TextField
           label="Name"
           type="text"
@@ -69,7 +74,9 @@ function CreateAccount() {
           onChange={(e) => setName(e.target.value)}
           required
           fullWidth
+          // class="w-full "
         />
+        
         <TextField
           label="Account Number"
           type="text"
@@ -99,6 +106,8 @@ function CreateAccount() {
             <TextField {...params} label="Select Class" fullWidth />
           )}
         />
+        </div>
+        <div className="mt-8">
         <Button
           type="submit"
           variant="contained"
@@ -108,6 +117,7 @@ function CreateAccount() {
         >
           Create Account
         </Button>
+        </div>
       </form>
     </div>
   );
