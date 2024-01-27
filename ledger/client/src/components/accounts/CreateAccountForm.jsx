@@ -51,6 +51,7 @@ function CreateAccount() {
       account_number: accountNumber,
       account_type: accountType,
       fk_class_id: selectedClass ? selectedClass.id : null,
+      user_id: 1
     };
 
     try {
