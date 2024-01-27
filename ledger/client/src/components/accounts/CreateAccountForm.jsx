@@ -4,6 +4,7 @@ import { TextField } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { MdAddCircle } from "react-icons/md";
 import { MdClose } from "react-icons/md";
+import { useAccountContext } from "../../context/AccountContext";
 
 import {
   Button,
@@ -43,7 +44,11 @@ function CreateAccount() {
     console.log("isLoading:", isLoading);
   }, [isLoading]);
 
-  const handleSubmit = async (e) => {
+
+// const getAccounts = async () => {
+
+
+  const saveAccount = async (e) => {
     e.preventDefault();
 
     const newAccount = {
@@ -89,7 +94,7 @@ function CreateAccount() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} class="px-4 py-4 ">
+      <form onSubmit={saveAccount} class="px-4 py-4 ">
         <div class="flex flex-col gap-4">
           <TextField
             label="Name"
@@ -161,7 +166,7 @@ function CreateAccount() {
           <div class="w-full flex justify-center items-center">
             <MdAddCircle
               className="text-5xl text-gray-400 cursor-pointer hover:scale-125 transition-transform"
-              onClick={handleSubmit}
+              onClick={saveAccount}
             />
           </div>
         </div>

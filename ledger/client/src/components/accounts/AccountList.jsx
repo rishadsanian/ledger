@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// AccountList.js
+import React, { useEffect } from 'react';
+import { useAccountContext } from "../../context/AccountContext";
 
 function AccountList() {
-  const [accounts, setAccounts] = useState([]);
+  const { accounts } = useAccountContext();
 
   useEffect(() => {
-    // Fetch accounts data from your API endpoint using Axios
-    axios.get('/api/accounts')
-      .then((response) => {
-        setAccounts(response.data.accounts);
-        console.log("Account Data Retrieved");
-      })
-      .catch((error) => {
-        console.error('Error fetching accounts:', error);
-      });
-  }, []);
+    console.log('Accounts:', accounts);
+  }, [accounts]);
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
