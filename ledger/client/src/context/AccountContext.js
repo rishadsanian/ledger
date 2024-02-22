@@ -6,6 +6,8 @@ const AccountContext = createContext();
 
 export const AccountProvider = ({ children }) => {
   const [accounts, setAccounts] = useState([]);
+  
+  
 
   const getAccounts = async () => {
     try {

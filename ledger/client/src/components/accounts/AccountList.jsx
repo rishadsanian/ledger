@@ -1,21 +1,32 @@
-// AccountList.js
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+
 import { useAccountContext } from "../../context/AccountContext";
+import SearchBar from "../../assets/searchBar";
 
 function AccountList() {
   const { accounts } = useAccountContext();
+  const [listModel, setListModel] = useState(accounts);
 
   useEffect(() => {
-    console.log('Accounts:', accounts);
+    setListModel(accounts);
+  }, [accounts]);
+
+  useEffect(() => {
+    console.log("Accounts:", accounts);
   }, [accounts]);
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
-      <h3 className="text-2xl font-semibold mb-4">Account List</h3>
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto">
+      <div className="text-2xl font-semibold mb-4">Account List</div>
+      <div className="">
+        <div className="flex justify-between items-center mb-4">
+          <SearchBar model={listModel} setModel={setListModel} modelMain={accounts} />
+        </div>
+        <div className="flex justify-between items-center mb-4"></div>
+        <div className="flex justify-between items-center mb-4"></div>
+        <table className="w-full mx-auto">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-gray-800 text-sm">
               <th className="px-4 py-2">ID</th>
               <th className="px-4 py-2">Name</th>
               <th className="px-4 py-2">Account Number</th>
@@ -24,7 +35,7 @@ function AccountList() {
             </tr>
           </thead>
           <tbody>
-            {accounts.map((account) => (
+            {listModel.map((account) => (
               <tr key={account.id} className="text-center">
                 <td className="border px-4 py-2">{account.id}</td>
                 <td className="border px-4 py-2">{account.name}</td>

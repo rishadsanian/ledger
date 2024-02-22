@@ -38,6 +38,7 @@ function CreateAccount() {
   // const [balance, setBalance] = useState("");
   const [accountType, setAccountType] = useState("");
   const [selectedClass, setSelectedClass] = useState(null);
+  const { updateAccounts } = useAccountContext();
 
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -76,6 +77,8 @@ function CreateAccount() {
       setAccountType("");
       setSelectedClass(null);
       setIsLoading(false);
+      //update accounts
+      updateAccounts();
     } catch (error) {
       setIsLoading(false);
       // Handle errors, for example, show an error message
@@ -84,7 +87,7 @@ function CreateAccount() {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-full border-2 bg-white rounded justify-between ">
+    <div className="flex flex-col gap-3 w-full border-2 bg-white rounded justify-between shadow-md">
       <div className="flex justify-between items-center bg-gray-300 px-3">
         <div className="flex  text-md pt-4 pb-4 text-gray-500 w-full">
           Create New Account
@@ -94,7 +97,7 @@ function CreateAccount() {
         </div>
       </div>
 
-      <form onSubmit={saveAccount} class="px-4 py-4 ">
+      <form onSubmit={saveAccount} class="px-4 py-4 text-sm ">
         <div class="flex flex-col gap-4">
           <TextField
             label="Name"
@@ -137,7 +140,7 @@ function CreateAccount() {
           />
         </div>
 
-        <FormControl component="fieldset">
+        {/* <FormControl component="fieldset">
           <Typography variant="subtitle1" gutterBottom>
             Account Type
           </Typography>
@@ -157,7 +160,7 @@ function CreateAccount() {
               />
             ))}
           </RadioGroup>
-        </FormControl>
+        </FormControl> */}
         <div
           className={`flex justify-center items-center mt-6 ${
             isLoading ? "animate-spin" : ""
