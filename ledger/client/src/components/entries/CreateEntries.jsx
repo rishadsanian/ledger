@@ -32,10 +32,9 @@ const classesData = [
   { id: 50, name: "Equity" },
 ];
 
-function CreateAccount() {
+function CreateEntries() {
   const [name, setName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const [subAccountNumber, setSubAccountNumber] = useState("");
   // const [balance, setBalance] = useState("");
   const [accountType, setAccountType] = useState("");
   const [selectedClass, setSelectedClass] = useState(null);
@@ -47,6 +46,8 @@ function CreateAccount() {
   }, [isLoading]);
 
 
+// const getAccounts = async () => {
+
 
   const saveAccount = async (e) => {
     e.preventDefault();
@@ -55,15 +56,14 @@ function CreateAccount() {
       name,
       account_number: accountNumber,
       account_type: accountType,
-      sub_account_number: subAccountNumber ? subAccountNumber : "00",
       fk_class_id: selectedClass ? selectedClass.id : null,
-      user_id: 1,
+      user_id: 1
     };
-  
+
     try {
       // Set loading state to true
       setIsLoading(true);
-      console.log("newAccount:", newAccount);
+
       // Send a POST request to create the account
       const response = await Axios.post("/api/accounts", newAccount);
 
@@ -178,4 +178,4 @@ function CreateAccount() {
   );
 }
 
-export default CreateAccount;
+export default CreateEntries;

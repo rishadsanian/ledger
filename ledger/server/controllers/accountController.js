@@ -5,16 +5,16 @@ const pool = require("../db/config");
 
 const createAccount = async (req, res) => {
   try {
-    const { name, account_number, account_type, fk_class_id, user_id } = req.body;
+    const { name, account_number, sub_account_number, account_type, fk_class_id, user_id } = req.body;
 
     // Insert a new account into the accounts table
     const query = `
-      INSERT INTO accounts (name, account_number, account_type, fk_class_id, user_id)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO accounts (name, account_number, sub_account_number, account_type, fk_class_id, user_id)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
     `;
 
-    const values = [name, account_number, account_type, fk_class_id, user_id];
+    const values = [name, account_number, sub_account_number, account_type, fk_class_id, user_id];
 
     const result = await pool.query(query, values);
 

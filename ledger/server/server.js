@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const pool = require("./db/config");
 
 const accountRoutes = require("./routes/accountRoutes");
+const entryRoutes = require("./routes/entriesRoutes");
 //--------------------------------------------------------------------------//
 dotenv.config();
 app.use(morgan("dev"));
@@ -29,6 +30,7 @@ pool.query("SELECT NOW()", (err, res) => {
 //----------------------------------------------------------------------------//
 //Routes
 app.use("/api/accounts", accountRoutes);
+app.use("/api/entries", entryRoutes);
 
 //----------------------------------------------------------------------------//
 // Start the server

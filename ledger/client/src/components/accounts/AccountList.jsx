@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 
 import { useAccountContext } from "../../context/AccountContext";
 import SearchBar from "../../assets/searchBar";
-
+const classesData = [
+  { id: 10, name: "Assets" },
+  { id: 20, name: "Liabilities" },
+  { id: 30, name: "Revenue" },
+  { id: 40, name: "Expense" },
+  { id: 50, name: "Equity" },
+];
 function AccountList() {
   const { accounts } = useAccountContext();
   const [listModel, setListModel] = useState(accounts);
 
   useEffect(() => {
     setListModel(accounts);
-  }, [accounts]);
+  }, [listModel]);
 
   useEffect(() => {
     console.log("Accounts:", accounts);
@@ -32,6 +38,7 @@ function AccountList() {
               <th className="px-4 py-2">Account Number</th>
               <th className="px-4 py-2">Account Type</th>
               <th className="px-4 py-2">Balance</th>
+              <th className="px-4 py-2">Class</th>
             </tr>
           </thead>
           <tbody>
@@ -42,6 +49,8 @@ function AccountList() {
                 <td className="border px-4 py-2">{account.account_number}</td>
                 <td className="border px-4 py-2">{account.account_type}</td>
                 <td className="border px-4 py-2">{account.balance}</td>
+     
+                <td className="border px-4 py-2">{classesData.find((data) => data.id == account.fk_class_id)?.name}</td>
               </tr>
             ))}
           </tbody>
