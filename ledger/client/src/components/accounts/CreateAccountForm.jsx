@@ -106,7 +106,6 @@ function CreateAccount() {
             onChange={(e) => setName(e.target.value)}
             required
             fullWidth
-            // class="w-full "
           />
 
           <TextField
