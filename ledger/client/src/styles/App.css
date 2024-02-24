@@ -10,3 +10,13 @@
 .sidebar.closed {
   width: 48px;
 }
+
+.footer.open {
+  height: 100px;
+  transition: height 0.3s ease-in-out;
+}
+
+.footer.closed {
+  height: 50px;
+  transition: height 0.3s ease-in-out;
+}
