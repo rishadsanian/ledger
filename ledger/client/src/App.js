@@ -6,7 +6,8 @@ import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
 import MainAccounts from "./components/accounts/MainAccounts";
 import MainEntries from "./components/entries/MainEntries";
-import Dashboard from "@mui/icons-material/Dashboard";
+// import Dashboard from "@mui/icons-material/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import { AccountProvider } from "./context/AccountContext";
 import menu from "./config/menuConfig";
 

@@ -28,33 +28,32 @@ function AccountList() {
         <div className="flex justify-between items-center mb-4">
           <SearchBar model={listModel} setModel={setListModel} modelMain={accounts} />
         </div>
-        <div className="flex justify-between items-center mb-4"></div>
-        <div className="flex justify-between items-center mb-4"></div>
-        <table className="w-full mx-auto">
-          <thead>
-            <tr className="bg-gray-800 text-sm">
-              <th className="px-4 py-2">ID</th>
-              <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Account Number</th>
-              <th className="px-4 py-2">Account Type</th>
-              <th className="px-4 py-2">Balance</th>
-              <th className="px-4 py-2">Class</th>
-            </tr>
-          </thead>
-          <tbody>
-            {listModel.map((account) => (
-              <tr key={account.id} className="text-center">
-                <td className="border px-4 py-2">{account.id}</td>
-                <td className="border px-4 py-2">{account.name}</td>
-                <td className="border px-4 py-2">{account.account_number}</td>
-                <td className="border px-4 py-2">{account.account_type}</td>
-                <td className="border px-4 py-2">{account.balance}</td>
-     
-                <td className="border px-4 py-2">{classesData.find((data) => data.id == account.fk_class_id)?.name}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-gray-800 text-sm">
+                <th className="px-4 py-2 text-white">ID</th>
+                <th className="px-4 py-2 text-white">Name</th>
+                <th className="px-4 py-2 text-white">Account Number</th>
+                <th className="px-4 py-2 text-white">Account Type</th>
+                <th className="px-4 py-2 text-white">Balance</th>
+                <th className="px-4 py-2 text-white">Class</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {listModel.map((account) => (
+                <tr key={account.id} className="text-center">
+                  <td className="border px-4 py-2">{account.id}</td>
+                  <td className="border px-4 py-2">{account.name}</td>
+                  <td className="border px-4 py-2">{account.account_number}</td>
+                  <td className="border px-4 py-2">{account.account_type}</td>
+                  <td className="border px-4 py-2">{account.balance}</td>
+                  <td className="border px-4 py-2">{classesData.find((data) => data.id == account.fk_class_id)?.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
