@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 // accountController.js
 /* eslint-disable camelcase */
 const { Pool } = require("pg");
 const pool = require("../db/config");
 
-const createAccount = async (req, res) => {
+const createAccount = async(req, res) => {
   try {
     const { name, account_number, sub_account_number, account_type, fk_class_id, user_id } = req.body;
 
@@ -29,7 +30,7 @@ const createAccount = async (req, res) => {
 };
 
 
-const getAllAccounts = async (req, res) => {
+const getAllAccounts = async(req, res) => {
   try {
     // Fetch all accounts from the accounts table
     const query = "SELECT * FROM accounts;";
