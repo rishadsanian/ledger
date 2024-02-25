@@ -37,21 +37,21 @@ const menu = [
   {
     id: 5,
     label: "Home",
-    icon: <i className="fa-solid fa-house"></i>, // Font Awesome icon for Home
+    icon: <i className="fa-solid fa-house"></i>, 
     path: "/",
     show: { topNavBar: true, sideBar: false, footer: false },
   },
   {
     id: 6,
     label: "Info",
-    icon: <i className="fas fa-info-circle"></i>, // Font Awesome icon for Info
+    icon: <i className="fas fa-info-circle"></i>, 
     path: "/info",
     show: { topNavBar: true, sideBar: false, footer: false },
   },
   {
     id: 7,
     label: "Help",
-    icon: <i className="fas fa-question-circle"></i>, // Font Awesome icon for Help
+    icon: <i className="fas fa-question-circle"></i>, 
     path: "/help",
     show: { topNavBar: true, sideBar: false, footer: false },
   },
