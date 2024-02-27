@@ -48,7 +48,7 @@ function AccountList() {
                   <td className="border px-4 py-2">{account.account_number}</td>
                   <td className="border px-4 py-2">{account.account_type}</td>
                   <td className="border px-4 py-2">{account.balance}</td>
-                  <td className="border px-4 py-2">{classesData.find((data) => data.id == account.fk_class_id)?.name}</td>
+                  <td className="border px-4 py-2">{classesData.find((data) => data.id === account.fk_class_id)?.name}</td>
                 </tr>
               ))}
             </tbody>
