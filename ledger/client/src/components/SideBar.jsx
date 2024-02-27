@@ -36,26 +36,25 @@ const SideBar = ({ menu, setMenu }) => {
 
       <List className="flex flex-col overflow-hidden space-y-2">
         {menu.map((item) => (
-          <ListItem
-            key={item.id}
-            className={`list item !text-white rounded-md gap-2 cursor-pointer h-12   flex items-center justify-start  hover:bg-slate-700 hover:text-white  hover:bg-opacity-50 ${item.selected ? '!selected !fade-in bg-slate-700 text-white text-opacity-100 shadow-lg rounded-md !bg-opacity-100' : '!text-opacity-60 '} ${!open? '!rounded-full sidebar !h-12 !w-12	!justify-center !fade-in ' : ''}`}
-
-            onClick={() => handleItemClick(item.path, item.selected)}
-          >
-            {open ? (
-              <div className="">{item.icon}</div>
-            ) : (
-              <Tooltip title={item.label} placement="right">
-                <div className="">{item.icon}</div>
-              </Tooltip>
-            )}
-            {open && (
-              <ListItemText
-                primary={item.label}
-                className="font-bold text-sm"
-              />
-            )}
-          </ListItem>
+<ListItem
+  key={item.id}
+  className={`list item !text-white rounded-md gap-2 cursor-pointer h-12   flex items-center justify-start  hover:bg-slate-700 hover:text-white  hover:bg-opacity-50 ${item.selected ? 'selected !fade-in bg-slate-700 text-white text-opacity-100 shadow-lg rounded-md !bg-opacity-100' : '!text-opacity-60 '} ${!open? '!rounded-full sidebar !h-12 !w-12	!justify-center !fade-in ' : ''}`}
+  onClick={() => handleItemClick(item.path, item.selected)}
+>
+  {open ? (
+    <div className="">{item.icon}</div>
+  ) : (
+    <Tooltip title={item.label} placement="right">
+      <div className="">{item.icon}</div>
+    </Tooltip>
+  )}
+  {open && (
+    <ListItemText
+      primary={item.label}
+      className="font-bold text-sm"
+    />
+  )}
+</ListItem>
         ))}
       </List>
 
