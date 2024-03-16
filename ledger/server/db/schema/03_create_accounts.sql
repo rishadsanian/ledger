@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS accounts CASCADE;
 CREATE TABLE accounts (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    account_number VARCHAR(20) NOT NULL UNIQUE, 
+    account_number VARCHAR(20) NOT NULL, 
     sub_account_number VARCHAR(20) NOT NULL , 
 
      -- Unique constraint for the combination of account_number and sub_account_number

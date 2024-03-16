@@ -38,7 +38,7 @@ const getAllAccounts = async(req, res) => {
 
     // Send a success response with the retrieved accounts
     res.status(200).json({ accounts: result.rows });
-    console.log("Retrieved Accounts");
+    console.log("Retrieved Accounts: ", result.rows);
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);

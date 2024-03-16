@@ -36,7 +36,7 @@ function SearchBar({ model, setModel, modelMain }) {
 
         setModel(filteredModel);
         setSearchLoading(false);
-      }, 300); // Simulated loading time 
+      }, 300); // Simulated loading time
     } catch (error) {
       console.error("An error occurred during search:", error);
       setSearchLoading(false);
@@ -49,7 +49,7 @@ function SearchBar({ model, setModel, modelMain }) {
         onChange={handleChange}
         value={searchTerm}
         placeholder="Search orders"
-        className="w-full border border-gray-300 rounded min-h-[40px] max-h-[40px] mb-4 px-3 py-2 focus:outline-none"
+        className="w-full border border-gray-300 rounded min-h-[40px] max-h-[40px] mb-4 px-3 py-2 pr-10 focus:outline-none"
       />
 
       <div

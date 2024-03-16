@@ -74,7 +74,7 @@ function SearchBarNav() {
         onChange={handleChange}
         value={searchTerm}
         placeholder="Search Ledger"
-        className="w-full border border-gray-700 rounded-2xl min-h-[35px] max-h-[35px] px-3 py-2 focus:outline-none bg-gray-700 bg-opacity-30 text-white transition-colors duration-300
+        className="w-full border border-gray-700 rounded-2xl min-h-[35px] max-h-[35px] px-3 pr-12 py-2 focus:outline-none bg-gray-700 bg-opacity-30 text-white transition-colors duration-300
              focus:bg-opacity-100 focus:bg-gray-700 "
       />
       <div
