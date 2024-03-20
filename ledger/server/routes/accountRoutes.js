@@ -1,4 +1,4 @@
-//accountRoutes.js
+// accountRoutes.js
 const express = require('express');
 const router = express.Router();
 const accountController = require('../controllers/accountController');
@@ -11,19 +11,13 @@ router.post('/', accountController.createAccount);
 // Get All Accounts
 router.get('/', accountController.getAllAccounts);
 
-// // Get Account by ID
-// router.get('/:id', accountController.getAccountById);
+// Get All Sub-Accounts by Parent Account ID
+router.get('/:id/sub-accounts', accountController.getAllSubAccountsByParentAccountId);
 
-// // Update Account
-// router.put('/:id', accountController.updateAccount);
+// Get All Sub-Accounts
+router.get('/sub-accounts', accountController.getAllSubAccounts);
 
-// // Delete Account
-// router.delete('/:id', accountController.deleteAccount);
-
-// // Get Accounts by User
-// router.get('/user/:user_id', accountController.getAccountsByUser);
-
-// // Search Accounts
-// router.get('/search', accountController.searchAccounts);
+// Create Sub-Account
+router.post('/sub-accounts', accountController.createSubAccount);
 
 module.exports = router;

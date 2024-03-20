@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAccountContext } from "../../context/AccountContext";
-import SearchBar from "../../assets/searchBar";
+import { MdClose } from "react-icons/md";
 
 const classesData = [
   { id: 10, name: "Assets" },
@@ -10,72 +10,94 @@ const classesData = [
   { id: 50, name: "Equity" },
 ];
 
-function AccountList() {
-  const { accounts } = useAccountContext();
-  const [listModel, setListModel] = useState(accounts);
+const AccountList = () => {
+  const { accounts = [], subAccounts = [] } = useAccountContext();
 
-  useEffect(() => {
-    setListModel(accounts);
-  }, [accounts]);
-
-  useEffect(() => {
-    console.log("Accounts:", accounts);
-  }, [accounts]);
-
-  useEffect(() => {
-    console.log("ListModel:", listModel);
-  }, [listModel]);
+  console.log(accounts); // Displaying the accounts object
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
-      <div className="text-2xl font-semibold mb-4">Account List</div>
-      <div className="">
-        <div className="flex justify-between items-center mb-4">
-          <SearchBar
-            model={listModel}
-            setModel={setListModel}
-            modelMain={accounts}
-          />
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gray-800 text-sm">
-                <th className="px-4 py-2 text-white">ID</th>
-                <th className="px-4 py-2 text-white">Name</th>
-                <th className="px-4 py-2 text-white">Account Number</th>
-                <th className="px-4 py-2 text-white">Sub Account Number</th>
-                <th className="px-4 py-2 text-white">Account Type</th>
-                <th className="px-4 py-2 text-white">Balance</th>
-                <th className="px-4 py-2 text-white">Class</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listModel.map((account) => (
-                <tr key={account.id} className="text-center">
-                  <td className="border px-4 py-2">{account.id}</td>
-                  <td className="border px-4 py-2">{account.name}</td>
-                  <td className="border px-4 py-2">{account.account_number}</td>
-                  <td className="border px-4 py-2">
-                    {account.sub_account_number}
-                  </td>
-                  <td className="border px-4 py-2">{account.account_type}</td>
-                  <td className="border px-4 py-2">{account.balance}</td>
-                  <td className="border px-4 py-2">
-                    {
-                      classesData.find(
-                        (data) => data.id === parseInt(account.fk_class_id)
-                      )?.name
-                    }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    <div className="pr-0 pt-0 h-1/2">
+      {/* Body */}
+      <div>
+        {/* Loop through each account class */}
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {classesData.map((accountClass) => (
+            <div key={accountClass.id} className="flex flex-col gap-3">
+              {/* Card for each account class */}
+              <div className="bg-white w-full border rounded-lg p-4 shadow-md">
+                <div className="flex flex-row  gap-2">
+                  <div className="text-lg font-semibold">{accountClass.id}</div>
+                  <div className="text-lg font-semibold">
+                    {accountClass.name}
+                  </div>
+                </div>
+                {/* Main table for accounts */}
+                <div className="overflow-y-auto mb-4">
+                  <table className="ml-0 min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Account Number
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Name
+                        </th>
+
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Account Type
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Balance
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <thead className="bg-white divide-y divide-gray-200">
+                      {/* Loop through accounts within this class */}
+
+                      {accounts
+                        .filter((account) => {
+                          return account.fk_class_id == accountClass.id;
+                        })
+                        .map((account) => (
+                          <tr key={account.id}>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {account.account_number}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                              {account.name}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {account.account_type}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {account.balance}
+                            </td>
+                          </tr>
+                        ))}
+                    </thead>
+                  </table>
+                </div>
+                {/* Sub-accounts table */}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default AccountList;

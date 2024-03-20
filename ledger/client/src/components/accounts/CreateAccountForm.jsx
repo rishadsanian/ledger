@@ -1,40 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
-import { TextField } from "@mui/material";
+import { TextField, Button, Select, MenuItem } from "@mui/material";
 import { MdAddCircle } from "react-icons/md";
 import { MdClose } from "react-icons/md";
-import { useAccountContext } from "../../context/AccountContext";
-
-
-import Autocomplete from "@mui/material/Autocomplete";
-
-//Account Types
-const accountTypeOptions = ["Debit", "Credit"];
-
-// classes -
-const classesData = [
-  { id: 10, name: "Assets" },
-  { id: 20, name: "Liabilities" },
-  { id: 30, name: "Revenue" },
-  { id: 40, name: "Expense" },
-  { id: 50, name: "Equity" },
-];
 
 function CreateAccount() {
   const [name, setName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const [subAccountNumber, setSubAccountNumber] = useState("");
-  // const [balance, setBalance] = useState("");
   const [accountType, setAccountType] = useState("");
-  const [selectedClass, setSelectedClass] = useState(null);
-  const { updateAccounts } = useAccountContext();
-
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    console.log("isLoading:", isLoading);
-  }, [isLoading]);
-
-
 
   const saveAccount = async (e) => {
     e.preventDefault();
@@ -43,33 +16,18 @@ function CreateAccount() {
       name,
       account_number: accountNumber,
       account_type: accountType,
-      sub_account_number: subAccountNumber ? subAccountNumber : "00",
-      fk_class_id: selectedClass ? selectedClass.id : null,
-      user_id: 1,
+      user_id: 1, // Assuming user_id 1 for demo purposes
     };
-  
-    try {
-      // Set loading state to true
-      setIsLoading(true);
-      console.log("newAccount:", newAccount);
-      // Send a POST request to create the account
-      const response = await Axios.post("/api/accounts", newAccount);
 
-      // Handle the response here, for example, show a success message
+    try {
+      const response = await Axios.post("/api/accounts", newAccount);
       console.log("Account created:", response.data.account);
 
-      // Reset the form fields
+      // Reset form fields after successful creation
       setName("");
       setAccountNumber("");
-      // setBalance("");
       setAccountType("");
-      setSelectedClass(null);
-      setIsLoading(false);
-      //update accounts
-      updateAccounts();
     } catch (error) {
-      setIsLoading(false);
-      // Handle errors, for example, show an error message
       console.error("Error creating account:", error);
     }
   };
@@ -77,83 +35,40 @@ function CreateAccount() {
   return (
     <div className="flex flex-col gap-3 w-full border-2 bg-white rounded justify-between shadow-md">
       <div className="flex justify-between items-center bg-gray-300 px-3">
-        <div className="flex  text-md pt-4 pb-4 text-gray-500 w-full">
-          Create New Account
+        <div className="flex text-md pt-4 pb-4 text-gray-500 w-full">
+          Create Account
         </div>
         <div className="text-gray-500 cursor-pointer p-1 ">
-          <MdClose className="text-xl hover: text-gray-500 hover:scale-125 transition-transform" />
+          <MdClose className="text-xl hover:text-gray-500 hover:scale-125 transition-transform" />
         </div>
       </div>
 
-      <form onSubmit={saveAccount} class="px-4 py-4 text-sm ">
-        <div class="flex flex-col gap-4">
-          <TextField
-            label="Name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            fullWidth
-          />
-
-          <TextField
-            label="Account Number"
-            type="text"
-            value={accountNumber}
-            onChange={(e) => setAccountNumber(e.target.value)}
-            required
-            fullWidth
-          />
-
-          <Autocomplete
-            id="account-type-select"
-            options={accountTypeOptions}
-            value={accountType}
-            onChange={(event, newValue) => setAccountType(newValue)}
-            renderInput={(params) => (
-              <TextField {...params} label="Account Type" fullWidth />
-            )}
-          />
-
-          <Autocomplete
-            id="class-select"
-            options={classesData}
-            getOptionLabel={(option) => option.name}
-            value={selectedClass}
-            onChange={(event, newValue) => setSelectedClass(newValue)}
-            renderInput={(params) => (
-              <TextField {...params} label="Select Class" fullWidth />
-            )}
-          />
-        </div>
-
-        {/* <FormControl component="fieldset">
-          <Typography variant="subtitle1" gutterBottom>
-            Account Type
-          </Typography>
-          <RadioGroup
-            id="account-type-select"
-            aria-label="account-type"
-            name="account-type"
-            value={accountType}
-            style={{ flexDirection: "row" }}
-          >
-            {accountTypeOptions.map((option) => (
-              <FormControlLabel
-                key={option}
-                value={option}
-                control={<Radio />}
-                label={option}
-              />
-            ))}
-          </RadioGroup>
-        </FormControl> */}
-        <div
-          className={`flex justify-center items-center mt-6 ${
-            isLoading ? "animate-spin" : ""
-          }`}
+      <form onSubmit={saveAccount} className="px-4 py-4 text-sm">
+        <TextField
+          label="Name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <TextField
+          label="Account Number"
+          type="text"
+          value={accountNumber}
+          onChange={(e) => setAccountNumber(e.target.value)}
+          required
+        />
+        <Select
+          label="Account Type"
+          value={accountType}
+          onChange={(e) => setAccountType(e.target.value)}
+          required
         >
-          <div class="w-full flex justify-center items-center">
+          <MenuItem value="Debit">Debit</MenuItem>
+          <MenuItem value="Credit">Credit</MenuItem>
+        </Select>
+        <div className="flex justify-center items-center mt-6">
+          <div className="w-full flex justify-center items-center">
             <MdAddCircle
               className="text-5xl text-gray-400 cursor-pointer hover:scale-125 transition-transform"
               onClick={saveAccount}
@@ -162,6 +77,10 @@ function CreateAccount() {
         </div>
       </form>
     </div>
+  
+  
+  
+  
   );
 }
 
