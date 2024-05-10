@@ -3,11 +3,12 @@ import Axios from "axios";
 import { TextField, Button, Select, MenuItem } from "@mui/material";
 import { MdAddCircle } from "react-icons/md";
 import { MdClose } from "react-icons/md";
-
+import { classesData } from "./AccountList";
 function CreateAccount() {
   const [name, setName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [accountType, setAccountType] = useState("");
+  const [accountClass, setAccountClass] = useState("");
 
   const saveAccount = async (e) => {
     e.preventDefault();
@@ -16,7 +17,8 @@ function CreateAccount() {
       name,
       account_number: accountNumber,
       account_type: accountType,
-      user_id: 1, // Assuming user_id 1 for demo purposes
+      fk_user_id: 1, // Assuming user_id 1 for demo purposes
+      fk_class_id: accountClass,
     };
 
     try {
@@ -44,6 +46,18 @@ function CreateAccount() {
       </div>
 
       <form onSubmit={saveAccount} className="px-4 py-4 text-sm">
+        <Select
+          label="Class"
+          value={accountClass}
+          onChange={(e) => setAccountClass(e.target.value)}
+          required
+        >
+          {classesData.map((classData) => (
+            <MenuItem key={classData.id} value={classData.id}>
+              {classData.name}
+            </MenuItem>
+          ))}
+        </Select>
         <TextField
           label="Name"
           type="text"
@@ -77,10 +91,6 @@ function CreateAccount() {
         </div>
       </form>
     </div>
-  
-  
-  
-  
   );
 }
 

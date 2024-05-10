@@ -1,3 +1,10 @@
+// This code defines the menu configuration for a React application.
+// It exports a function called MenuConfig that returns an array of menu items.
+// Each menu item has properties like id, label, icon, path, show, and selected.
+// The menu items are used to generate the navigation menu in the application.
+// The useState hook is used to manage the state of the menu items.
+// The initial state of the menu items is defined in the useState hook.
+// The menu items are then returned as part of the MenuConfig function's return value.
 
 import React, { useState } from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";

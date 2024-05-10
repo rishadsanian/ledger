@@ -9,7 +9,7 @@ CREATE TABLE accounts (
     balance DECIMAL(18, 2),
     account_type VARCHAR(10) NOT NULL, -- Debit or Credit
     fk_class_id VARCHAR(10), -- Reference to the class
-    user_id INT REFERENCES users(id), -- Reference to the users table
+    fk_user_id INT REFERENCES users(id), -- Reference to the users table
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP
 );
@@ -25,6 +25,8 @@ CREATE TABLE sub_accounts (
     balance DECIMAL(18, 2),
     account_type VARCHAR(10) NOT NULL, -- Debit or Credit
     fk_account_id INT NOT NULL REFERENCES accounts(id), -- Reference to the parent account
+    fk_class_id VARCHAR(10) NOT NULL REFERENCES classes(id) , -- Reference to the class
+    fk_user_id INT NOT NULL REFERENCES users(id), -- Reference to the users table
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP,
     -- Add a unique constraint to ensure account_number is unique within fk_account_id

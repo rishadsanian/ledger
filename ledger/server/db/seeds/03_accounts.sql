@@ -1,5 +1,5 @@
 -- Seed data for common accounts
-INSERT INTO accounts (name, account_number, balance, account_type, fk_class_id, user_id)
+INSERT INTO accounts (name, account_number, balance, account_type, fk_class_id, fk_user_id)
 VALUES 
   ('Cash', '1000', 0, 'Debit', '10', 1), -- Asset
   ('Accounts Receivable', '1100', 0, 'Debit', '10', 1), -- Asset

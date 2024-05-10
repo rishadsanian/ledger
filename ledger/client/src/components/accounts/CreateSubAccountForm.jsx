@@ -1,7 +1,7 @@
 // CreateSubAccount.jsx
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { TextField, Select, MenuItem } from "@mui/material";
+import { TextField, Select, MenuItem, Unstable_Grid2 } from "@mui/material";
 import { MdAddCircle } from "react-icons/md";
 
 function CreateSubAccount() {
@@ -11,12 +11,14 @@ function CreateSubAccount() {
   const [parentAccount, setParentAccount] = useState("");
   const [parentAccounts, setParentAccounts] = useState([]);
 
+
   useEffect(() => {
     // Fetch parent accounts from the server
     const fetchParentAccounts = async () => {
       try {
         const response = await Axios.get("/api/accounts");
         setParentAccounts(response.data.accounts);
+        console.log("Parent accounts:", response.data.accounts);
       } catch (error) {
         console.error("Error fetching parent accounts:", error);
       }
@@ -32,7 +34,10 @@ function CreateSubAccount() {
       name,
       account_number: accountNumber,
       account_type: accountType,
+      balance: 0,
       fk_account_id: parentAccount,
+      fk_class_id: parentAccounts.find((account) => account.id === parentAccount).fk_class_id,
+      fk_user_id: 1, // Assuming user_id 1 for demo purposes
     };
 
     try {

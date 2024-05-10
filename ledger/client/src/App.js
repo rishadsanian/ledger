@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TopNavbar from "./components/TopNavBar";
 import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
-import MainAccounts from "./components/accounts/MainAccounts";
+import MainAccounts from "./pages/MainAccounts";
 import MainEntries from "./components/entries/MainEntries";
 // import Dashboard from "@mui/icons-material/Dashboard";
 import Dashboard from "./pages/Dashboard";

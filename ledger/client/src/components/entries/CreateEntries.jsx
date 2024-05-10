@@ -34,7 +34,7 @@ function CreateEntries() {
     const newEntry = {
       account_number: accountNumber,
       sub_account_number: subAccountNumber,
-      user_id: userId,
+      fk_user_id: userId,
       amount,
       timestamp,
       reference,
