@@ -31,12 +31,23 @@ const createAccount = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
 const createSubAccount = async (req, res) => {
   try {
     const { name, account_number, account_type, fk_account_id, fk_class_id, fk_user_id } = req.body;
 
-    const master_account = fk_class_id + "-" +  fk_account_id + "-" + account_number;
+    // Fetch the parent account number from the accounts table
+    const parentAccountQuery = 'SELECT account_number FROM accounts WHERE id = $1';
+    const parentAccountResult = await pool.query(parentAccountQuery, [fk_account_id]);
+    
+    // Check if the parent account exists
+    if (parentAccountResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Parent account not found' });
+    }
+    
+    const parentAccountNumber = parentAccountResult.rows[0].account_number;
+
+    // Generate the master_account value
+    const master_account = `${fk_class_id}-${parentAccountNumber}-${account_number}`;
 
     // Insert a new sub-account into the sub_accounts table
     const query = `
@@ -45,17 +56,17 @@ const createSubAccount = async (req, res) => {
       RETURNING *;
     `;
 
-    const values = [name, account_number, account_type, fk_account_id, master_account];
+    const values = [name, account_number, account_type, fk_account_id, fk_class_id, fk_user_id, master_account];
 
     const result = await pool.query(query, values);
 
     // Send a success response with the created sub-account
     res.status(201).json({ subAccount: result.rows[0] });
-    console.log("Sub-Account Created");
+    console.log('Sub-Account Created');
   } catch (error) {
     // Handle any errors and send an error response
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error('Error creating sub-account:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
