@@ -9,14 +9,16 @@ const createAccount = async (req, res) => {
     const { name, account_number, account_type, fk_class_id, fk_user_id } =
       req.body;
 
+    const master_account = fk_class_id + "-" + account_number + "-" + "0000";
+
     // Insert a new account into the accounts table
     const query = `
-      INSERT INTO accounts (name, account_number, account_type, fk_class_id, fk_user_id)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO accounts (name, account_number, account_type, fk_class_id, fk_user_id, master_account)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
     `;
 
-    const values = [name, account_number, account_type, fk_class_id, fk_user_id];
+    const values = [name, account_number, account_type, fk_class_id, fk_user_id, master_account];
 
     const result = await pool.query(query, values);
 
@@ -34,14 +36,16 @@ const createSubAccount = async (req, res) => {
   try {
     const { name, account_number, account_type, fk_account_id, fk_class_id, fk_user_id } = req.body;
 
+    const master_account = fk_class_id + "-" +  fk_account_id + "-" + account_number;
+
     // Insert a new sub-account into the sub_accounts table
     const query = `
-      INSERT INTO sub_accounts (name, account_number, account_type, fk_account_id, fk_class_id, fk_user_id)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO sub_accounts (name, account_number, account_type, fk_account_id, fk_class_id, fk_user_id, master_account)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
     `;
 
-    const values = [name, account_number, account_type, fk_account_id];
+    const values = [name, account_number, account_type, fk_account_id, master_account];
 
     const result = await pool.query(query, values);
 

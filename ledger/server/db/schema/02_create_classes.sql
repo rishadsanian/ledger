@@ -2,5 +2,7 @@ DROP TABLE IF EXISTS classes CASCADE;
 
 CREATE TABLE classes (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    master_account VARCHAR(50) UNIQUE NOT NULL
+
 );
