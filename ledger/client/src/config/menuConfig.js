@@ -6,6 +6,11 @@
 // The initial state of the menu items is defined in the useState hook.
 // The menu items are then returned as part of the MenuConfig function's return value.
 
+
+//Settings - disable account - entry - sub accounts only | search accounts | tags  
+
+
+
 import React, { useState } from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import BookIcon from "@mui/icons-material/Book";
