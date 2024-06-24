@@ -1,6 +1,5 @@
 import React from "react";
 import { useAccountContext } from "../../context/AccountContext";
-import { MdClose } from "react-icons/md";
 
 const classesData = [
   { id: 10, name: "Assets" },
@@ -13,23 +12,20 @@ const classesData = [
 const AccountList = () => {
   const { accounts = [], subAccounts = [] } = useAccountContext();
 
-  console.log('Accounts:', accounts); // Displaying the accounts object
 
   // Filter accounts by class ID
   const balanceSheetAccounts = accounts.filter((account) =>
     [10, 20, 50].includes(account.fk_class_id)
   );
 
-  console.log('Balance Sheet Accounts:', balanceSheetAccounts); // Displaying the balance sheet accounts
   const incomeStatementAccounts = accounts.filter((account) =>
     
     [30,40].includes(account.fk_class_id)    
   );
-console.log('Income Statement Accounts:', incomeStatementAccounts); // Displaying the income statement accounts
   return (
     
     <div className="pr-0 pt-0 h-1/2"> 
-      <pre>{JSON.stringify(balanceSheetAccounts, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(balanceSheetAccounts, null, 2)}</pre> */}
       {/* Body */}
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Balance Sheet */}
@@ -179,6 +175,8 @@ console.log('Income Statement Accounts:', incomeStatementAccounts); // Displayin
             ))}
         </div>
       </div>
+
+      
     </div>
   );
 };

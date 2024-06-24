@@ -12,7 +12,7 @@ function SearchBarNav() {
     {
       id: 2,
       orderNumber: "ORD124",
-      customerName: "Jane Smith",
+      customerName: "Jane Smith", 
       product: "Widget B",
       status: "Shipped",
     },

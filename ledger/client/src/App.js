@@ -6,6 +6,7 @@ import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
 import MainAccounts from "./pages/MainAccounts";
 import MainEntries from "./components/entries/MainEntries";
+import MainReports from "./pages/MainReports";
 // import Dashboard from "@mui/icons-material/Dashboard";
 import Dashboard from "./pages/Dashboard";
 import { AccountProvider } from "./context/AccountContext";
@@ -57,6 +58,7 @@ const App = () => {
               <Route path="/" element={<Dashboard />} />
                 <Route path="/accounts" element={<MainAccounts />} />
                 <Route path="/entries" element={<MainEntries />} />
+                <Route path="/reports" element={<MainReports />} />
             </Routes>
               </AccountProvider>
           </div>
