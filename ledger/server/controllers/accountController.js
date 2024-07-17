@@ -18,7 +18,14 @@ const createAccount = async (req, res) => {
       RETURNING *;
     `;
 
-    const values = [name, account_number, account_type, fk_class_id, fk_user_id, master_account];
+    const values = [
+      name,
+      account_number,
+      account_type,
+      fk_class_id,
+      fk_user_id,
+      master_account,
+    ];
 
     const result = await pool.query(query, values);
 
@@ -33,17 +40,27 @@ const createAccount = async (req, res) => {
 };
 const createSubAccount = async (req, res) => {
   try {
-    const { name, account_number, account_type, fk_account_id, fk_class_id, fk_user_id } = req.body;
+    const {
+      name,
+      account_number,
+      account_type,
+      fk_account_id,
+      fk_class_id,
+      fk_user_id,
+    } = req.body;
 
     // Fetch the parent account number from the accounts table
-    const parentAccountQuery = 'SELECT account_number FROM accounts WHERE id = $1';
-    const parentAccountResult = await pool.query(parentAccountQuery, [fk_account_id]);
-    
+    const parentAccountQuery =
+      "SELECT account_number FROM accounts WHERE id = $1";
+    const parentAccountResult = await pool.query(parentAccountQuery, [
+      fk_account_id,
+    ]);
+
     // Check if the parent account exists
     if (parentAccountResult.rows.length === 0) {
-      return res.status(404).json({ error: 'Parent account not found' });
+      return res.status(404).json({ error: "Parent account not found" });
     }
-    
+
     const parentAccountNumber = parentAccountResult.rows[0].account_number;
 
     // Generate the master_account value
@@ -56,17 +73,25 @@ const createSubAccount = async (req, res) => {
       RETURNING *;
     `;
 
-    const values = [name, account_number, account_type, fk_account_id, fk_class_id, fk_user_id, master_account];
+    const values = [
+      name,
+      account_number,
+      account_type,
+      fk_account_id,
+      fk_class_id,
+      fk_user_id,
+      master_account,
+    ];
 
     const result = await pool.query(query, values);
 
     // Send a success response with the created sub-account
     res.status(201).json({ subAccount: result.rows[0] });
-    console.log('Sub-Account Created');
+    console.log("Sub-Account Created");
   } catch (error) {
     // Handle any errors and send an error response
-    console.error('Error creating sub-account:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error("Error creating sub-account:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -123,11 +148,27 @@ const getAllSubAccounts = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+const getAllClasses = async (req, res) => {
+  try {
+    // Fetch all classes from the classes table
+    const query = "SELECT * FROM classes;";
+    const result = await pool.query(query);
+
+    // Send a success response with the retrieved classes
+    res.status(200).json({ classes: result.rows });
+    console.log("Retrieved Classes: ", result.rows);
+  } catch (error) {
+    // Handle any errors and send an error response
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 
 const editAccount = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, account_number, account_type, fk_class_id, fk_user_id } = req.body;
+    const { name, account_number, account_type, fk_class_id, fk_user_id } =
+      req.body;
 
     // Update the specified account in the accounts table
     const query = `
@@ -137,15 +178,20 @@ const editAccount = async (req, res) => {
       RETURNING *;
     `;
 
-    const values = [name, account_number, account_type, fk_class_id, fk_user_id, id];
+    const values = [
+      name,
+      account_number,
+      account_type,
+      fk_class_id,
+      fk_user_id,
+      id,
+    ];
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
-
 
 module.exports = {
   createAccount,
@@ -154,4 +200,5 @@ module.exports = {
   getAllSubAccountsByParentAccountId,
   getAllSubAccounts,
   editAccount,
+  getAllClasses,
 };

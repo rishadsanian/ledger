@@ -3,8 +3,9 @@ import Axios from "axios";
 import { TextField, Button, Select, MenuItem } from "@mui/material";
 import { MdAddCircle } from "react-icons/md";
 import { MdClose } from "react-icons/md";
-import { classesData } from "./AccountList";
+import { useAccountContext } from "../../context/AccountContext";
 function CreateAccount() {
+  const {classesData = []} = useAccountContext();
   const [name, setName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [accountType, setAccountType] = useState("");

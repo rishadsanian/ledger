@@ -1,16 +1,10 @@
 import React from "react";
 import { useAccountContext } from "../../context/AccountContext";
 
-const classesData = [
-  { id: 10, name: "Assets" },
-  { id: 20, name: "Liabilities" },
-  { id: 30, name: "Revenue" },
-  { id: 40, name: "Expense" },
-  { id: 50, name: "Equity" },
-];
+
 
 const AccountList = () => {
-  const { accounts = [], subAccounts = [] } = useAccountContext();
+  const { accounts = [], subAccounts = [], classesData = [] } = useAccountContext();
 
 
   // Filter accounts by class ID
@@ -182,4 +176,3 @@ const AccountList = () => {
 };
 
 export default AccountList;
-export { classesData };
