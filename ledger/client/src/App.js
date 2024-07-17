@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import { AccountProvider } from "./context/AccountContext";
 import menuConfig from "./config/menuConfig";
 import Landing from "./pages/Landing";
+import Login from "./pages/Login";
 
 const App = () => {
   // Filter menu items based on show property
@@ -47,22 +48,25 @@ const App = () => {
         <div className="flex h-screen">
           <div class="flex flex-col">
             {/* Sidebar */}
-            <div className="hidden sm:block w-1/8 bg-gray-800 px-1 pr-2  h-full">
-              <SideBar menu={sideBarMenu} setMenu={setSideBarMenu} />
-            </div>
+            {window.location.pathname !== "/landing" && (
+              <div className="hidden sm:block w-1/8 bg-gray-800 px-1 pr-2  h-full">
+                <SideBar menu={sideBarMenu} setMenu={setSideBarMenu} />
+              </div>
+            )}
           </div>
 
           {/* Main Content Area */}
           <div className="flex-1 overflow-y-auto bg-gray-100 p-4">
-              <AccountProvider>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
+            <AccountProvider>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
                 <Route path="/accounts" element={<MainAccounts />} />
                 <Route path="/entries" element={<MainEntries />} />
                 <Route path="/reports" element={<MainReports />} />
-                <Route path="/landing" element={<Landing />} />
-            </Routes>
-              </AccountProvider>
+                <Route path="/landing" element={<Landing />} hidenav="true" />
+                <Route path="/login" element={<Login />} hidenav="true" />
+              </Routes>
+            </AccountProvider>
           </div>
         </div>
 
