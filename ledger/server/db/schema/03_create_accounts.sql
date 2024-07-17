@@ -12,5 +12,6 @@ CREATE TABLE accounts (
     fk_user_id INT REFERENCES users(id), -- Reference to the users table
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP,
-    master_account VARCHAR(50) UNIQUE NOT NULL
+    master_account VARCHAR(50) UNIQUE NOT NULL,
+    status VARCHAR(20) NOT NULL
 );

@@ -1,30 +1,32 @@
+-- Drop the existing transactions table if it exists
 DROP TABLE IF EXISTS transactions CASCADE;
 
-
+-- Create a new table for transactions
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,
-    account_number VARCHAR(20) NOT NULL REFERENCES accounts(account_number),
+    fk_master_account VARCHAR(50) NOT NULL, -- Reference to the master account
     fk_user_id INT NOT NULL REFERENCES users(id),
     amount DECIMAL(18, 2) NOT NULL,
-    timestamp TIMESTAMP NOT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT NOW(),
     reference VARCHAR(255),
     note TEXT,
-  transaction_id SERIAL NOT NULL UNIQUE,    
-    UNIQUE (account_number, timestamp) -- Prevent duplicate transactions
+    transaction_id SERIAL NOT NULL UNIQUE,    
+    UNIQUE (fk_master_account, timestamp) -- Prevent duplicate transactions
 );
 
+-- Ensure that the fk_master_account exists in either accounts or sub_accounts
+ALTER TABLE transactions
+    ADD CONSTRAINT fk_master_account_exists
+    FOREIGN KEY (fk_master_account) 
+    REFERENCES accounts(master_account) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT;
+
+ALTER TABLE transactions
+    ADD CONSTRAINT fk_master_account_exists_in_sub_accounts
+    FOREIGN KEY (fk_master_account) 
+    REFERENCES sub_accounts(master_account) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT;
 
 
--- DROP TABLE IF EXISTS transactions CASCADE;
-
--- CREATE TABLE transactions (
---     id SERIAL PRIMARY KEY,
---     account_number VARCHAR(20) NOT NULL REFERENCES accounts(account_number),
---     user_id INT NOT NULL REFERENCES users(id),
---     amount DECIMAL(18, 2) NOT NULL,
---     timestamp TIMESTAMP NOT NULL,
---     reference VARCHAR(255),
---     note TEXT,
---     transaction_id SERIAL NOT NULL UNIQUE,
---     -- UNIQUE (account_number, timestamp) -- Consider whether this constraint is necessary
--- );

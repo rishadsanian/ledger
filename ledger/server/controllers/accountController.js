@@ -124,10 +124,34 @@ const getAllSubAccounts = async (req, res) => {
   }
 };
 
+const editAccount = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, account_number, account_type, fk_class_id, fk_user_id } = req.body;
+
+    // Update the specified account in the accounts table
+    const query = `
+      UPDATE accounts
+      SET name = $1, account_number = $2, account_type = $3, fk_class_id = $4, fk_user_id = $5
+      WHERE id = $6
+      RETURNING *;
+    `;
+
+    const values = [name, account_number, account_type, fk_class_id, fk_user_id, id];
+  } catch (error) {
+    // Handle any errors and send an error response
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+
 module.exports = {
   createAccount,
   createSubAccount,
   getAllAccounts,
   getAllSubAccountsByParentAccountId,
   getAllSubAccounts,
+  editAccount,
 };

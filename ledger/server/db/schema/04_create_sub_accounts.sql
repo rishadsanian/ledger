@@ -14,6 +14,7 @@ CREATE TABLE sub_accounts (
     fk_user_id INT NOT NULL REFERENCES users(id), -- Reference to the users table
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP,
+    status VARCHAR(20) NOT NULL,
     master_account VARCHAR(50) UNIQUE NOT NULL,
     -- Add a unique constraint to ensure account_number is unique within fk_account_id
     CONSTRAINT unique_account_number UNIQUE (account_number, fk_account_id)

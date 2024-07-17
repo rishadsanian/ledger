@@ -11,6 +11,7 @@ import MainReports from "./pages/MainReports";
 import Dashboard from "./pages/Dashboard";
 import { AccountProvider } from "./context/AccountContext";
 import menuConfig from "./config/menuConfig";
+import Landing from "./pages/Landing";
 
 const App = () => {
   // Filter menu items based on show property
@@ -59,6 +60,7 @@ const App = () => {
                 <Route path="/accounts" element={<MainAccounts />} />
                 <Route path="/entries" element={<MainEntries />} />
                 <Route path="/reports" element={<MainReports />} />
+                <Route path="/landing" element={<Landing />} />
             </Routes>
               </AccountProvider>
           </div>
