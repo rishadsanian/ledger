@@ -18,6 +18,8 @@ CREATE TABLE companies (
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP,
     year_end DATE NOT NULL,
+    industry VARCHAR(255) NOT NULL,
+    number_employees INT NOT NULL,
     address VARCHAR(255) NOT NULL,
     description TEXT,
     CONSTRAINT fk_administrator
