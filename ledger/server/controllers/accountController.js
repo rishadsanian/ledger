@@ -31,7 +31,7 @@ const createAccount = async (req, res) => {
 
     // Send a success response with the created account
     res.status(201).json({ account: result.rows[0] });
-    console.log("Account Created");
+    console.log("Account Created", result.rows[0]);
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);
@@ -186,6 +186,17 @@ const editAccount = async (req, res) => {
       fk_user_id,
       id,
     ];
+
+    const result = await pool.query(query, values);
+
+    // Check if the account was found and updated
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Account not found" });
+    }
+
+    // Send a success response with the updated account
+    res.status(200).json({ account: result.rows[0] });
+    console.log("Account Updated");
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);
