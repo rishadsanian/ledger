@@ -14,8 +14,7 @@ const createAccount = async (req, res) => {
     // Insert a new account into the accounts table
     const query = `
       INSERT INTO accounts (name, account_number, account_type, fk_class_id, fk_user_id, master_account)
-      VALUES ($1, $2, $3, $4, $5, $6)
-      RETURNING *;
+      VALUES ($1, $2, $3, $4, $5, $6);
     `;
 
     const values = [
@@ -27,17 +26,18 @@ const createAccount = async (req, res) => {
       master_account,
     ];
 
-    const result = await pool.query(query, values);
+    await pool.query(query, values);
 
-    // Send a success response with the created account
-    res.status(201).json({ account: result.rows[0] });
-    console.log("Account Created", result.rows[0]);
+    // Send a success response
+    res.status(201).json({ message: "Account created successfully" });
+    console.log("Account Created");
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 const createSubAccount = async (req, res) => {
   try {
     const {
@@ -69,8 +69,7 @@ const createSubAccount = async (req, res) => {
     // Insert a new sub-account into the sub_accounts table
     const query = `
       INSERT INTO sub_accounts (name, account_number, account_type, fk_account_id, fk_class_id, fk_user_id, master_account)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
-      RETURNING *;
+      VALUES ($1, $2, $3, $4, $5, $6, $7);
     `;
 
     const values = [
@@ -83,10 +82,10 @@ const createSubAccount = async (req, res) => {
       master_account,
     ];
 
-    const result = await pool.query(query, values);
+    await pool.query(query, values);
 
-    // Send a success response with the created sub-account
-    res.status(201).json({ subAccount: result.rows[0] });
+    // Send a success response
+    res.status(201).json({ message: "Sub-account created successfully" });
     console.log("Sub-Account Created");
   } catch (error) {
     // Handle any errors and send an error response
@@ -103,7 +102,7 @@ const getAllAccounts = async (req, res) => {
 
     // Send a success response with the retrieved accounts
     res.status(200).json({ accounts: result.rows });
-    console.log("Retrieved Accounts: ");
+    console.log("Retrieved Accounts");
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);
@@ -121,11 +120,7 @@ const getAllSubAccountsByParentAccountId = async (req, res) => {
 
     // Send a success response with the retrieved sub-accounts
     res.status(200).json({ subAccounts: result.rows });
-    console.log(
-      "Retrieved Sub-Accounts for Parent Account ID:",
-      id,
-      result.rows
-    );
+    console.log("Retrieved Sub-Accounts for Parent Account ID:", id);
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);
@@ -141,13 +136,14 @@ const getAllSubAccounts = async (req, res) => {
 
     // Send a success response with the retrieved sub-accounts
     res.status(200).json({ subAccounts: result.rows });
-    console.log("Retrieved All Sub-Accounts: ", result.rows);
+    console.log("Retrieved All Sub-Accounts");
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 const getAllClasses = async (req, res) => {
   try {
     // Fetch all classes from the classes table
@@ -156,7 +152,7 @@ const getAllClasses = async (req, res) => {
 
     // Send a success response with the retrieved classes
     res.status(200).json({ classes: result.rows });
-    console.log("Retrieved Classes: ", result.rows);
+    console.log("Retrieved Classes");
   } catch (error) {
     // Handle any errors and send an error response
     console.error(error);
@@ -174,8 +170,7 @@ const editAccount = async (req, res) => {
     const query = `
       UPDATE accounts
       SET name = $1, account_number = $2, account_type = $3, fk_class_id = $4, fk_user_id = $5
-      WHERE id = $6
-      RETURNING *;
+      WHERE id = $6;
     `;
 
     const values = [
@@ -190,12 +185,12 @@ const editAccount = async (req, res) => {
     const result = await pool.query(query, values);
 
     // Check if the account was found and updated
-    if (result.rows.length === 0) {
+    if (result.rowCount === 0) {
       return res.status(404).json({ error: "Account not found" });
     }
 
-    // Send a success response with the updated account
-    res.status(200).json({ account: result.rows[0] });
+    // Send a success response
+    res.status(200).json({ message: "Account updated successfully" });
     console.log("Account Updated");
   } catch (error) {
     // Handle any errors and send an error response
