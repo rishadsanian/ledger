@@ -13,5 +13,5 @@ CREATE TABLE accounts (
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP,
     master_account VARCHAR(50) UNIQUE NOT NULL,
-    status VARCHAR(20) NOT NULL
+    status VARCHAR(20) NOT NULL DEFAULT 'active' -- Added a default value
 );

@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import MainAccounts from "./pages/MainAccounts";
 import MainEntries from "./components/entries/MainEntries";
 import MainReports from "./pages/MainReports";
-// import Dashboard from "@mui/icons-material/Dashboard";
 import Dashboard from "./pages/Dashboard";
 import { AccountProvider } from "./context/AccountContext";
 import menuConfig from "./config/menuConfig";

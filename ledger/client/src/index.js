@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 // import "./styles/tailwind.css";
 import { ThemeProvider, createTheme } from "@mui/material";
+import { UserProvider } from "./context/UserContext";
 
 const customColors = {
   primary: "#0d1b2a",
@@ -38,8 +39,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      
+      <UserProvider>
       <App />
+      </UserProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
