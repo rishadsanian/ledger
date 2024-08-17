@@ -1,4 +1,5 @@
-<img src="https://github.com/rishadsanian/ledger/blob/main/logos/logowhite.png?raw=true " alt="Ledger"> 
+<img src="https://github.com/rishadsanian/ledger/assets/77033627/10290488-d4ea-4b3c-bd1d-f8b4e7d078ba " alt="Ledger"> 
+
 
 ## Double Entry Accounting System
 
