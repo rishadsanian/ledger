@@ -64,7 +64,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col overflow-hidden px-6 py-6">
+    <div className="flex flex-col">
       {/* Company Information */}
       <div className="mb-6">
         <div className="text-2xl font-bold mb-2">{companyInfo.name}</div>
