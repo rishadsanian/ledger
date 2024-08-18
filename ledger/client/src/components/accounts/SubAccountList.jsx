@@ -38,7 +38,8 @@ const SubAccountList = () => {
   }, [searchTerm]);
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container overflow-hidden mx-auto">
+      {/* Search */}
       <div className="relative mb-6 flex items-center justify-center">
         <input
           type="text"
@@ -62,50 +63,60 @@ const SubAccountList = () => {
           <i className="fa fa-search"></i>
         </div>
       </div>
-      {classesData.map((accountClass) => (
-        <div key={accountClass.id} className="mb-6">
-          <div className="flex justify-between items-center pr-4 mb-2">
-            <div className="flex items-center space-x-2 text-2xl font-bold text-gray-800">
-              <span>{accountClass.id} -</span>
-              <div>{accountClass.name}</div>
-            </div>
-            <div className="flex-1 text-right text-gray-600">
-              {accountClass.master_account}
-            </div>
-          </div>
-
-          {filteredAccounts(getClassAccounts(accountClass.id)).map(
-            (account) => (
-              <div
-                key={account.id}
-                className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mb-4"
-              >
-                <div className="flex justify-between items-center pr-4 mb-2">
-                  <div className="flex items-center space-x-2 text-xl font-semibold text-gray-700">
-                    <span>{account.account_number} -</span>
-                    <div>{account.name}</div>
-                  </div>
-                  <div className="flex-1 text-right text-gray-600">
-                    {account.master_account}
-                  </div>
-                </div>
-                <ul className="ml-6 list-disc">
-                  {getSubAccounts(account.id).map((subAccount) => (
-                    <li key={subAccount.id} className="text-sm text-gray-600 flex justify-between">
-                      <div>
-                      ({subAccount.account_number}) - {subAccount.name}  - ${subAccount.balance}
-                      </div>
-                      <div className="text-right text-gray-600">
-                        {subAccount.master_account}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+      {/* List */}
+      <div className=" border-4  overflow-y-auto">
+        {classesData.map((accountClass) => (
+          <div
+            key={accountClass.id}
+            className=" mb-6 border border-gray-200 rounded-lg"
+          >
+            <div className="flex bg-gray-300 text-gray-500 justify-between items-center pr-4 ">
+              <div className="flex  text-md pt-4 pb-4 text-gray-500 w-fullflex items-center space-x-2 text-2xl font-bold">
+                <span>{accountClass.id} -</span>
+                <div>{accountClass.name}</div>
               </div>
-            )
-          )}
-        </div>
-      ))}
+              <div className="flex-1 text-right text-gray-600 ">
+                {accountClass.master_account}
+              </div>
+            </div>
+
+            {filteredAccounts(getClassAccounts(accountClass.id)).map(
+              (account) => (
+                <div
+                  key={account.id}
+                  className="bg-white border-t p-4 shadow-sm "
+                >
+                  <div className="flex justify-between items-center pr-4 mb-2">
+                    <div className="flex items-center space-x-2 text-xl font-semibold text-gray-700">
+                      <span>{account.account_number} -</span>
+                      <div>{account.name}</div>
+                    </div>
+                    <div className="flex-1 text-right text-gray-600">
+                      {account.master_account}
+                    </div>
+                  </div>
+                  <ul className="ml-6 list-disc">
+                    {getSubAccounts(account.id).map((subAccount) => (
+                      <li
+                        key={subAccount.id}
+                        className="text-sm text-gray-600 flex justify-between"
+                      >
+                        <div>
+                          ({subAccount.account_number}) - {subAccount.name} - $
+                          {subAccount.balance}
+                        </div>
+                        <div className="text-right text-gray-600">
+                          {subAccount.master_account}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

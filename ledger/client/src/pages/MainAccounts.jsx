@@ -11,9 +11,10 @@ const MainAccounts = () => {
   return (
     <div className="grid grid-cols-1 gap-8">
       <div className="col-span-1">
-        <div className="text-2xl mb-4 py-2 px-3">Accounts</div>
-
-        <SubAccountList />
+        <div className="text-2xl mb-6">Accounts</div>
+        <div class="w-full lg:w-1/3">
+          <SubAccountList />
+        </div>
       </div>
       <div className="py-32">
         <div className="m-4">

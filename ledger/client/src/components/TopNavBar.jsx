@@ -38,7 +38,7 @@ const TopNavbar = ({ menu }) => {
   return (
     <AppBar position="static" className="">
       <div className="flex justify-between items-center pl-7 py-1">
-        <div className="flex -ml-6">
+        <div className="flex -ml-7">
           <img
             src="https://github.com/rishadsanian/ledger/assets/77033627/10290488-d4ea-4b3c-bd1d-f8b4e7d078ba"
             alt="ledger"
