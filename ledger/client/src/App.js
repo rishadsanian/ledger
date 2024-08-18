@@ -42,23 +42,22 @@ const App = () => {
 
   return (
     <Router>
-      <div className="flex-1 flex flex-col h-screen">
+      <div className="flex flex-col h-screen overflow-hidden">
         <TopNavbar menu={topNavBarMenu} setMenu={setTopBarMenu} />
-
-        <div className="flex h-full">
-            {/* Sidebar */}
-          <div class="flex flex-col">
-            {window.location.pathname !== "/landing" && (
-              <div className="hidden sm:block w-1/8 bg-gray-800 h-full">
-                <SideBar menu={sideBarMenu} setMenu={setSideBarMenu} />
-              </div>
-            )}
-          </div>
-
+  
+        {/* Middle View */}
+        <div className="flex flex-grow h-0">
+          {/* Sidebar */}
+          {window.location.pathname !== "/landing" && (
+            <div className="hidden sm:block w-1/8 bg-gray-800">
+              <SideBar menu={sideBarMenu} setMenu={setSideBarMenu} />
+            </div>
+          )}
+  
           {/* Main Content Area */}
-          <div className="flex-1 h-full ">
+          <div className="flex flex-col w-full h-full relative overflow-hidden">
             <Breadcrumb menu={menu} setMenu={setTopBarMenu} />
-            <div className="h-full overflow-y-auto bg-gray-100 px-3 py-4 sm:p-8">
+            <div className="flex-grow overflow-y-auto bg-gray-100 px-3 py-4 sm:p-6">
               <AccountProvider>
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
@@ -72,14 +71,13 @@ const App = () => {
             </div>
           </div>
         </div>
-
+  
         {/* Footer */}
-        <div className="w-full">
-          <Footer menu={footerMenu} />
-        </div>
+        <Footer menu={footerMenu} />
       </div>
     </Router>
   );
+  
 };
 
 export default App;
