@@ -5,10 +5,15 @@ const SubAccountList = () => {
   const { accounts = [], subAccounts = [], classesData } = useAccountContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("AccountList");
 
+
+
+    
   const getClassAccounts = (classId) => {
     return accounts.filter((account) => account.fk_class_id === classId);
   };
+
 
   const getSubAccounts = (accountId) => {
     return subAccounts.filter(
@@ -65,15 +70,15 @@ const SubAccountList = () => {
     </div>
   
     {/* List Container */}
-    <div className="flex-grow border-4 bg-gray-50 overflow-y-auto rounded-lg">
+    <div className="flex-grow border-4 bg-white thin-scrollbar overflow-y-auto rounded-lg">
       {classesData.map((accountClass) => (
         <div key={accountClass.id} className="rounded-lg">
-          <div className="flex bg-gray-100 text-gray-500 justify-between items-center pr-4">
-            <div className="flex text-md py-4 px-3 text-gray-500 w-full items-center space-x-2 text-2xl font-bold">
+          <div className="flex bg-gray-200  justify-between items-center pr-4">
+            <div className="flex   text-md py-4 px-3 text-black w-full items-center space-x-2 text-xl font-bold">
               <span>{accountClass.id} -</span>
               <div>{accountClass.name}</div>
             </div>
-            <div className="flex-1 text-right text-gray-600">
+            <div className="flex justify-end w-full text-gray-600">
               {accountClass.master_account}
             </div>
           </div>

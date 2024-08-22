@@ -24,16 +24,17 @@ const drawerThemes = {
     contentClassName: "text-gray-900"
   },
   custom: {
-    overlayClassName: "",
-    drawerClassName: "",
-    contentClassName: ""
+    overlayClassName: "bg-white bg-opacity-70 backdrop-blur-none",
+    drawerClassName: "bg-gray-800 bg-opacity-90",
+    contentClassName: "text-white"
   }
 };
 
 const mode="absolute"
 const width="w-1/3"
 // Drawer component
-const Drawer = ({ isOpen, onClose, children, theme = "light" })  => {
+const Drawer = ({ isOpen, onClose, children  })  => {
+  let theme = "light"
   const currentTheme = drawerThemes[theme] || drawerThemes.default;
 
   return (
@@ -65,7 +66,7 @@ const Drawer = ({ isOpen, onClose, children, theme = "light" })  => {
         </button>
 
         {/* Content */}
-        <div className={`p-6 h-full overflow-y-auto ${currentTheme.contentClassName}`}>
+        <div className={`h-full overflow-y-auto ${currentTheme.contentClassName}`}>
           {children}
         </div>
       </div>

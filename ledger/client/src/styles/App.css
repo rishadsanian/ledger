@@ -41,3 +41,34 @@
   opacity: 1;
   transition: opacity 0.5s ease; /* Add a transition for the opacity property */
 }
+
+
+/* Thin scrollbar styles for specific components */
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  /* Width of the scrollbar */
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Background of the scrollbar track */
+  border-radius: 10px;
+  /* Round edges of the track */
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: #888 !important;
+  /* Color of the scrollbar handle */
+  border-radius: 10px;
+  /* Make the handle rounded */
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Color of the scrollbar handle on hover */
+}
+
+/* SCROLL BAR Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
