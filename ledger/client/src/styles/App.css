@@ -12,7 +12,7 @@
 }
 
 .footer.open {
-  height: 100px;
+  height: 100px;  
   transition: height 0.3s ease-in-out;
 }
 

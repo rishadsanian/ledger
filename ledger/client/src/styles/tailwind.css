@@ -1,3 +1,97 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@layer components {
+  /* Colors */
+  .bg-pri {
+    @apply bg-[#0d1b2a]; /* Primary background */
+  }
+
+  .bg-sec {
+    @apply bg-[#1b263b]; /* Secondary background */
+  }
+
+  .bg-accent {
+    @apply bg-[#4CAF50]; /* Accent color */
+  }
+
+  .text-pri {
+    @apply text-[#0d1b2a]; /* Primary text */
+  }
+
+  .text-sec {
+    @apply text-[#1b263b]; /* Secondary text */
+  }
+
+  .text-accent {
+    @apply text-[#4CAF50]; /* Accent text */
+  }
+
+  .text-light {
+    @apply text-[#e0e1dd]; /* Light text */
+  }
+
+  /* Headings */
+  .heading-1 {
+    @apply text-3xl sm:text-4xl font-bold text-pri; /* Responsive heading */
+  }
+
+  .heading-2 {
+    @apply text-2xl sm:text-3xl font-semibold text-pri; /* Responsive heading */
+  }
+
+  .heading-3 {
+    @apply text-xl sm:text-2xl font-semibold text-sec; /* Responsive heading */
+  }
+
+  .heading-4 {
+    @apply text-lg sm:text-xl font-medium text-ter; /* Responsive heading */
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-4 py-2 sm:px-6 sm:py-3 bg-accent text-light rounded-lg hover:bg-[#45a049] transition-colors; /* Responsive button */
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 sm:px-6 sm:py-3 bg-sec text-light rounded-lg hover:bg-[#34495e] transition-colors; /* Responsive button */
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-lg shadow-md p-4 sm:p-6; /* Responsive card padding */
+  }
+
+  /* Card Icon */
+  .card-icon {
+    @apply w-10 h-10 flex items-center justify-center bg-accent text-light rounded-full; /* Icon container */
+  }
+
+  /* User Avatar */
+  .user-avatar {
+    @apply w-12 h-12 rounded-full object-cover border-2 border-white shadow-md; /* Avatar styling */
+  }
+
+  /* Icon Buttons (Font Awesome) */
+  .icon-btn {
+    @apply p-2 text-gray-600 hover:text-accent transition-colors; /* Base icon button */
+  }
+
+  .icon-btn-delete {
+    @apply text-red-500 hover:text-red-600; /* Delete icon */
+  }
+
+  .icon-btn-edit {
+    @apply text-blue-500 hover:text-blue-600; /* Edit icon */
+  }
+
+  /* Spacing */
+  .section-padding {
+    @apply py-8 px-4 sm:py-12 sm:px-6 lg:py-16 lg:px-8; /* Responsive section padding */
+  }
+
+  .container-width {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; /* Responsive container padding */
+  }
+}
