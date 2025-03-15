@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import "./styles/App.css";
+import "./styles/tailwind.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TopNavbar from "./components/TopNavBar";
 import SideBar from "./components/SideBar";
@@ -12,6 +13,7 @@ import Breadcrumb from "./components/Breadcrumb";
 import { AccountProvider } from "./context/AccountContext";
 import menuConfig from "./config/menuConfig";
 import Landing from "./pages/Landing";
+import Dev from "./pages/Dev";
 import Login from "./pages/Login";
 
 const App = () => {
@@ -64,6 +66,7 @@ const App = () => {
                   <Route path="/accounts" element={<MainAccounts />} />
                   <Route path="/entries" element={<MainEntries />} />
                   <Route path="/reports" element={<MainReports />} />
+                  <Route path="/dev" element={<Dev />} />
                   <Route path="/landing" element={<Landing />} hidenav="true" />
                   <Route path="/login" element={<Login />} hidenav="true" />
                 </Routes>
