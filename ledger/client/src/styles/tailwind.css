@@ -5,17 +5,18 @@
 @layer components {
   /* Colors */
   .bg-pri {
-    @apply bg-[#0d1b2a]; /* Primary background */
+    @apply bg-gray-50; /* Primary background */
   }
 
   .bg-sec {
-    @apply bg-[#1b263b]; /* Secondary background */
+    @apply bg-white; /* Secondary background */
   }
 
   .bg-accent {
-    @apply bg-[#4CAF50]; /* Accent color */
+    @apply bg-slate-700 /* Accent color */
   }
-
+}
+@layer components {
   .text-pri {
     @apply text-[#0d1b2a]; /* Primary text */
   }
@@ -48,7 +49,9 @@
   .heading-4 {
     @apply text-lg sm:text-xl font-medium text-ter; /* Responsive heading */
   }
+}
 
+@layer components {
   /* Buttons */
   .btn-primary {
     @apply px-4 py-2 sm:px-6 sm:py-3 bg-accent text-light rounded-lg hover:bg-[#45a049] transition-colors; /* Responsive button */
@@ -57,17 +60,39 @@
   .btn-secondary {
     @apply px-4 py-2 sm:px-6 sm:py-3 bg-sec text-light rounded-lg hover:bg-[#34495e] transition-colors; /* Responsive button */
   }
-
+}
+/* Cards */
+@layer components {
+  /*Card Containr */
+  .card-grid {
+    @apply  mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mt-8 p-4 sm:p-6 transition-transform transform hover:scale-105; /* Card with hover animation */
+  }
   /* Cards */
   .card {
-    @apply bg-white rounded-lg shadow-md p-4 sm:p-6; /* Responsive card padding */
+    @apply bg-white rounded-lg shadow-md border  p-4 sm:p-6 transition-transform transform hover:scale-105; /* Card with hover animation */
   }
+
+  /*Card list similiar to card but will look like a list only with bottom-b  */
+  .card-list {
+    @apply bg-white  border-b p-4 sm:p-6 transition-transform transform hover:.bg-pri; /* Card with hover animation */
+  }
+  
 
   /* Card Icon */
   .card-icon {
     @apply w-10 h-10 flex items-center justify-center bg-accent text-light rounded-full; /* Icon container */
   }
-
+  /* Card title */
+  .card-title {
+    @apply text-lg font-semibold text-pri; /* Card title */
+  }
+  /* Card Subtitle */
+  .card-subtitle {
+    @apply text-sm text-sec; /* Card subtitle */
+  }
+  
+}
+@layer components {
   /* User Avatar */
   .user-avatar {
     @apply w-12 h-12 rounded-full object-cover border-2 border-white shadow-md; /* Avatar styling */
@@ -86,6 +111,36 @@
     @apply text-blue-500 hover:text-blue-600; /* Edit icon */
   }
 
+  /* Lists */
+  .list {
+    @apply space-y-2; /* Adds spacing between list items */
+  }
+
+  .list-item {
+    @apply flex items-center justify-between p-3 bg-white rounded-lg shadow-md transition-transform transform hover:scale-105; /* List item with hover animation */
+  }
+  
+  .list-item-icon {
+    @apply w-6 h-6 flex items-center justify-center text-gray-600; /* List item icon */
+  }
+
+  /* Layouts  */
+  /* .sidebar-layout { */
+    /* @apply flex flex-col md:flex-row; Sidebar layout */
+  /* } */
+
+  /* .sidebar { */
+    /* @apply w-full md:w-64 bg-sec text-light p-4 transition-all duration-300 ease-in-out; Sidebar with animation */
+  /* } */
+
+  .main-content {
+    @apply flex-1 p-4 sm:p-6; /* Main content area */
+  }
+
+  .grid-layout {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4; /* Grid layout */
+  }
+
   /* Spacing */
   .section-padding {
     @apply py-8 px-4 sm:py-12 sm:px-6 lg:py-16 lg:px-8; /* Responsive section padding */
@@ -95,3 +150,30 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; /* Responsive container padding */
   }
 }
+  /* Custom Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-in-out;
+  }
+
