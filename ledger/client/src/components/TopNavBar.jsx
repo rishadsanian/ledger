@@ -7,6 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SearchBarNav from "../assets/searchBarNav";
+import { LedgerLogo, LedgerIcon } from "../assets/logos/LedgerLogo";
 
 const TopNavbar = ({ menu }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,19 +38,16 @@ const TopNavbar = ({ menu }) => {
 
   return (
     <AppBar position="static" className="">
-      <div className="flex justify-between items-center pl-7 py-1">
-        <div className="flex -ml-7">
-          <img
-            src="https://github.com/rishadsanian/ledger/assets/77033627/10290488-d4ea-4b3c-bd1d-f8b4e7d078ba"
-            alt="ledger"
-            style={{ maxWidth: "100%", maxHeight: "35px" }}
-          />
+      <div className="gird grid-cols-3 flex items-center pl-7 py-1">
+        <div className=" flex -ml-7 w-full">
+        
+         
         </div>
-        <div className="min-w-[300px] w-1/3">
+        <div className="min-w-[300px] w-1/3 w-full">
           <SearchBarNav />
         </div>
 
-        <div className="flex items-center justify-end">
+        <div className="flex items-center justify-end w-full">
           {/* Conditionally render based on screen size using Tailwind classes */}
           <div className="hidden sm:flex">
             {menu.map(

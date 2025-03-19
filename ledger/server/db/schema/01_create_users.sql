@@ -23,7 +23,7 @@ CREATE TABLE users (
 
 -- Create companies table
 CREATE TABLE companies (
-    id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,    
     name VARCHAR(255) NOT NULL,
     administrator_id INT,
     created_at TIMESTAMP DEFAULT NOW(),

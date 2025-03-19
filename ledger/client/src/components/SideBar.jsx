@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { List, ListItem, ListItemText, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { LedgerLogo, LedgerIcon } from "../assets/logos/LedgerLogo";
 
 const SideBar = ({ menu, setMenu }) => {
   const [open, setOpen] = useState(false);
@@ -22,10 +23,14 @@ const SideBar = ({ menu, setMenu }) => {
 
   return (
     <div
-      className={`pt-5 space-y-8  sidebar ${
+      className={`pt-5 space-y-8   sidebar ${
         open ? "open" : "closed"
       } whitespace-nowrap`}
     >
+
+      <div className="flex justify-center w-full h-full ">
+       {open && <LedgerLogo /> || <LedgerIcon />} 
+      </div>  
       <div
         className={`flex justify-start ml-5 cursor-pointer`}
         onClick={toggleOpen}

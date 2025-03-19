@@ -2,8 +2,34 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@layer components {
-  /* Colors */
+ /* Layouts  */
+ @layer components {
+  /* .sidebar-layout { */
+    /* @apply flex flex-col md:flex-row; Sidebar layout */
+  /* } */
+
+  /* .sidebar { */
+    /* @apply w-full md:w-64 bg-sec text-light p-4 transition-all duration-300 ease-in-out; Sidebar with animation */
+  /* } */
+
+  .main-content {
+    @apply flex-1 p-2 sm:p-4; /* Main content area */
+  }
+
+  .grid-layout {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4; /* Grid layout */
+  }
+
+  /* Spacing */
+  .section-padding {
+    @apply py-2 px-2 sm:py-4 sm:px-4 lg:py-8 lg:px-8; /* Responsive section padding */
+  }
+
+  
+} 
+
+/* BG Colors */
+@layer components {  
   .bg-pri {
     @apply bg-gray-50; /* Primary background */
   }
@@ -13,54 +39,99 @@
   }
 
   .bg-accent {
-    @apply bg-slate-700 /* Accent color */
+    @apply bg-purple-700 /* Accent color */
+  }
+
+  .bg-brand {
+    @apply bg-gray-800; /* Brand color */
   }
 }
+/* Text */
 @layer components {
   .text-pri {
-    @apply text-[#0d1b2a]; /* Primary text */
+    @apply text-slate-900; /* Primary text */
   }
 
   .text-sec {
-    @apply text-[#1b263b]; /* Secondary text */
+    @apply text-gray-600; /* Secondary text */
   }
 
   .text-accent {
-    @apply text-[#4CAF50]; /* Accent text */
+    @apply text-purple-700; /* Accent text */
   }
 
   .text-light {
-    @apply text-[#e0e1dd]; /* Light text */
+    @apply text-gray-50; /* Light text */
+  }
+
+  .text-brand {
+    @apply text-gray-800; /* Brand text */
+  }
+
+  /* border-colour */
+  .border-pri {
+    @apply border-slate-500; /* Primary border */
+  }
+  .border-active {
+    @apply bg-purple-700; /* Active border */
   }
 
   /* Headings */
-  .heading-1 {
-    @apply text-3xl sm:text-4xl font-bold text-pri; /* Responsive heading */
+  .heading-1 { 
+    @apply text-xl sm:text-2xl font-bold text-pri; /* Responsive heading */
   }
 
   .heading-2 {
-    @apply text-2xl sm:text-3xl font-semibold text-pri; /* Responsive heading */
+    @apply text-lg sm:text-xl font-semibold text-pri; /* Responsive heading */
   }
-
   .heading-3 {
-    @apply text-xl sm:text-2xl font-semibold text-sec; /* Responsive heading */
+    @apply text-base sm:text-lg font-semibold text-pri; /* Responsive heading */
   }
 
   .heading-4 {
-    @apply text-lg sm:text-xl font-medium text-ter; /* Responsive heading */
+    @apply text-sm sm:text-base font-semibold text-sec; /* Responsive heading */
   }
 }
-
+/* Page */
 @layer components {
-  /* Buttons */
-  .btn-primary {
-    @apply px-4 py-2 sm:px-6 sm:py-3 bg-accent text-light rounded-lg hover:bg-[#45a049] transition-colors; /* Responsive button */
+  .page {
+    @apply bg-white p-4 rounded-md shadow-md ; /* Page container */
+  }
+  .page-full {
+    @apply bg-white p-4 rounded-md shadow-md h-full ; /* Page container */
   }
 
-  .btn-secondary {
-    @apply px-4 py-2 sm:px-6 sm:py-3 bg-sec text-light rounded-lg hover:bg-[#34495e] transition-colors; /* Responsive button */
+  .page-header {
+    @apply flex items-center justify-between; /* Page header */
+  }
+
+  .page-title {
+    @apply text-lg font-semibold text-pri; /* Page title */
+  }
+
+  .page-actions {
+    @apply flex items-center space-x-2; /* Page actions */
+  }
+
+  .page-content {
+    @apply mt-4; /* Page content */
+  }
+
+  .page-footer {
+    @apply mt-4; /* Page footer */
   }
 }
+/* Panel */
+@layer components {
+  .panel {
+    @apply bg-white border rounded-md shadow-md p-4; /* Panel container */
+  }
+.panel{
+
+}
+}
+
+
 /* Cards */
 @layer components {
   /*Card Containr */
@@ -69,7 +140,7 @@
   }
   /* Cards */
   .card {
-    @apply bg-white rounded-lg shadow-md border  p-4 sm:p-6 transition-transform transform hover:scale-105; /* Card with hover animation */
+    @apply bg-white w-full border rounded-md p-4 shadow-md  /* Card with hover animation */
   }
 
   /*Card list similiar to card but will look like a list only with bottom-b  */
@@ -82,74 +153,94 @@
   .card-icon {
     @apply w-10 h-10 flex items-center justify-center bg-accent text-light rounded-full; /* Icon container */
   }
+  
   /* Card title */
   .card-title {
-    @apply text-lg font-semibold text-pri; /* Card title */
+    @apply text-sm sm:text-base font-semibold text-pri; /* Card title */
   }
   /* Card Subtitle */
   .card-subtitle {
-    @apply text-sm text-sec; /* Card subtitle */
+    @apply text-xs text-sm text-sec; /* Card subtitle */
+  }
+}
+/* Lists */
+@layer components {
+  .list {
+    @apply space-y-2; /* Adds spacing between list items */
+  }
+
+  .list-item {
+    @apply flex items-center justify-between p-3 bg-white rounded-md shadow-md transition-transform transform hover:scale-105; /* List item with hover animation */
   }
   
+  .list-item-icon {
+    @apply w-6 h-6 flex items-center justify-center text-gray-600; /* List item icon */
+  }
+  }
+/* Buttons */
+@layer components {
+  
+  .btn{
+    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 hover:bg-opacity-90  rounded-md transition-colors;
+  }
+  .btn-primary {
+    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-brand text-light rounded-md hover:bg-opacity-90 transition-colors; 
+  }
+
+  .btn-secondary {
+    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-sec text-pri rounded-md hover:hover:bg-opacity-90 transition-colors; 
+  }
 }
+/* Avatar, Images, and Icons */
 @layer components {
   /* User Avatar */
   .user-avatar {
     @apply w-12 h-12 rounded-full object-cover border-2 border-white shadow-md; /* Avatar styling */
   }
 
-  /* Icon Buttons (Font Awesome) */
-  .icon-btn {
-    @apply p-2 text-gray-600 hover:text-accent transition-colors; /* Base icon button */
-  }
-
-  .icon-btn-delete {
-    @apply text-red-500 hover:text-red-600; /* Delete icon */
-  }
-
-  .icon-btn-edit {
-    @apply text-blue-500 hover:text-blue-600; /* Edit icon */
-  }
-
-  /* Lists */
-  .list {
-    @apply space-y-2; /* Adds spacing between list items */
-  }
-
-  .list-item {
-    @apply flex items-center justify-between p-3 bg-white rounded-lg shadow-md transition-transform transform hover:scale-105; /* List item with hover animation */
-  }
-  
-  .list-item-icon {
-    @apply w-6 h-6 flex items-center justify-center text-gray-600; /* List item icon */
-  }
-
-  /* Layouts  */
-  /* .sidebar-layout { */
-    /* @apply flex flex-col md:flex-row; Sidebar layout */
-  /* } */
-
-  /* .sidebar { */
-    /* @apply w-full md:w-64 bg-sec text-light p-4 transition-all duration-300 ease-in-out; Sidebar with animation */
-  /* } */
-
-  .main-content {
-    @apply flex-1 p-4 sm:p-6; /* Main content area */
-  }
-
-  .grid-layout {
-    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4; /* Grid layout */
-  }
-
-  /* Spacing */
-  .section-padding {
-    @apply py-8 px-4 sm:py-12 sm:px-6 lg:py-16 lg:px-8; /* Responsive section padding */
-  }
-
-  .container-width {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; /* Responsive container padding */
-  }
+  /* Icon and Icon buttons (Font Awesome) */
+.icon-btn {
+  @apply p-2 text-gray-600 hover:text-gray-800 transition-colors; /* Base icon button */
 }
+
+/* Delete icon */
+.icon-delete {
+  @apply  text-red-500 hover:text-red-600 cursor-pointer transition-colors;
+}
+
+/* Edit icon */
+.icon-edit {
+  @apply  text-blue-500 hover:text-blue-600 cursor-pointer transition-colors;
+}
+
+/* Save icon */
+.icon-save {
+  @apply  text-green-500 hover:text-green-600 cursor-pointer transition-colors;
+}
+
+/* Add icon */
+.icon-add {
+  @apply  text-indigo-500 hover:text-indigo-600 cursor-pointer transition-colors;
+}
+
+/* Complete (check mark) icon */
+.icon-complete {
+  @apply  text-emerald-500 hover:text-emerald-600 cursor-pointer transition-colors;
+}
+
+/* Caution icon */
+.icon-caution {
+  @apply  text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors;
+}
+
+/* Important icon */
+.icon-important {
+  @apply  text-orange-500 hover:text-orange-600 cursor-pointer transition-colors;
+}
+}
+
+  
+ 
   /* Custom Animations */
   @keyframes fadeIn {
     from {
