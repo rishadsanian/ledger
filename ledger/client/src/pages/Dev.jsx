@@ -1,214 +1,139 @@
 import React from 'react';
 import '../styles/tailwind.css'; // Import your Tailwind CSS file
 
-// Card Component
-const Card = ({ title, subtitle,  description, level }) => {
-  return (
-    <div className="card">
-      <h3 className={`heading-${level}`}>{title}</h3>
-      <p className="text-ter mt-2">{description}</p>
-      <button className="btn-primary mt-4">Learn More</button>
-    </div>
-  );
-};
-
-// Dashboard Component
-const Dashboard = () => {
-  return (
-    <div className="section-padding">
-      <div className="container-width">
-        <h1 className="heading-1">Dashboard</h1>
-        <div className="grid-layout mt-8">
-          <Card title="Total Revenue" description="$50,000" level="3" />
-          <Card title="Total Invoices" description="120" level="3" />
-          <Card title="Total Expenses" description="$20,000" level="3" />
-          <Card title="Profit" description="$30,000" level="3" />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Invoices Component
-const Invoices = () => {
-  const invoices = [
-    { id: 1, number: "INV-001", amount: "$1,000", status: "Paid" },
-    { id: 2, number: "INV-002", amount: "$2,500", status: "Pending" },
-    { id: 3, number: "INV-003", amount: "$1,200", status: "Paid" },
-  ];
-
-  return (
-    <div className="section-padding">
-      <div className="container-width">
-        <h1 className="heading-1">Invoices</h1>
-        <div className="list mt-8">
-          {invoices.map((invoice) => (
-            <div key={invoice.id} className="list-item">
-              <div className="flex items-center">
-                <div className="list-item-icon">
-                  <i className="fas fa-file-invoice"></i>
-                </div>
-                <div className="ml-3">
-                  <p className="text-gray-600">{invoice.number}</p>
-                  <p className="text-gray-600 text-sm">{invoice.amount}</p>
-                </div>
-              </div>
-              <div className="flex space-x-2">
-                <button className="icon-btn icon-btn-edit">
-                  <i className="fas fa-edit"></i>
-                </button>
-                <button className="icon-btn icon-btn-delete">
-                  <i className="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Expenses Component
-const Expenses = () => {
-  const expenses = [
-    { id: 1, description: "Office Supplies", amount: "$500" },
-    { id: 2, description: "Travel Expenses", amount: "$1,200" },
-    { id: 3, description: "Software Subscriptions", amount: "$300" },
-  ];
-
-  return (
-    <div className="section-padding">
-      <div className="container-width">
-        <h1 className="heading-1">Expenses</h1>
-        <div className="list mt-8">
-          {expenses.map((expense) => (
-            <div key={expense.id} className="list-item">
-              <div className="flex items-center">
-                <div className="list-item-icon">
-                  <i className="fas fa-receipt"></i>
-                </div>
-                <div className="ml-3">
-                  <p className="text-gray-600">{expense.description}</p>
-                  <p className="text-gray-600 text-sm">{expense.amount}</p>
-                </div>
-              </div>
-              <div className="flex space-x-2">
-                <button className="icon-btn icon-btn-edit">
-                  <i className="fas fa-edit"></i>
-                </button>
-                <button className="icon-btn icon-btn-delete">
-                  <i className="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Reports Component
-const Reports = () => {
-  const reports = [
-    { id: 1, title: "Monthly Revenue Report", date: "Oct 2023" },
-    { id: 2, title: "Quarterly Expense Report", date: "Q3 2023" },
-    { id: 3, title: "Annual Profit Report", date: "2023" },
-  ];
-
-  return (
-    <div className="section-padding">
-      <div className="container-width">
-        <h1 className="heading-1">Reports</h1>
-        <div className="list mt-8">
-          {reports.map((report) => (
-            <div key={report.id} className="list-item">
-              <div className="flex items-center">
-                <div className="list-item-icon">
-                  <i className="fas fa-chart-bar"></i>
-                </div>
-                <div className="ml-3">
-                  <p className="text-gray-600">{report.title}</p>
-                  <p className="text-gray-600 text-sm">{report.date}</p>
-                </div>
-              </div>
-              <button className="btn-primary">Download</button>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// User Management Component
-const UserManagement = () => {
-  const users = [
-    { id: 1, name: "John Doe", email: "john@example.com", role: "Admin" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Accountant" },
-    { id: 3, name: "Alice Johnson", email: "alice@example.com", role: "Viewer" },
-  ];
-
-  return (
-    <div className="section-padding">
-      <div className="container-width">
-        <h1 className="heading-1">User Management</h1>
-        <div className="list mt-8">
-          {users.map((user) => (
-            <div key={user.id} className="list-item">
-              <div className="flex items-center">
-                <img
-                  src="https://via.placeholder.com/150"
-                  alt="User Avatar"
-                  className="user-avatar"
-                />
-                <div className="ml-3">
-                  <p className="text-gray-600">{user.name}</p>
-                  <p className="text-gray-600 text-sm">{user.email}</p>
-                </div>
-              </div>
-              <div className="flex space-x-2">
-                <button className="icon-btn icon-btn-edit">
-                  <i className="fas fa-edit"></i>
-                </button>
-                <button className="icon-btn icon-btn-delete">
-                  <i className="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // All-in-One Page
 const Dev = () => {
   return (
-    <div className="sidebar-layout">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <h2 className="heading-3">Menu</h2>
-        <ul className="mt-4">
-          <li className="text-light hover:text-accent transition-colors">Dashboard</li>
-          <li className="text-light hover:text-accent transition-colors">Invoices</li>
-          <li className="text-light hover:text-accent transition-colors">Expenses</li>
-          <li className="text-light hover:text-accent transition-colors">Reports</li>
-          <li className="text-light hover:text-accent transition-colors">User Management</li>
-        </ul>
-      </div>
+<div className="page-full">
+<div className='page-header'>
+  <h1 className="heading-1">Dev Design Reference</h1>
+</div>
+</div>
 
-      {/* Main Content */}
-      <div className="main-content">
-        <Dashboard />
-        <Invoices />
-        <Expenses />
-        <Reports />
-        <UserManagement />
-      </div>
-    </div>
+    // <div className="bg-pri min-h-screen p-4 sm:p-8">
+    //   {/* Header */}
+    //   <header className="text-center mb-8">
+    //     <h1 className="heading-1">Dev Design Reference</h1>
+    //     <p className="text-sec">A reference page for all UI components and styles.</p>
+    //   </header>
+
+    //   {/* Buttons Section */}
+    //   <section className="mb-8">
+    //     <h2 className="heading-2 mb-4">Buttons</h2>
+    //     <div className="flex space-x-4">
+    //       <button className="btn-primary">Primary Button</button>
+    //       <button className="btn-secondary">Secondary Button</button>
+    //     </div>
+    //   </section>
+
+    //   {/* Cards Section */}
+    //   <section className="mb-8">
+    //     <h2 className="heading-2 mb-4">Cards</h2>
+    //     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    //       <div className="card">
+    //         <h3 className="card-title">Card Title</h3>
+    //         <p className="card-subtitle">Card Subtitle</p>
+    //         <p className="text-sec">This is a sample card.</p>
+    //       </div>
+    //       <div className="card">
+    //         <h3 className="card-title">Card Title</h3>
+    //         <p className="card-subtitle">Card Subtitle</p>
+    //         <p className="text-sec">This is a sample card.</p>
+    //       </div>
+    //     </div>
+    //   </section>
+
+    //   {/* Lists Section */}
+    //   <section className="mb-8">
+    //     <h2 className="heading-2 mb-4">Lists</h2>
+    //     <div className="list">
+    //       <div className="list-item">
+    //         <div className="flex items-center">
+    //           <div className="list-item-icon">
+    //             <i className="fas fa-file-invoice"></i>
+    //           </div>
+    //           <div className="ml-3">
+    //             <p className="text-gray-600">List Item 1</p>
+    //             <p className="text-gray-600 text-sm">Details</p>
+    //           </div>
+    //         </div>
+    //         <div className="flex space-x-2">
+    //           <button className=" icon-edit">Edit</button>
+    //           <button className=" icon-delete">Delete</button>
+    //         </div>
+    //       </div>
+    //       <div className="list-item">
+    //         <div className="flex items-center">
+    //           <div className="list-item-icon">
+    //             <i className="fas fa-file-invoice"></i>
+    //           </div>
+    //           <div className="ml-3">
+    //             <p className="text-gray-600">List Item 2</p>
+    //             <p className="text-gray-600 text-sm">Details</p>
+    //           </div>
+    //         </div>
+    //         <div className="flex space-x-2">
+    //           <button className=" icon-edit">Edit</button>
+    //           <button className=" icon-delete">Delete</button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </section>
+
+    //   {/* Icons Section */}
+    //   <section className="mb-8">
+    //     <h2 className="heading-2 mb-4">Icons</h2>
+    //     <div className="flex space-x-4">
+    //       <button className="icon-btn icon-save">Save</button>
+    //       <button className="icon-btn icon-add">Add</button>
+    //       <button className="icon-btn icon-complete">Complete</button>
+    //       <button className="icon-btn icon-caution">Caution</button>
+    //       <button className="icon-btn icon-important">Important</button>
+    //     </div>
+    //   </section>
+
+    //   {/* Panels Section */}
+    //   <section className="mb-8">
+    //     <h2 className="heading-2 mb-4">Panels</h2>
+    //     <div className="panel bg-white border rounded-md shadow-md p-4">
+    //       <h3 className="card-title">Panel Title</h3>
+    //       <p className="text-sec">This is a sample panel.</p>
+    //     </div>
+    //   </section>
+
+    //   {/* Page Section */}
+    //   <section className="mb-8">
+    //     <h2 className="heading-2 mb-4">Page Layout</h2>
+    //     <div className="page">
+    //       <div className="page-header">
+    //         <h3 className="page-title">Page Title</h3>
+    //         <div className="page-actions">
+    //           <button className="btn-primary">Action 1</button>
+    //           <button className="btn-secondary">Action 2</button>
+    //         </div>
+    //       </div>
+    //       <div className="page-content">
+    //         <p className="text-sec">This is the page content.</p>
+    //       </div>
+    //       <div className="page-footer">
+    //         <p className="text-sec">Page Footer</p>
+    //       </div>
+    //     </div>
+    //   </section>
+
+    //   {/* Animations Section */}
+    //   <section className="mb-8">
+    //     <h2 className="heading-2 mb-4">Animations</h2>
+    //     <div className="space-y-4">
+    //       <div className="animate-fade-in p-4 bg-sec rounded-md">
+    //         <p className="text-pri">Fade In Animation</p>
+    //       </div>
+    //       <div className="animate-slide-in p-4 bg-sec rounded-md">
+    //         <p className="text-pri">Slide In Animation</p>
+    //       </div>
+    //     </div>
+    //   </section>
+    // </div>
   );
 };
 

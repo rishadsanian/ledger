@@ -34,7 +34,7 @@ const mode="absolute"
 const width="w-1/3"
 // Drawer component
 const Drawer = ({ isOpen, onClose, children  })  => {
-  let theme = "light"
+  let theme = "custom"
   const currentTheme = drawerThemes[theme] || drawerThemes.default;
 
   return (
