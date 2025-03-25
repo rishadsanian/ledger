@@ -28,7 +28,9 @@ const SideBar = ({ menu, setMenu }) => {
       } whitespace-nowrap`}
     >
 
-      <div className="flex justify-center w-full h-full ">
+      <div className={`flex ${
+        open ? "justify-start" : "justify-center "
+      }w-full h-full `}>
        {open && <LedgerLogo /> || <LedgerIcon />} 
       </div>  
       <div

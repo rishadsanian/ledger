@@ -47,7 +47,7 @@ const App = () => {
       <div className="flex  h-screen overflow-hidden">
         {/* Sidebar */}
         {window.location.pathname !== "/landing" && (
-          <div className="hidden sm:block w-1/8 bg-gray-800 rounded-r-3xl">
+          <div className="hidden sm:block w-1/8 bg-gray-800 rounded-r-3xl ">
             <SideBar menu={sideBarMenu} setMenu={setSideBarMenu} />
           </div>
         )}
