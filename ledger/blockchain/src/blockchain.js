@@ -1,4 +1,11 @@
 const SHA256 = require('crypto-js/sha256');
+class JournalEntry {
+  constructor(fromAddress, toAddress, amount) {
+    this.fromAddress = fromAddress;
+    this.toAddress = toAddress;
+    this.amount = amount;
+  }
+}
 
 class Block {
   constructor(index, timestamp, data, previousHash = '') {
@@ -71,4 +78,7 @@ console.log('Mining block 2...');
 myCoin.addBlock(new Block(2, '12/07/2021', { amount: 10 }));
 
 console.log(JSON.stringify(myCoin, null, 4)); // Display the blockchain
+console.log('Is blockchain valid?', myCoin.isChainValid()); // Check if the blockchain is valid
+console.log('Tampering with the blockchain...');
+myCoin.chain[1].data = { amount: 100 }; // Tamper with the blockchain
 console.log('Is blockchain valid?', myCoin.isChainValid()); // Check if the blockchain is valid
