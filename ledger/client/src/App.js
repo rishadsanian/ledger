@@ -58,7 +58,7 @@ const App = () => {
           <Breadcrumb menu={menu} setMenu={setTopBarMenu} />
           {/* Main Content Area */}
           <div className="flex flex-col w-full h-full relative overflow-hidden">           
-            <div className="flex-grow overflow-y-auto bg-gray-100 px-3 py-4 sm:p-6">
+            <div className="flex-grow overflow-y-auto bg-pri  ">
               <AccountProvider>
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
