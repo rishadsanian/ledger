@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
-import Tooltip from "@mui/material/Tooltip";
 import moment from "moment";
 
 const Dashboard = () => {
-  // Placeholder data for demonstration
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Initialize dark mode
+  useEffect(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialMode = savedMode ? savedMode === 'true' : systemPrefersDark;
+    
+    setDarkMode(initialMode);
+    document.documentElement.classList.toggle('dark', initialMode);
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem('darkMode', newMode);
+    document.documentElement.classList.toggle('dark', newMode);
+  };
+
+  // Placeholder data
   const incomeData = [
     { label: "Sales", amount: 1000 },
     { label: "Services", amount: 500 },
@@ -18,13 +36,14 @@ const Dashboard = () => {
     { label: "Supplies", amount: 100 },
   ];
 
+  // Chart data
   const incomeChartData = {
     labels: incomeData.map((data) => data.label),
     datasets: [
       {
         label: "Income",
         data: incomeData.map((data) => data.amount),
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        backgroundColor: darkMode ? "rgba(75, 192, 192, 0.6)" : "rgba(75, 192, 192, 0.2)",
         borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1,
       },
@@ -37,14 +56,44 @@ const Dashboard = () => {
       {
         label: "Expenses",
         data: expensesData.map((data) => data.amount),
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        backgroundColor: darkMode ? "rgba(255, 99, 132, 0.6)" : "rgba(255, 99, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
       },
     ],
   };
 
-  // Placeholder company information
+  // Chart options
+  const chartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+        },
+        ticks: {
+          color: darkMode ? '#E5E7EB' : '#374151',
+        }
+      },
+      x: {
+        grid: {
+          color: darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+        },
+        ticks: {
+          color: darkMode ? '#E5E7EB' : '#374151',
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: darkMode ? '#E5E7EB' : '#374151',
+        }
+      }
+    }
+  };
+
+  // Company information
   const companyInfo = {
     name: "ABC Corporation",
     address: "123 Main Street, Cityville",
@@ -55,120 +104,96 @@ const Dashboard = () => {
     stock: {
       ticker: "ABCC",
       stockprice: 122,
+      tickerChangePrice: 34,
       tickerChangePercent: function () {
         return ((this.tickerChangePrice / this.stockprice) * 100).toFixed(2);
       },
-      tickerChangePrice: 34,
       updated: "2021-10-01T09:30:00",
     },
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="page-full bg-pri dark:bg-gray-900 p-4 min-h-screen">
+      {/* Dark Mode Toggle */}
+      <button 
+        className="fixed bottom-4 right-4 btn-primary dark:bg-gray-700 z-50"
+        onClick={toggleDarkMode}
+      >
+        {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+      </button>
+
       {/* Company Information */}
       <div className="mb-6">
-        <div className="text-2xl font-bold mb-2">{companyInfo.name}</div>
-        {/* TICKER */}
-        <div>
-          {companyInfo.listed && (
-            <div className="text-md text-gray-500 mb-2 flex items-center">
-              <div className="flex items-center">
-                <span className="ml-1 text-lg ">
-                  {companyInfo.stock.ticker}
-                </span>
-              </div>
-
-              {/* Tooltip */}
-              <div
-                className={`ml-2 flex items-center ${
-                  companyInfo.stock.tickerChangePrice > 0
-                    ? "text-green-600"
-                    : companyInfo.stock.tickerChangePrice < 0
-                    ? "text-red-500"
-                    : "text-gray-500"
-                }`}
-              >
-                <span className="">
-                  {companyInfo.stock.tickerChangePrice > 0 ? "+" : ""}
-                  {companyInfo.stock.tickerChangePrice.toFixed(2)}
-                </span>
-                <span className=" ">
-                  ({companyInfo.stock.tickerChangePercent()}%)
-                </span>
-                {companyInfo.stock.tickerChangePrice > 0 ? (
-                  <span className="text-green-600 ml-1">
-                    <i className="fas fa-caret-up"></i>
-                  </span>
-                ) : companyInfo.stock.tickerChangePrice < 0 ? (
-                  <span className="text-red-500 ml-1">
-                    <i className="fas fa-caret-down"></i>
-                  </span>
-                ) : (
-                  <span className="text-gray-500 ml-1">
-                    {/* <i className="fas fa-caret-right"></i> */}
-                  </span>
-                )}
-              </div>
-              {/* End Tooltip */}
-            </div>
-          )}
-        </div>
+        <h1 className="heading-1 text-brand dark:text-gray-100 mb-2">{companyInfo.name}</h1>
+        {companyInfo.listed && (
+          <div className="text-sec dark:text-gray-300 mb-2 flex items-center">
+            <span className="text-lg mr-2">{companyInfo.stock.ticker}</span>
+            <span className={`flex items-center ${
+              companyInfo.stock.tickerChangePrice > 0 
+                ? "text-green-600 dark:text-green-400" 
+                : "text-red-500 dark:text-red-400"
+            }`}>
+              {companyInfo.stock.tickerChangePrice > 0 ? '+' : ''}
+              {companyInfo.stock.tickerChangePrice.toFixed(2)}
+              ({companyInfo.stock.tickerChangePercent()}%)
+              {companyInfo.stock.tickerChangePrice > 0 ? (
+                <i className="fas fa-caret-up ml-1"></i>
+              ) : (
+                <i className="fas fa-caret-down ml-1"></i>
+              )}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Company Details */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="font-bold text-lg mb-2">Industry</h2>
-          <p>{companyInfo.industry}</p>
+      <div className="grid-layout mb-6">
+        <div className="card">
+          <h3 className="card-title">Industry</h3>
+          <p className="card-subtitle">{companyInfo.industry}</p>
         </div>
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="font-bold text-lg mb-2">Address</h2>
-          <p>{companyInfo.address}</p>
+        <div className="card">
+          <h3 className="card-title">Address</h3>
+          <p className="card-subtitle">{companyInfo.address}</p>
         </div>
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="font-bold text-lg mb-2">Total Employees</h2>
-          <p>{companyInfo.totalEmployees}</p>
+        <div className="card">
+          <h3 className="card-title">Employees</h3>
+          <p className="card-subtitle">{companyInfo.totalEmployees}</p>
         </div>
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="font-bold text-lg mb-2">Founding Year</h2>
-          <p>{companyInfo.foundingYear}</p>
+        <div className="card">
+          <h3 className="card-title">Founded</h3>
+          <p className="card-subtitle">{companyInfo.foundingYear}</p>
         </div>
       </div>
 
       {/* Financial Overview */}
-      <div className="text-2xl font-bold mb-4 mt-8">Financial Overview</div>
+      <h2 className="heading-1 text-brand dark:text-gray-100 mb-4 mt-8">Financial Overview</h2>
 
       {/* Metrics */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 mb-6">
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="text-xl font-bold mb-2">Total Income</h2>
-          <p className="text-green-600">
-            $
-            {incomeData
-              .reduce((total, data) => total + data.amount, 0)
-              .toFixed(2)}
+      <div className="grid-layout mb-6">
+        <div className="card">
+          <h3 className="card-title">Total Income</h3>
+          <p className="text-green-600 dark:text-green-400 text-xl font-bold">
+            ${incomeData.reduce((total, data) => total + data.amount, 0).toFixed(2)}
           </p>
         </div>
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="text-xl font-bold mb-2">Total Expenses</h2>
-          <p className="text-red-500">
-            $
-            {expensesData
-              .reduce((total, data) => total + data.amount, 0)
-              .toFixed(2)}
+        <div className="card">
+          <h3 className="card-title">Total Expenses</h3>
+          <p className="text-red-500 dark:text-red-400 text-xl font-bold">
+            ${expensesData.reduce((total, data) => total + data.amount, 0).toFixed(2)}
           </p>
         </div>
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="text-xl font-bold mb-2">Income</h2>
-          <Bar data={incomeChartData} />
+      <div className="grid-layout">
+        <div className="card">
+          <h3 className="card-title">Income</h3>
+          <Bar data={incomeChartData} options={chartOptions} />
         </div>
-        <div className="bg-white p-4 rounded shadow">
-          <h2 className="text-xl font-bold mb-2">Expenses</h2>
-          <Bar data={expensesChartData} />
+        <div className="card">
+          <h3 className="card-title">Expenses</h3>
+          <Bar data={expensesChartData} options={chartOptions} />
         </div>
       </div>
     </div>

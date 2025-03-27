@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
@@ -10,6 +10,29 @@ import SearchBarNav from "../assets/searchBarNav";
 import { LedgerLogo, LedgerIcon } from "../assets/logos/LedgerLogo";
 
 const TopNavbar = ({ menu }) => {
+
+    const [darkMode, setDarkMode] = useState(false);
+  
+    // Initialize dark mode from localStorage or system preference
+    useEffect(() => {
+      const savedMode = localStorage.getItem('darkMode');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      // Use saved mode if exists, otherwise use system preference
+      const initialMode = savedMode ? savedMode === 'true' : systemPrefersDark;
+      
+      setDarkMode(initialMode);
+      document.documentElement.classList.toggle('dark', initialMode);
+    }, []);
+  
+    const toggleDarkMode = () => {
+      const newMode = !darkMode;
+      setDarkMode(newMode);
+      localStorage.setItem('darkMode', newMode);
+      document.documentElement.classList.toggle('dark', newMode);
+    };
+  
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -59,6 +82,14 @@ const TopNavbar = ({ menu }) => {
                 )
             )}
           </div>
+          
+     {/* Dark Mode Toggle */}
+     <button 
+        className="fixed bottom-4 right-4 btn-primary dark:bg-gray-700 z-50"
+        onClick={toggleDarkMode}
+      >
+        {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+      </button>
 
           {/* For smaller screens, show bars icon with dropdown menu */}
           <div className="sm:hidden">

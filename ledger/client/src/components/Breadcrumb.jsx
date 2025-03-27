@@ -1,26 +1,46 @@
-const Breadcrumb = ({ menu }) => {
+import React from "react";
+
+const Breadcrumb = ({ items = [], showBackButton = false }) => {
+  const breadcrumbItems = items.length ? items : [
+    { name: 'Home', href: '/' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Current', href: null }
+  ];
+
   return (
-    <nav className="flex items-center text-sm leading-5 font-medium p-4 bg-white">
-      <ol className="flex items-center space-x-4">
-        <li>
-          <a href="/" className="text-gray-500 hover:text-gray-700">
-            Home
-          </a>
-        </li>
-        <li>
-          <i className="fas fa-chevron-right text-gray-500"></i>
-        </li>
-        <li>
-          <a href="/accounts" className="text-gray-500 hover:text-gray-700">
-            Accounts
-          </a>
-        </li>
-        <li>
-          <i className="fas fa-chevron-right text-gray-500"></i>
-        </li>
-        <li>
-          <span className="text-gray-700">Current Account</span>
-        </li>
+    <nav className="flex items-center gap-2 p-3 bg-sec dark:bg-gray-800 sticky top-0 z-10">
+      {showBackButton && (
+        <button 
+          onClick={() => window.history.back()}
+          className="icon-btn mr-2"
+          aria-label="Back"
+        >
+          ←
+        </button>
+      )}
+
+      <ol className="flex items-center overflow-x-auto hide-scrollbar">
+        {breadcrumbItems.map((item, i) => (
+          <React.Fragment key={i}>
+            <li className="flex items-center">
+              {item.href ? (
+                <a
+                  href={item.href}
+                  className="text-sec hover:text-pri dark:text-gray-300 dark:hover:text-white text-sm truncate max-w-[120px]"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <span className="text-pri dark:text-white text-sm font-medium truncate">
+                  {item.name}
+                </span>
+              )}
+            </li>
+            {i < breadcrumbItems.length - 1 && (
+              <span className="text-sec dark:text-gray-500 mx-2">/</span>
+            )}
+          </React.Fragment>
+        ))}
       </ol>
     </nav>
   );

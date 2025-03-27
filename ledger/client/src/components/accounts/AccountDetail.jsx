@@ -16,7 +16,7 @@ const AccountDetail = () => {
   };
 
   return (
-    <div className="bg-white shadow-md p-6 rounded-lg">
+    <div className="card">
       <h2 className="text-2xl font-bold mb-4">Account Details</h2>
       <div className="grid grid-cols-2 gap-4">
         <div>

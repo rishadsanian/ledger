@@ -1,139 +1,93 @@
-import React from 'react';
-import '../styles/tailwind.css'; // Import your Tailwind CSS file
+import React, { useState, useEffect } from 'react';
+import '../styles/tailwind.css';
 
-// All-in-One Page
 const Dev = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Initialize dark mode from localStorage or system preference
+  useEffect(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Use saved mode if exists, otherwise use system preference
+    const initialMode = savedMode ? savedMode === 'true' : systemPrefersDark;
+    
+    setDarkMode(initialMode);
+    document.documentElement.classList.toggle('dark', initialMode);
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem('darkMode', newMode);
+    document.documentElement.classList.toggle('dark', newMode);
+  };
+
   return (
-<div className="page-full">
-<div className='page-header'>
-  <h1 className="heading-1">Dev Design Reference</h1>
-</div>
-</div>
+    <div className={`page-full ${darkMode ? 'dark' : ''} bg-pri dark:bg-gray-900 flex flex-col items-center p-4 min-h-screen`}>
+      {/* Header */}
+      <header className="page-header w-full py-4 border-b border-pri dark:border-gray-700 bg-sec dark:bg-gray-800">
+        <h1 className="heading-1 text-brand dark:text-gray-100">Dev Design Reference</h1>
+      </header>
 
-    // <div className="bg-pri min-h-screen p-4 sm:p-8">
-    //   {/* Header */}
-    //   <header className="text-center mb-8">
-    //     <h1 className="heading-1">Dev Design Reference</h1>
-    //     <p className="text-sec">A reference page for all UI components and styles.</p>
-    //   </header>
+      {/* Main Content */}
+      <main className="main-content grid-layout section-padding">
+        {/* Card Example */}
+        <div className="card dark:bg-gray-800 dark:border-gray-700">
+          <div className="p-4">
+            <h3 className="card-title dark:text-gray-100">Card Title</h3>
+            <p className="card-subtitle mt-2 dark:text-gray-300">
+              This is a sample card subtitle.
+            </p>
+            <p className="text-sec mt-1 dark:text-gray-400">
+              Current mode: {darkMode ? 'Dark' : 'Light'}
+            </p>
+            <div className="flex justify-end mt-4">
+              <button className="btn-primary dark:bg-gray-700 dark:text-gray-100">
+                Action
+              </button>
+            </div>
+          </div>
+        </div>
 
-    //   {/* Buttons Section */}
-    //   <section className="mb-8">
-    //     <h2 className="heading-2 mb-4">Buttons</h2>
-    //     <div className="flex space-x-4">
-    //       <button className="btn-primary">Primary Button</button>
-    //       <button className="btn-secondary">Secondary Button</button>
-    //     </div>
-    //   </section>
+        {/* List Example */}
+        <div className="panel dark:bg-gray-800 dark:border-gray-700">
+          <h3 className="heading-3 dark:text-gray-100 p-4 border-b border-pri dark:border-gray-700">List Items</h3>
+          <ul className="list">
+            {[1, 2, 3].map((item) => (
+              <li key={item} className="list-item dark:bg-gray-700">
+                <span className="text-pri dark:text-gray-200">Item {item}</span>
+                <div className="flex space-x-2">
+                  <span className="icon-edit">Edit</span>
+                  <span className="icon-delete">Delete</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-    //   {/* Cards Section */}
-    //   <section className="mb-8">
-    //     <h2 className="heading-2 mb-4">Cards</h2>
-    //     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    //       <div className="card">
-    //         <h3 className="card-title">Card Title</h3>
-    //         <p className="card-subtitle">Card Subtitle</p>
-    //         <p className="text-sec">This is a sample card.</p>
-    //       </div>
-    //       <div className="card">
-    //         <h3 className="card-title">Card Title</h3>
-    //         <p className="card-subtitle">Card Subtitle</p>
-    //         <p className="text-sec">This is a sample card.</p>
-    //       </div>
-    //     </div>
-    //   </section>
+        {/* Buttons Example */}
+        <div className="panel dark:bg-gray-800 dark:border-gray-700">
+          <h3 className="heading-3 dark:text-gray-100 p-4 border-b border-pri dark:border-gray-700">Buttons</h3>
+          <div className="p-4 space-y-3">
+            <button className="btn-primary w-full">Primary Button</button>
+            <button className="btn-secondary w-full dark:text-gray-100">Secondary Button</button>
+            <div className="flex justify-center space-x-4 mt-4">
+              <span className="icon-add">Add</span>
+              <span className="icon-save">Save</span>
+              <span className="icon-delete">Delete</span>
+            </div>
+          </div>
+        </div>
+      </main>
 
-    //   {/* Lists Section */}
-    //   <section className="mb-8">
-    //     <h2 className="heading-2 mb-4">Lists</h2>
-    //     <div className="list">
-    //       <div className="list-item">
-    //         <div className="flex items-center">
-    //           <div className="list-item-icon">
-    //             <i className="fas fa-file-invoice"></i>
-    //           </div>
-    //           <div className="ml-3">
-    //             <p className="text-gray-600">List Item 1</p>
-    //             <p className="text-gray-600 text-sm">Details</p>
-    //           </div>
-    //         </div>
-    //         <div className="flex space-x-2">
-    //           <button className=" icon-edit">Edit</button>
-    //           <button className=" icon-delete">Delete</button>
-    //         </div>
-    //       </div>
-    //       <div className="list-item">
-    //         <div className="flex items-center">
-    //           <div className="list-item-icon">
-    //             <i className="fas fa-file-invoice"></i>
-    //           </div>
-    //           <div className="ml-3">
-    //             <p className="text-gray-600">List Item 2</p>
-    //             <p className="text-gray-600 text-sm">Details</p>
-    //           </div>
-    //         </div>
-    //         <div className="flex space-x-2">
-    //           <button className=" icon-edit">Edit</button>
-    //           <button className=" icon-delete">Delete</button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </section>
+      {/* Footer */}
+      <footer className="page-footer w-full py-4 border-t border-pri dark:border-gray-700 bg-sec dark:bg-gray-800 text-sec dark:text-gray-400 text-sm text-center">
+        Page Footer - {darkMode ? 'Dark' : 'Light'} Mode Active
+      </footer>
 
-    //   {/* Icons Section */}
-    //   <section className="mb-8">
-    //     <h2 className="heading-2 mb-4">Icons</h2>
-    //     <div className="flex space-x-4">
-    //       <button className="icon-btn icon-save">Save</button>
-    //       <button className="icon-btn icon-add">Add</button>
-    //       <button className="icon-btn icon-complete">Complete</button>
-    //       <button className="icon-btn icon-caution">Caution</button>
-    //       <button className="icon-btn icon-important">Important</button>
-    //     </div>
-    //   </section>
-
-    //   {/* Panels Section */}
-    //   <section className="mb-8">
-    //     <h2 className="heading-2 mb-4">Panels</h2>
-    //     <div className="panel bg-white border rounded-md shadow-md p-4">
-    //       <h3 className="card-title">Panel Title</h3>
-    //       <p className="text-sec">This is a sample panel.</p>
-    //     </div>
-    //   </section>
-
-    //   {/* Page Section */}
-    //   <section className="mb-8">
-    //     <h2 className="heading-2 mb-4">Page Layout</h2>
-    //     <div className="page">
-    //       <div className="page-header">
-    //         <h3 className="page-title">Page Title</h3>
-    //         <div className="page-actions">
-    //           <button className="btn-primary">Action 1</button>
-    //           <button className="btn-secondary">Action 2</button>
-    //         </div>
-    //       </div>
-    //       <div className="page-content">
-    //         <p className="text-sec">This is the page content.</p>
-    //       </div>
-    //       <div className="page-footer">
-    //         <p className="text-sec">Page Footer</p>
-    //       </div>
-    //     </div>
-    //   </section>
-
-    //   {/* Animations Section */}
-    //   <section className="mb-8">
-    //     <h2 className="heading-2 mb-4">Animations</h2>
-    //     <div className="space-y-4">
-    //       <div className="animate-fade-in p-4 bg-sec rounded-md">
-    //         <p className="text-pri">Fade In Animation</p>
-    //       </div>
-    //       <div className="animate-slide-in p-4 bg-sec rounded-md">
-    //         <p className="text-pri">Slide In Animation</p>
-    //       </div>
-    //     </div>
-    //   </section>
-    // </div>
+     
+    </div>
   );
 };
 

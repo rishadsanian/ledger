@@ -2,16 +2,39 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
- /* Layouts  */
- @layer components {
-  /* .sidebar-layout { */
-    /* @apply flex flex-col md:flex-row; Sidebar layout */
-  /* } */
+/* Enable dark mode with class strategy */
+@layer utilities {
+  .dark .dark\:bg-pri {
+    @apply bg-gray-900;
+  }
+  
+  .dark .dark\:bg-sec {
+    @apply bg-gray-800;
+  }
+  
+  .dark .dark\:bg-brand {
+    @apply bg-gray-700;
+  }
+  
+  .dark .dark\:text-pri {
+    @apply text-gray-100;
+  }
+  
+  .dark .dark\:text-sec {
+    @apply text-gray-300;
+  }
+  
+  .dark .dark\:text-brand {
+    @apply text-gray-200;
+  }
+  
+  .dark .dark\:border-pri {
+    @apply border-gray-600;
+  }
+}
 
-  /* .sidebar { */
-    /* @apply w-full md:w-64 bg-sec text-light p-4 transition-all duration-300 ease-in-out; Sidebar with animation */
-  /* } */
-
+/* Layouts */
+@layer components {
   .main-content {
     @apply flex-1 p-2 sm:p-4; /* Main content area */
   }
@@ -24,8 +47,6 @@
   .section-padding {
     @apply py-2 px-2 sm:py-4 sm:px-4 lg:py-8 lg:px-8; /* Responsive section padding */
   }
-
-  
 } 
 
 /* BG Colors */
@@ -46,6 +67,7 @@
     @apply bg-gray-800; /* Brand color */
   }
 }
+
 /* Text */
 @layer components {
   .text-pri {
@@ -92,13 +114,14 @@
     @apply text-sm sm:text-base font-semibold text-sec; /* Responsive heading */
   }
 }
+
 /* Page */
 @layer components {
   .page {
-    @apply bg-white p-4 rounded-md shadow-md ; /* Page container */
+    @apply bg-white p-4 rounded-md shadow-md dark:bg-gray-800 dark:shadow-gray-900/50; /* Page container */
   }
   .page-full {
-    @apply bg-white p-4 rounded-md shadow-md h-full ; /* Page container */
+    @apply bg-white p-4 rounded-md shadow-md h-full dark:bg-gray-800 dark:shadow-gray-900/50; /* Page container */
   }
 
   .page-header {
@@ -106,7 +129,7 @@
   }
 
   .page-title {
-    @apply text-lg font-semibold text-pri; /* Page title */
+    @apply text-lg font-semibold text-pri dark:text-gray-100; /* Page title */
   }
 
   .page-actions {
@@ -121,34 +144,30 @@
     @apply mt-4; /* Page footer */
   }
 }
+
 /* Panel */
 @layer components {
   .panel {
-    @apply bg-white border rounded-md shadow-md p-4; /* Panel container */
+    @apply bg-white border rounded-md shadow-md p-4 dark:bg-gray-800 dark:border-gray-700 dark:shadow-gray-900/50; /* Panel container */
   }
-.panel{
-
 }
-}
-
 
 /* Cards */
 @layer components {
   /*Card Containr */
   .card-grid {
-    @apply  mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mt-8 p-4 sm:p-6 transition-transform transform hover:scale-105; /* Card with hover animation */
+    @apply mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-8 p-4 sm:p-6 transition-transform transform hover:scale-105; /* Card with hover animation */
   }
   /* Cards */
   .card {
-    @apply bg-white w-full border rounded-md p-4 shadow-md  /* Card with hover animation */
+    @apply bg-white w-full border rounded-md p-4 shadow-md dark:bg-gray-800 dark:border-gray-700 dark:shadow-gray-900/50; /* Card with hover animation */
   }
 
-  /*Card list similiar to card but will look like a list only with bottom-b  */
+  /*Card list similar to card but will look like a list only with bottom-b */
   .card-list {
-    @apply bg-white  border-b p-4 sm:p-6 transition-transform transform hover:.bg-pri; /* Card with hover animation */
+    @apply bg-white border-b p-4 sm:p-6 transition-transform transform hover:bg-pri dark:bg-gray-800 dark:border-gray-700; /* Card with hover animation */
   }
   
-
   /* Card Icon */
   .card-icon {
     @apply w-10 h-10 flex items-center justify-center bg-accent text-light rounded-full; /* Icon container */
@@ -156,13 +175,14 @@
   
   /* Card title */
   .card-title {
-    @apply text-sm sm:text-base font-semibold text-pri; /* Card title */
+    @apply text-sm sm:text-base font-semibold text-pri dark:text-gray-100; /* Card title */
   }
   /* Card Subtitle */
   .card-subtitle {
-    @apply text-xs text-sm text-sec; /* Card subtitle */
+    @apply text-xs text-sm text-sec dark:text-gray-300; /* Card subtitle */
   }
 }
+
 /* Lists */
 @layer components {
   .list {
@@ -170,27 +190,28 @@
   }
 
   .list-item {
-    @apply flex items-center justify-between p-3 bg-white rounded-md shadow-md transition-transform transform hover:scale-105; /* List item with hover animation */
+    @apply flex items-center justify-between p-3 bg-white rounded-md shadow-md transition-transform transform hover:scale-105 dark:bg-gray-800 dark:shadow-gray-900/50; /* List item with hover animation */
   }
   
   .list-item-icon {
-    @apply w-6 h-6 flex items-center justify-center text-gray-600; /* List item icon */
+    @apply w-6 h-6 flex items-center justify-center text-gray-600 dark:text-gray-300; /* List item icon */
   }
-  }
+}
+
 /* Buttons */
 @layer components {
-  
   .btn{
-    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 hover:bg-opacity-90  rounded-md transition-colors;
+    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 hover:bg-opacity-90 rounded-md transition-colors;
   }
   .btn-primary {
     @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-brand text-light rounded-md hover:bg-opacity-90 transition-colors; 
   }
 
   .btn-secondary {
-    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-sec text-pri rounded-md hover:hover:bg-opacity-90 transition-colors; 
+    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-sec text-pri rounded-md hover:bg-opacity-90 transition-colors dark:bg-gray-700 dark:text-gray-100; 
   }
 }
+
 /* Avatar, Images, and Icons */
 @layer components {
   /* User Avatar */
@@ -199,72 +220,119 @@
   }
 
   /* Icon and Icon buttons (Font Awesome) */
-.icon-btn {
-  @apply p-2 text-gray-600 hover:text-gray-800 transition-colors; /* Base icon button */
-}
-
-/* Delete icon */
-.icon-delete {
-  @apply  text-red-500 hover:text-red-600 cursor-pointer transition-colors;
-}
-
-/* Edit icon */
-.icon-edit {
-  @apply  text-blue-500 hover:text-blue-600 cursor-pointer transition-colors;
-}
-
-/* Save icon */
-.icon-save {
-  @apply  text-green-500 hover:text-green-600 cursor-pointer transition-colors;
-}
-
-/* Add icon */
-.icon-add {
-  @apply  text-indigo-500 hover:text-indigo-600 cursor-pointer transition-colors;
-}
-
-/* Complete (check mark) icon */
-.icon-complete {
-  @apply  text-emerald-500 hover:text-emerald-600 cursor-pointer transition-colors;
-}
-
-/* Caution icon */
-.icon-caution {
-  @apply  text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors;
-}
-
-/* Important icon */
-.icon-important {
-  @apply  text-orange-500 hover:text-orange-600 cursor-pointer transition-colors;
-}
-}
-
-  
- 
-  /* Custom Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .icon-btn {
+    @apply p-2 text-gray-600 hover:text-gray-800 transition-colors dark:text-gray-300 dark:hover:text-gray-100; /* Base icon button */
   }
 
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+  /* Delete icon */
+  .icon-delete {
+    @apply text-red-500 hover:text-red-600 cursor-pointer transition-colors dark:text-red-400 dark:hover:text-red-300;
   }
 
-  @keyframes slideIn {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
+  /* Edit icon */
+  .icon-edit {
+    @apply text-blue-500 hover:text-blue-600 cursor-pointer transition-colors dark:text-blue-400 dark:hover:text-blue-300;
   }
 
-  .animate-slide-in {
-    animation: slideIn 0.5s ease-in-out;
+  /* Save icon */
+  .icon-save {
+    @apply text-green-500 hover:text-green-600 cursor-pointer transition-colors dark:text-green-400 dark:hover:text-green-300;
   }
 
+  /* Add icon */
+  .icon-add {
+    @apply text-indigo-500 hover:text-indigo-600 cursor-pointer transition-colors dark:text-indigo-400 dark:hover:text-indigo-300;
+  }
+
+  /* Complete (check mark) icon */
+  .icon-complete {
+    @apply text-emerald-500 hover:text-emerald-600 cursor-pointer transition-colors dark:text-emerald-400 dark:hover:text-emerald-300;
+  }
+
+  /* Caution icon */
+  .icon-caution {
+    @apply text-yellow-500 hover:text-yellow-600 cursor-pointer transition-colors dark:text-yellow-400 dark:hover:text-yellow-300;
+  }
+
+  /* Important icon */
+  .icon-important {
+    @apply text-orange-500 hover:text-orange-600 cursor-pointer transition-colors dark:text-orange-400 dark:hover:text-orange-300;
+  }
+}
+
+/* Add to your existing Tailwind CSS */
+@layer utilities {
+  /* Height utilities */
+  .min-h-input {
+    @apply min-h-[35px];
+  }
+  .max-h-input {
+    @apply max-h-[35px];
+  }
+
+  /* Search loading states */
+  .search-loading-icon {
+    @apply absolute right-0 top-0 pr-4 h-full w-12 text-gray-700 flex items-center justify-center;
+  }
+  .search-icon {
+    @apply absolute right-0 top-0 pr-3 h-full w-12 text-gray-700 flex items-center justify-center;
+  }
+
+  /* List containers */
+  .list-container {
+    @apply flex-grow border-4 bg-white  overflow-y-auto rounded-lg;
+  }
+
+  /* Account header */
+  .account-header {
+    @apply flex bg-gray-200 justify-between items-center pr-4;
+  }
+  .account-title {
+    @apply text-base py-4 px-3 text-black w-full items-center space-x-2 text-xl font-bold;
+  }
+
+  /* Account item */
+  .account-item {
+    @apply bg-white border-t py-4 px-6 shadow-sm;
+  }
+  .account-item-header {
+    @apply flex justify-between items-center pr-4 mb-2;
+  }
+  .account-item-title {
+    @apply flex items-center space-x-2 text-xl font-semibold text-gray-700;
+  }
+
+  /* Subaccount list */
+  .subaccount-list {
+    @apply ml-6 list-disc;
+  }
+  .subaccount-item {
+    @apply text-sm text-gray-600 flex justify-between;
+  }
+}
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-in-out;
+}
