@@ -71,48 +71,47 @@
 /* Text */
 @layer components {
   .text-pri {
-    @apply text-slate-900 dark:text-gray-100; /* Primary text */
+    @apply text-slate-900; /* Primary text */
   }
 
   .text-sec {
-    @apply text-gray-600 dark:text-gray-300; /* Secondary text */
+    @apply text-gray-600; /* Secondary text */
   }
 
   .text-accent {
-    @apply text-purple-700 dark:text-purple-400; /* Accent text */
+    @apply text-purple-700; /* Accent text */
   }
 
   .text-light {
-    @apply text-gray-50 dark:text-gray-900; /* Light text (inverted in dark mode) */
+    @apply text-gray-50; /* Light text */
   }
 
   .text-brand {
-    @apply text-gray-800 dark:text-gray-200; /* Brand text */
+    @apply text-gray-800; /* Brand text */
   }
 
   /* border-colour */
   .border-pri {
-    @apply border-slate-500 dark:border-gray-600; /* Primary border */
+    @apply border-slate-500; /* Primary border */
   }
   .border-active {
-    @apply bg-purple-700 dark:bg-purple-600; /* Active border */
+    @apply bg-purple-700; /* Active border */
   }
 
   /* Headings */
   .heading-1 { 
-    @apply text-xl sm:text-2xl font-bold text-pri dark:text-gray-100; /* Responsive heading */
+    @apply text-xl sm:text-2xl font-bold text-pri; /* Responsive heading */
   }
 
   .heading-2 {
-    @apply text-lg sm:text-xl font-semibold text-pri dark:text-gray-100; /* Responsive heading */
+    @apply text-lg sm:text-xl font-semibold text-pri; /* Responsive heading */
   }
-  
   .heading-3 {
-    @apply text-base sm:text-lg font-semibold text-pri dark:text-gray-200; /* Responsive heading */
+    @apply text-base sm:text-lg font-semibold text-pri; /* Responsive heading */
   }
 
   .heading-4 {
-    @apply text-sm sm:text-base font-semibold text-sec dark:text-gray-300; /* Responsive heading */
+    @apply text-sm sm:text-base font-semibold text-sec; /* Responsive heading */
   }
 }
 
