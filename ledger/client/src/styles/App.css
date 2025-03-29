@@ -1,16 +1,3 @@
-.sidebar {
-  width: 48px;
-  transition: width 0.3s ease;
-}
-
-.sidebar.open {
-  width: 200px; /* Adjust the width as needed */
-}
-
-.sidebar.closed {
-  width: 54px;
-}
-
 .footer.open {
   height: 100px;  
   transition: height 0.3s ease-in-out;

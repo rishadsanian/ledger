@@ -6,10 +6,7 @@
 // The initial state of the menu items is defined in the useState hook.
 // The menu items are then returned as part of the MenuConfig function's return value.
 
-
-//Settings - disable account - entry - sub accounts only | search accounts | tags  
-
-
+//Settings - disable account - entry - sub accounts only | search accounts | tags
 
 import React, { useState } from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -22,39 +19,39 @@ const MenuConfig = () => {
     {
       id: 1,
       label: "Dashboard",
-      icon: <DashboardIcon />,
+      icon: <DashboardIcon fontSize="small" />,
       path: "/",
-      show: { topNavBar: false, sideBar: true, footer: true },
+      show: { topNavBar: false, sideBar: "main", footer: true },
       selected: true,
     },
     {
       id: 2,
       label: "Accounts",
-      icon: <BookIcon />,
+      icon: <BookIcon fontSize="small" />,
       path: "/accounts",
-      show: { topNavBar: false, sideBar: true, footer: true },
+      show: { topNavBar: false, sideBar: "main", footer: true },
       selected: false,
     },
     {
       id: 3,
       label: "Entries",
-      icon: <ListAltIcon />,
+      icon: <ListAltIcon fontSize="small" />,
       path: "/entries",
-      show: { topNavBar: false, sideBar: true, footer: true },
+      show: { topNavBar: false, sideBar: "main", footer: true },
       selected: false,
     },
     {
       id: 4,
       label: "Reports",
-      icon: <BarChartIcon />,
+      icon: <BarChartIcon fontSize="small" />,
       path: "/reports",
-      show: { topNavBar: false, sideBar: true, footer: true },
+      show: { topNavBar: false, sideBar: "main", footer: true },
       selected: false,
     },
     {
       id: 5,
       label: "Home",
-      icon: <i className="fa-solid fa-house"></i>, 
+      icon: <i className="fa-solid fa-house"></i>,
       path: "/",
       show: { topNavBar: true, sideBar: false, footer: false },
       selected: true,
@@ -62,7 +59,7 @@ const MenuConfig = () => {
     {
       id: 6,
       label: "Info",
-      icon: <i className="fas fa-info-circle"></i>, 
+      icon: <i className="fas fa-info-circle"></i>,
       path: "/info",
       show: { topNavBar: true, sideBar: false, footer: false },
       selected: false,
@@ -70,14 +67,30 @@ const MenuConfig = () => {
     {
       id: 7,
       label: "Help",
-      icon: <i className="fas fa-question-circle"></i>, 
+      icon: <i className="fas fa-question-circle"></i>,
       path: "/help",
       show: { topNavBar: true, sideBar: false, footer: false },
       selected: false,
     },
+    {
+      id: 8,
+      label: "Settings",
+      icon: <i className="fas fa-cogs"></i>,
+      path: "/settings",
+      show: { topNavBar: true, sideBar: "bottom", footer: false },
+      selected: false,
+    },
+    {
+      id: 9,
+      label: "Account",
+      icon: <i className="fas fa-user"></i>,
+      path: "/account",
+      show: { topNavBar: true, sideBar: "bottom", footer: false },
+      selected: false,
+    },
   ]);
 
-  return {menu, setMenu};
+  return { menu, setMenu };
 };
 
 export default MenuConfig;

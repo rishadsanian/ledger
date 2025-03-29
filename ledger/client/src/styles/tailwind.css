@@ -1,40 +1,12 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-/* Enable dark mode with class strategy */
-@layer utilities {
-  .dark .dark\:bg-pri {
-    @apply bg-gray-900;
-  }
-  
-  .dark .dark\:bg-sec {
-    @apply bg-gray-800;
-  }
-  
-  .dark .dark\:bg-brand {
-    @apply bg-gray-700;
-  }
-  
-  .dark .dark\:text-pri {
-    @apply text-gray-100;
-  }
-  
-  .dark .dark\:text-sec {
-    @apply text-gray-300;
-  }
-  
-  .dark .dark\:text-brand {
-    @apply text-gray-200;
-  }
-  
-  .dark .dark\:border-pri {
-    @apply border-gray-600;
-  }
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* Layouts */
 @layer components {
+  .app {
+    @apply flex bg-pri h-screen overflow-hidden;
+  }
   .main-content {
     @apply flex-1 p-2 sm:p-4; /* Main content area */
   }
@@ -47,25 +19,27 @@
   .section-padding {
     @apply py-2 px-2 sm:py-4 sm:px-4 lg:py-8 lg:px-8; /* Responsive section padding */
   }
-} 
+}
 
 /* BG Colors */
-@layer components {  
+@layer components {
   .bg-pri {
-    @apply bg-gray-50; /* Primary background */
+    @apply bg-gray-50  dark:bg-gray-900; /* Primary background */
   }
 
   .bg-sec {
-    @apply bg-white; /* Secondary background */
+    @apply bg-white;
   }
 
   .bg-accent {
-    @apply bg-purple-700 /* Accent color */
+    @apply bg-purple-700;
   }
 
   .bg-brand {
-    @apply bg-gray-800; /* Brand color */
+    @apply bg-gray-800;
   }
+
+  /* see app.css for sidebar width */
 }
 
 /* Text */
@@ -99,7 +73,7 @@
   }
 
   /* Headings */
-  .heading-1 { 
+  .heading-1 {
     @apply text-xl sm:text-2xl font-bold text-pri; /* Responsive heading */
   }
 
@@ -112,6 +86,81 @@
 
   .heading-4 {
     @apply text-sm sm:text-base font-semibold text-sec; /* Responsive heading */
+  }
+}
+
+/*  NAV SIDEBAR */
+@layer components {
+  /* Sidebar Container */
+  .sidebar-container {
+    @apply relative bg-black  ;
+  }
+
+
+  .sidebar {
+    transition: width 0.3s ease;
+  }
+  .menu-sidebar {
+    /* Mobile (default) */
+    width: 0;
+    height: 100dvh;
+    position: fixed;
+    z-index: 50;
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .menu-sidebar.open {
+    width: 100%;
+  }
+  
+  /* Desktop */
+  @media (min-width: 640px) {
+    .menu-sidebar {
+      position: relative;
+      width: 56px;
+      z-index: auto;
+    }
+    .menu-sidebar.open { width: 200px; }
+  }
+
+  .menu-list{
+    @apply pt-4 flex flex-col justify-center gap-4;
+  }
+
+  /* Menu Items */
+  .menu-item {
+    @apply   w-full h-10 p-2 gap-2 cursor-pointer flex gap-4  mr-2 items-center
+           text-white hover:bg-slate-700 hover:bg-opacity-50;
+  }
+
+  .menu-item-selected {
+    @apply border-purple-500 bg-opacity-100 shadow-lg;
+  }
+
+  .menu-item-unselected {
+    @apply border-transparent text-opacity-60;
+  }
+
+  .menu-item-collapsed { 
+    @apply w-10 rounded-full flex  justify-center items-center  border-2  ;
+  }
+
+  .menu-item-expanded {
+    @apply border-l-4 pl-4;
+  }
+
+  /* Toggle Button */
+  .sidebar-toggle {
+    @apply flex cursor-pointer text-white;
+  }
+
+  .sidebar-toggle-open {
+    @apply ml-6  justify-start;
+  }
+
+  .sidebar-toggle-closed {
+    @apply justify-center mr-2;
   }
 }
 
@@ -167,12 +216,12 @@
   .card-list {
     @apply bg-white border-b p-4 sm:p-6 transition-transform transform hover:bg-pri dark:bg-gray-800 dark:border-gray-700; /* Card with hover animation */
   }
-  
+
   /* Card Icon */
   .card-icon {
     @apply w-10 h-10 flex items-center justify-center bg-accent text-light rounded-full; /* Icon container */
   }
-  
+
   /* Card title */
   .card-title {
     @apply text-sm sm:text-base font-semibold text-pri dark:text-gray-100; /* Card title */
@@ -192,7 +241,7 @@
   .list-item {
     @apply flex items-center justify-between p-3 bg-white rounded-md shadow-md transition-transform transform hover:scale-105 dark:bg-gray-800 dark:shadow-gray-900/50; /* List item with hover animation */
   }
-  
+
   .list-item-icon {
     @apply w-6 h-6 flex items-center justify-center text-gray-600 dark:text-gray-300; /* List item icon */
   }
@@ -200,15 +249,15 @@
 
 /* Buttons */
 @layer components {
-  .btn{
+  .btn {
     @apply text-sm px-2 py-1 sm:px-4 sm:py-2 hover:bg-opacity-90 rounded-md transition-colors;
   }
   .btn-primary {
-    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-brand text-light rounded-md hover:bg-opacity-90 transition-colors; 
+    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-brand text-light rounded-md hover:bg-opacity-90 transition-colors;
   }
 
   .btn-secondary {
-    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-sec text-pri rounded-md hover:bg-opacity-90 transition-colors dark:bg-gray-700 dark:text-gray-100; 
+    @apply text-sm px-2 py-1 sm:px-4 sm:py-2 bg-sec text-pri rounded-md hover:bg-opacity-90 transition-colors dark:bg-gray-700 dark:text-gray-100;
   }
 }
 
@@ -260,7 +309,7 @@
   }
 }
 
-/* Add to your existing Tailwind CSS */
+/* Utilities */
 @layer utilities {
   /* Height utilities */
   .min-h-input {

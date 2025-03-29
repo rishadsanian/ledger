@@ -9,7 +9,7 @@ import Menu from "@mui/material/Menu";
 import SearchBarNav from "../assets/searchBarNav";
 import { LedgerLogo, LedgerIcon } from "../assets/logos/LedgerLogo";
 
-const TopNavbar = ({ menu }) => {
+const TopNavbar = ({ menu, toggleMenuSidebar }) => {
 
     const [darkMode, setDarkMode] = useState(false);
   
@@ -98,7 +98,7 @@ const TopNavbar = ({ menu }) => {
               edge="end"
               color="inherit"
               aria-label="menu"
-              onClick={handleClick}
+              onClick={toggleMenuSidebar}
             >
               <MenuIcon />
             </IconButton>

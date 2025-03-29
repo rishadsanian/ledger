@@ -3,7 +3,7 @@ import "./styles/App.css";
 import "./styles/tailwind.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TopNavbar from "./components/TopNavBar";
-import SideBar from "./components/SideBar";
+import MenuSidebar from "./components/MenuSidebar";
 import Footer from "./components/Footer";
 import MainAccounts from "./pages/MainAccounts";
 import MainEntries from "./components/entries/MainEntries";
@@ -18,6 +18,7 @@ import Login from "./pages/Login";
 
 const App = () => {
   // Filter menu items based on show property
+  const [isMenuSidebarOpen, setIsMenuSidebarOpen] = useState(false);
 
   const { menu, setMenu } = menuConfig();
   const [topNavBarMenu, setTopBarMenu] = useState(
@@ -42,23 +43,39 @@ const App = () => {
     setFooterMenu(menu.filter((item) => item.show.footer));
   }, [menu]);
 
+  const toggleMenuSidebar = () => setIsMenuSidebarOpen(!isMenuSidebarOpen);
+
   return (
     <Router>
-      <div className="flex  h-screen overflow-hidden">
-        {/* Sidebar */}
+      <div className="app">
+        {/* Nav Sidebar */}
         {window.location.pathname !== "/landing" && (
-          <div className="hidden sm:block w-1/8 bg-gray-800 rounded-r-3xl ">
-            <SideBar menu={sideBarMenu} setMenu={setSideBarMenu} />
+          <div
+            className={`sidebar-container sidebar  menu-sidebar
+               
+               ${isMenuSidebarOpen ? "open " : "closed "} whitespace-nowrap`}
+          >
+            <MenuSidebar
+              menu={sideBarMenu}
+              setMenu={setSideBarMenu}  
+              isSidebarOpen={isMenuSidebarOpen}
+              toggleMenuSidebar={toggleMenuSidebar} 
+              setIsMenuSidebarOpen={setIsMenuSidebarOpen}             
+            />
           </div>
         )}
 
         {/* Middle View */}
         <div className="flex flex-col flex-grow ">
-          <TopNavbar menu={topNavBarMenu} setMenu={setTopBarMenu} />
+          <TopNavbar 
+          menu={topNavBarMenu} 
+          setMenu={setTopBarMenu}
+          toggleMenuSidebar={toggleMenuSidebar}              
+           />
           <Breadcrumb menu={menu} setMenu={setTopBarMenu} />
           {/* Main Content Area */}
-          <div className="flex flex-col w-full h-full relative overflow-hidden">           
-            <div className="flex-grow overflow-y-auto bg-pri  ">
+          <div className="flex flex-col w-full h-full relative overflow-hidden">
+            <div className="flex-grow overflow-y-auto bg-pri dark:bg-gray-900  ">
               <AccountProvider>
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
@@ -73,6 +90,8 @@ const App = () => {
             </div>
           </div>
         </div>
+
+        {/* Right Sidebar */}
 
         {/* Footer */}
         <Footer menu={footerMenu} />
