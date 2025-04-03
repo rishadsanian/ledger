@@ -18,41 +18,41 @@ const AccountDetail = () => {
   return (
     <div className="panel">
       <h2 className="text-2xl font-bold mb-4">Account Details</h2>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid-layout-2">
         <div>
-          <label className="font-semibold">Account Name:</label>
+          <label className="label">Account Name:</label>
           <p>{accountData.accountName}</p>
         </div>
         <div>
-          <label className="font-semibold">Account   Number:</label>
+          <label className="label">Account   Number:</label>
           <p>{accountData.accountNumber}</p>
         </div>
         <div>
-          <label className="font-semibold">Account Type:</label>
+          <label className="label">Account Type:</label>
           <p>{accountData.accountType}</p>
         </div>
         <div>
-          <label className="font-semibold">Balance:</label>
+          <label className="label">Balance:</label>
           <p>{accountData.currency} {accountData.balance.toLocaleString()}</p>
         </div>
         <div>
-          <label className="font-semibold">Account Holder:</label>
+          <label className="label">Account Holder:</label>
           <p>{accountData.accountHolder}</p>
         </div>
         <div>
-          <label className="font-semibold">Branch Name:</label>
+          <label className="label">Branch Name:</label>
           <p>{accountData.branchName}</p>
         </div>
         <div className="col-span-2">
-          <label className="font-semibold">Branch Address:</label>
+          <label className="label">Branch Address:</label>
           <p>{accountData.branchAddress}</p>
         </div>
         <div>
-          <label className="font-semibold">Date Opened:</label>
+          <label className="label">Date Opened:</label>
           <p>{accountData.dateOpened}</p>
         </div>
         <div>
-          <label className="font-semibold">Last Transaction:</label>
+          <label className="label">Last Transaction:</label>
           <p>{accountData.lastTransaction}</p>
         </div>
       </div>

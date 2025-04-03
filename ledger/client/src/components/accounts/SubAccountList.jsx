@@ -43,7 +43,7 @@ const SubAccountList = () => {
   }, [searchTerm]);
 
   return (
-    <div className="panel mx-auto flex flex-col h-full">
+    <div class="panel">
       {/* Search */}
       <div className="relative mb-4 flex-none">
         <input
@@ -62,15 +62,15 @@ const SubAccountList = () => {
       </div>
     
       {/* List Container */}
-      <div className="list-container thin-scrollbar border-pri bg-sec dark:border-gray-700 dark:bg-gray-800">
+      <div className="list-container thin-scrollbar ">
         {classesData.map((accountClass) => (
           <div key={accountClass.id} className="rounded-lg">
             <div className="account-header bg-gray-200 dark:bg-gray-700">
-              <div className="account-title text-pri dark:text-gray-100">
+              <div className="account-title flex-1 w-full">
                 <span>{accountClass.id} -</span>
                 <div>{accountClass.name}</div>
               </div>
-              <div className="flex justify-end w-full text-sec dark:text-gray-400">
+              <div className="id">
                 {accountClass.master_account}
               </div>
             </div>

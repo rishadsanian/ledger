@@ -33,6 +33,10 @@
     @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4; /* Grid layout */
   }
 
+  .grid-layout-2 {
+    @apply grid grid-cols-2 gap-4
+  }
+
   /* Spacing */
   .section-padding {
     @apply py-2 px-2 sm:py-4 sm:px-4 lg:py-8 lg:px-8; /* Responsive section padding */
@@ -139,7 +143,7 @@
   }
 
   .text-sec {
-    @apply text-gray-600; /* Secondary text */
+    @apply text-gray-600; dark:text-gray-400/* Secondary text */
   }
 
   .text-accent {
@@ -154,9 +158,9 @@
     @apply text-gray-800; /* Brand text */
   }
 
-  /* border-colour */
+  /* border-colour */ 
   .border-pri {
-    @apply border-slate-500; /* Primary border */
+    @apply border-gray-200 dark:border-slate-400   ; /* Primary border */
   }
   .border-active {
     @apply bg-purple-700; /* Active border */
@@ -182,10 +186,10 @@
 /* Page */
 @layer components {
   .page {
-    @apply bg-white p-4 rounded-md shadow-md dark:bg-gray-800 dark:shadow-gray-900/50; /* Page container */
+    @apply bg-gray-400 p-4 rounded-md shadow-md dark:bg-gray-800 dark:shadow-gray-900/50; /* Page container */
   }
   .page-full {
-    @apply bg-white p-4 rounded-md shadow-md h-full dark:bg-gray-800 dark:shadow-gray-900/50; /* Page container */
+    @apply bg-gray-900 p-4 rounded-md shadow-md h-full dark:bg-gray-800 dark:shadow-gray-900/50; /* Page container */
   }
 
   .page-header {
@@ -326,6 +330,11 @@
 
 /* Utilities */
 @layer utilities {
+
+  .id {
+    @apply  px-1 py-0.5 text-sec  dark:text-gray-400 border-2 border-slate-400 ;
+  }
+  
   /* Height utilities */
   .min-h-input {
     @apply min-h-[35px];
@@ -344,7 +353,7 @@
 
   /* List containers */
   .list-container {
-    @apply flex-grow border-4 bg-white  overflow-y-auto rounded-lg;
+    @apply flex-grow border-4 bg-white  overflow-y-auto rounded-lg border-pri bg-sec dark:border-gray-700 dark:bg-gray-800; 
   }
 
   /* Account header */
@@ -352,7 +361,7 @@
     @apply flex bg-gray-200 justify-between items-center pr-4;
   }
   .account-title {
-    @apply text-base py-4 px-3 text-black w-full items-center space-x-2 text-xl font-bold;
+    @apply flex heading-2 py-4 px-3 w-full items-center space-x-2 font-bold text-pri dark:text-gray-100; 
   }
 
   /* Account item */
@@ -374,6 +383,31 @@
     @apply text-sm text-gray-600 flex justify-between;
   }
 }
+
+/* FORMS */
+
+@layer components {
+  /* Form elements */
+  .label {
+    @apply text-sm font-semibold text-gray-700 dark:text-gray-200; /* Label styling */
+  }
+  .form-input {
+    @apply w-full p-2 border rounded-md bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-200; /* Input styling */
+  }
+
+  .form-textarea {
+    @apply w-full p-2 border rounded-md bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-200; /* Textarea styling */
+  }
+
+  .form-select {
+    @apply w-full p-2 border rounded-md bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-200; /* Select styling */
+  }
+
+  .form-readonly {
+    @apply w-full p-2 border rounded-md bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400; /* Read-only input styling */
+  }
+}
+
 /* Custom Animations */
 @keyframes fadeIn {
   from {

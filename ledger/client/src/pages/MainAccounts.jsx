@@ -22,7 +22,7 @@ const MainAccounts = () => {
 
   return (
     <div className="flex flex-col w-full h-full overflow-hidden">
-      <div className="flex flex-col justify-center w-full gap-6 h-full">
+      <div className="flex flex-col justify-center w-full h-full">
         {/* Header */}
         <div className="flex justify-between items-center p-4">
           <h1 className="heading-1 text-brand dark:text-gray-100">Accounts</h1>

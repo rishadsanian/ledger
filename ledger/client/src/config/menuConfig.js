@@ -23,6 +23,7 @@ const MenuConfig = () => {
       path: "/",
       show: { topNavBar: false, sideBar: "main", footer: true },
       selected: true,
+      activeRecord: null,
     },
     {
       id: 2,
@@ -31,6 +32,7 @@ const MenuConfig = () => {
       path: "/accounts",
       show: { topNavBar: false, sideBar: "main", footer: true },
       selected: false,
+      activeRecord: null,
     },
     {
       id: 3,
@@ -39,6 +41,7 @@ const MenuConfig = () => {
       path: "/entries",
       show: { topNavBar: false, sideBar: "main", footer: true },
       selected: false,
+      activeRecord: null,
     },
     {
       id: 4,
@@ -47,6 +50,7 @@ const MenuConfig = () => {
       path: "/reports",
       show: { topNavBar: false, sideBar: "main", footer: true },
       selected: false,
+      activeRecord: null,
     },
     {
       id: 5,
@@ -55,6 +59,7 @@ const MenuConfig = () => {
       path: "/",
       show: { topNavBar: true, sideBar: false, footer: false },
       selected: true,
+      activeRecord: null,
     },
     {
       id: 6,
