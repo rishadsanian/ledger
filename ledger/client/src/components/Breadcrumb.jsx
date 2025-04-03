@@ -1,6 +1,6 @@
 import React from "react";
 
-const Breadcrumb = ({ items = [], showBackButton = false }) => {
+const Breadcrumb = ({ items = [], showBackButton = true }) => {
   const breadcrumbItems = items.length ? items : [
     { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
@@ -8,14 +8,15 @@ const Breadcrumb = ({ items = [], showBackButton = false }) => {
   ];
 
   return (
-    <nav className="flex items-center gap-2 p-3 bg-sec  sticky top-0 z-10">
+    <nav className="flex items-center gap-2  p-1 sm:p-3  bg-black sm:bg-sec  sticky top-0 z-10">
+      <div class="flex items-center">
       {showBackButton && (
         <button 
           onClick={() => window.history.back()}
-          className="icon-btn mr-2"
+          className="icon-btn sm:hidden"
           aria-label="Back"
         >
-          ←
+          <i className=" fa-solid fa-caret-left"></i>
         </button>
       )}
 
@@ -42,6 +43,7 @@ const Breadcrumb = ({ items = [], showBackButton = false }) => {
           </React.Fragment>
         ))}
       </ol>
+      </div>
     </nav>
   );
 };

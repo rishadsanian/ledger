@@ -353,7 +353,7 @@
 
   /* List containers */
   .list-container {
-    @apply flex-grow border-4 bg-white  overflow-y-auto rounded-lg border-pri bg-sec dark:border-gray-700 dark:bg-gray-800; 
+    @apply flex-grow border-4 bg-white  overflow-y-auto rounded-lg border-pri bg-sec dark:border-gray-700; 
   }
 
   /* Account header */
