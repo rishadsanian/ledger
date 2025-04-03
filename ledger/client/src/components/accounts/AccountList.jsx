@@ -6,6 +6,7 @@ import { useAccountContext } from "../../context/AccountContext";
 const AccountList = () => {
   const { accounts = [], subAccounts = [], classesData = [] } = useAccountContext();
 
+// 10 - assets 20- liabilities 30- revenue 40- expenses 50- equity //
 
   // Filter accounts by class ID
   const balanceSheetAccounts = accounts.filter((account) =>
@@ -169,8 +170,6 @@ const AccountList = () => {
             ))}
         </div>
       </div>
-
-      
     </div>
   );
 };

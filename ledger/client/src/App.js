@@ -48,46 +48,44 @@ const App = () => {
   return (
     <Router>
       <div className="app">
-        {/* Nav Sidebar */}
+        {/* Sidebar */}
         {window.location.pathname !== "/landing" && (
           <div
-            className={`sidebar-container sidebar  menu-sidebar
+            className={`sidebar-container  menu-sidebar
                
                ${isMenuSidebarOpen ? "open " : "closed "} whitespace-nowrap`}
           >
             <MenuSidebar
               menu={sideBarMenu}
-              setMenu={setSideBarMenu}  
+              setMenu={setSideBarMenu}
               isSidebarOpen={isMenuSidebarOpen}
-              toggleMenuSidebar={toggleMenuSidebar} 
-              setIsMenuSidebarOpen={setIsMenuSidebarOpen}             
+              toggleMenuSidebar={toggleMenuSidebar}
+              setIsMenuSidebarOpen={setIsMenuSidebarOpen}
             />
           </div>
         )}
 
-        {/* Middle View */}
-        <div className="flex flex-col flex-grow ">
-          <TopNavbar 
-          menu={topNavBarMenu} 
-          setMenu={setTopBarMenu}
-          toggleMenuSidebar={toggleMenuSidebar}              
-           />
+        {/* Main layout */}
+        <div className="main-layout">
+          <TopNavbar
+            menu={topNavBarMenu}
+            setMenu={setTopBarMenu}
+            toggleMenuSidebar={toggleMenuSidebar}
+          />
           <Breadcrumb menu={menu} setMenu={setTopBarMenu} />
           {/* Main Content Area */}
-          <div className="flex flex-col w-full h-full relative overflow-hidden">
-            <div className="flex-grow overflow-y-auto bg-pri dark:bg-gray-900  ">
-              <AccountProvider>
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/accounts" element={<MainAccounts />} />
-                  <Route path="/entries" element={<MainEntries />} />
-                  <Route path="/reports" element={<MainReports />} />
-                  <Route path="/dev" element={<Dev />} />
-                  <Route path="/landing" element={<Landing />} hidenav="true" />
-                  <Route path="/login" element={<Login />} hidenav="true" />
-                </Routes>
-              </AccountProvider>
-            </div>
+          <div className="main-wrapper">
+            <AccountProvider>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/accounts" element={<MainAccounts />} />
+                <Route path="/entries" element={<MainEntries />} />
+                <Route path="/reports" element={<MainReports />} />
+                <Route path="/dev" element={<Dev />} />
+                <Route path="/landing" element={<Landing />} hidenav="true" />
+                <Route path="/login" element={<Login />} hidenav="true" />
+              </Routes>
+            </AccountProvider>
           </div>
         </div>
 

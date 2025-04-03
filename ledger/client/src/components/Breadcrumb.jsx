@@ -8,7 +8,7 @@ const Breadcrumb = ({ items = [], showBackButton = false }) => {
   ];
 
   return (
-    <nav className="flex items-center gap-2 p-3 bg-sec dark:bg-gray-800 sticky top-0 z-10">
+    <nav className="flex items-center gap-2 p-3 bg-sec  sticky top-0 z-10">
       {showBackButton && (
         <button 
           onClick={() => window.history.back()}

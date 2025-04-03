@@ -7,6 +7,24 @@
   .app {
     @apply flex bg-pri h-screen overflow-hidden;
   }
+
+  .main-layout {
+    @apply flex flex-col flex-grow; /* Main layout container */
+  }
+
+  /* Sidebar Container */
+  .sidebar-container {
+    @apply relative bg-nav width-transition;
+  }
+
+  .main-wrapper {
+    @apply flex flex-col w-full h-full overflow-hidden bg-pri dark:bg-gray-900 flex-grow overflow-y-auto;
+  }
+
+  .main-header {
+    @apply flex items-center justify-between bg-brand p-4; /* Main header */
+  }
+
   .main-content {
     @apply flex-1 p-2 sm:p-4; /* Main content area */
   }
@@ -21,14 +39,82 @@
   }
 }
 
+/*  NAV SIDEBAR */
+@layer components {
+  .menu-sidebar {
+    /* Mobile (default) */
+    width: 0;
+    height: 100dvh;
+    position: fixed;
+    z-index: 50;
+    transition: width 0.3s ease;
+    overflow: hidden;
+  }
+
+  .menu-sidebar.open {
+    width: 100%;
+  }
+
+  /* Desktop */
+  @media (min-width: 640px) {
+    .menu-sidebar {
+      position: relative;
+      width: 56px;
+      z-index: auto;
+    }
+    .menu-sidebar.open {
+      width: 200px;
+    }
+  }
+
+  .menu-list {
+    @apply pt-4 flex flex-col justify-center gap-4;
+  }
+
+  /* Menu Items */
+  .menu-item {
+    @apply w-full h-10 p-2 gap-2 cursor-pointer flex gap-4  mr-2 items-center
+           text-white hover:bg-slate-700 hover:bg-opacity-50;
+  }
+
+  .menu-item-selected {
+    @apply border-purple-500 bg-opacity-100 shadow-lg;
+  }
+
+  .menu-item-unselected {
+    @apply border-transparent text-opacity-60;
+  }
+
+  .menu-item-collapsed {
+    @apply w-10 rounded-full flex  justify-center items-center  border-2;
+  }
+
+  .menu-item-expanded {
+    @apply border-l-4 pl-4;
+  }
+
+  /* Toggle Button */
+  .sidebar-toggle {
+    @apply flex cursor-pointer text-white;
+  }
+
+  .sidebar-toggle-open {
+    @apply ml-6  justify-start;
+  }
+
+  .sidebar-toggle-closed {
+    @apply justify-center mr-2;
+  }
+}
+
 /* BG Colors */
 @layer components {
   .bg-pri {
-    @apply bg-gray-50  dark:bg-gray-900; /* Primary background */
+    @apply bg-gray-50  dark:bg-gray-800; /* Primary background */
   }
 
   .bg-sec {
-    @apply bg-white;
+    @apply bg-white dark:bg-gray-800;
   }
 
   .bg-accent {
@@ -39,13 +125,17 @@
     @apply bg-gray-800;
   }
 
+  .bg-nav {
+    @apply bg-black;
+  }
+
   /* see app.css for sidebar width */
 }
 
 /* Text */
 @layer components {
   .text-pri {
-    @apply text-slate-900; /* Primary text */
+    @apply text-slate-900 dark:text-gray-50; /* Primary text */
   }
 
   .text-sec {
@@ -89,81 +179,6 @@
   }
 }
 
-/*  NAV SIDEBAR */
-@layer components {
-  /* Sidebar Container */
-  .sidebar-container {
-    @apply relative bg-black  ;
-  }
-
-
-  .sidebar {
-    transition: width 0.3s ease;
-  }
-  .menu-sidebar {
-    /* Mobile (default) */
-    width: 0;
-    height: 100dvh;
-    position: fixed;
-    z-index: 50;
-    transition: width 0.3s ease;
-    overflow: hidden;
-  }
-  
-  .menu-sidebar.open {
-    width: 100%;
-  }
-  
-  /* Desktop */
-  @media (min-width: 640px) {
-    .menu-sidebar {
-      position: relative;
-      width: 56px;
-      z-index: auto;
-    }
-    .menu-sidebar.open { width: 200px; }
-  }
-
-  .menu-list{
-    @apply pt-4 flex flex-col justify-center gap-4;
-  }
-
-  /* Menu Items */
-  .menu-item {
-    @apply   w-full h-10 p-2 gap-2 cursor-pointer flex gap-4  mr-2 items-center
-           text-white hover:bg-slate-700 hover:bg-opacity-50;
-  }
-
-  .menu-item-selected {
-    @apply border-purple-500 bg-opacity-100 shadow-lg;
-  }
-
-  .menu-item-unselected {
-    @apply border-transparent text-opacity-60;
-  }
-
-  .menu-item-collapsed { 
-    @apply w-10 rounded-full flex  justify-center items-center  border-2  ;
-  }
-
-  .menu-item-expanded {
-    @apply border-l-4 pl-4;
-  }
-
-  /* Toggle Button */
-  .sidebar-toggle {
-    @apply flex cursor-pointer text-white;
-  }
-
-  .sidebar-toggle-open {
-    @apply ml-6  justify-start;
-  }
-
-  .sidebar-toggle-closed {
-    @apply justify-center mr-2;
-  }
-}
-
 /* Page */
 @layer components {
   .page {
@@ -197,7 +212,7 @@
 /* Panel */
 @layer components {
   .panel {
-    @apply bg-white border rounded-md shadow-md p-4 dark:bg-gray-800 dark:border-gray-700 dark:shadow-gray-900/50; /* Panel container */
+    @apply bg-pri text-pri border rounded-md shadow-md p-4  dark:border-gray-700 dark:shadow-gray-900/50; /* Panel container */
   }
 }
 
@@ -384,4 +399,8 @@
 
 .animate-slide-in {
   animation: slideIn 0.5s ease-in-out;
+}
+
+.width-transition {
+  transition: width 0.3s ease;
 }

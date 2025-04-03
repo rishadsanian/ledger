@@ -31,6 +31,7 @@ const MenuSidebar = ({
         }`}
       >
         {isSidebarOpen ? <LedgerLogo /> : <LedgerIcon />}
+        {/* onClick={() => handleItemClick("/")} */}
       </div>
 
       {/* Toggle Button */}

@@ -6,15 +6,7 @@ import moment from "moment";
 const Dashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Initialize dark mode
-  useEffect(() => {
-    const savedMode = localStorage.getItem('darkMode');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialMode = savedMode ? savedMode === 'true' : systemPrefersDark;
-    
-    setDarkMode(initialMode);
-    document.documentElement.classList.toggle('dark', initialMode);
-  }, []);
+ 
 
   const toggleDarkMode = () => {
     const newMode = !darkMode;

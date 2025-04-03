@@ -4,6 +4,7 @@ import CreateSubAccount from "../components/accounts/CreateSubAccountForm";
 import SubAccountList from "../components/accounts/SubAccountList";
 import AccountDetail from "../components/accounts/AccountDetail";
 import Drawer from "../components/Drawer";
+import AccountList from "../components/accounts/AccountList";
 
 const MainAccounts = () => {
   const [activeTab, setActiveTab] = useState("");
@@ -51,6 +52,7 @@ const MainAccounts = () => {
 
           {/* Right panel - AccountDetail */}
           <div className="w-full lg:w-2/3">
+            
             <AccountDetail />
           </div>
         </div>
