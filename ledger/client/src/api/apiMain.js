@@ -23,7 +23,7 @@ const endpoints = {
     getSubAccounts: () => `/accounts/sub-accounts`,
     createSubAccount: (parentId) => `/accounts/${parentId}/sub-accounts`,
     getSubAccountsFor: (parentAccountId) => `/accounts/${parentAccountId}/sub-accounts`,
-    getChartofAccounts: (id) => `/accounts/${id}/charter-of-accounts`,
+    getChartofAccounts: `/accounts/chart-of-accounts`,
   },
 };
 

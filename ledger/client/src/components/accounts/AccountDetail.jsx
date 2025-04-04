@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const AccountDetail = () => {
   // Mock account data
@@ -17,14 +17,32 @@ const AccountDetail = () => {
 
   return (
     <div className="panel">
-      <h2 className="text-2xl font-bold mb-4">Account Details</h2>
+      <div className="header-container flex justify-between items-start mb-2">
+        <div className="heading">
+          <h2 className="heading-2 ">Account Details</h2>
+          <p class="subtitle flex items-center gap-1 text-sm text-sec font-semibold">
+            Subtitle
+          </p>
+        </div>
+        <div class="button-group flex items-start gap-2">
+          <button className="btn-pri">
+            <i className="fa-solid fa-plus"></i> Add
+          </button>
+          <button className="btn-sec">
+            <i className="fa-solid fa-pen"></i> Edit
+          </button>
+          <button className="btn-danger">
+            <i className="fa-solid fa-trash"></i> Delete
+          </button>
+        </div>
+      </div>
       <div className="grid-layout-2">
         <div>
           <label className="label">Account Name:</label>
           <p>{accountData.accountName}</p>
         </div>
         <div>
-          <label className="label">Account   Number:</label>
+          <label className="label">Account Number:</label>
           <p>{accountData.accountNumber}</p>
         </div>
         <div>
@@ -33,7 +51,9 @@ const AccountDetail = () => {
         </div>
         <div>
           <label className="label">Balance:</label>
-          <p>{accountData.currency} {accountData.balance.toLocaleString()}</p>
+          <p>
+            {accountData.currency} {accountData.balance.toLocaleString()}
+          </p>
         </div>
         <div>
           <label className="label">Account Holder:</label>
