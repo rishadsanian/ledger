@@ -15,6 +15,7 @@ import menuConfig from "./config/menuConfig";
 import Landing from "./pages/Landing";
 import Dev from "./pages/Dev";
 import Login from "./pages/Login";
+import ApiPortal from "./pages/ApiPortal";
 
 const App = () => {
   // Filter menu items based on show property
@@ -78,6 +79,7 @@ const App = () => {
             <AccountProvider>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/api" element={<ApiPortal />} />
                 <Route path="/accounts" element={<MainAccounts />} />
                 <Route path="/entries" element={<MainEntries />} />
                 <Route path="/reports" element={<MainReports />} />
