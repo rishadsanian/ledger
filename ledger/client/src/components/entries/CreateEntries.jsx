@@ -9,14 +9,13 @@ import { MdClose } from "react-icons/md";
 
 
 function CreateEntries() {
-  const [accountNumber, setAccountNumber] = useState("");
-  const [subAccountNumber, setSubAccountNumber] = useState("");
+  const [debitAccountId, setDebitAccountId] = useState("");
+  const [creditAccountId, setCreditAccountId] = useState("");
   const [userId, setUserId] = useState("");
   const [amount, setAmount] = useState("");
   const [timestamp, setTimestamp] = useState("");
   const [reference, setReference] = useState("");
   const [note, setNote] = useState("");
-  const [transactionId, setTransactionId] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -32,14 +31,13 @@ function CreateEntries() {
     e.preventDefault();
 
     const newEntry = {
-      account_number: accountNumber,
-      sub_account_number: subAccountNumber,
+      debit_account_id: debitAccountId,
+      credit_account_id: creditAccountId,
       fk_user_id: userId,
       amount,
       timestamp,
       reference,
       note,
-      transaction_id: transactionId,
     };
 
     try {
@@ -71,16 +69,16 @@ function CreateEntries() {
     <form onSubmit={saveAccount}  class="px-4 py-4 text-sm" >
        <div class="flex flex-col gap-4">
       <TextField
-        label="Account Number"
-        value={accountNumber}
-        onChange={(e) => setAccountNumber(e.target.value)}
+        label="Debit Account ID"
+        value={debitAccountId}
+        onChange={(e) => setDebitAccountId(e.target.value)}
         required
         fullWidth
       />
       <TextField
-        label="Sub Account Number"
-        value={subAccountNumber}
-        onChange={(e) => setSubAccountNumber(e.target.value)}
+        label="Credit Account ID"
+        value={creditAccountId}
+        onChange={(e) => setCreditAccountId(e.target.value)}
         required
         fullWidth
       />
@@ -116,13 +114,6 @@ function CreateEntries() {
         label="Note"
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        required
-        fullWidth
-      />
-      <TextField
-        label="Transaction ID"
-        value={transactionId}
-        onChange={(e) => setTransactionId(e.target.value)}
         required
         fullWidth
       />
