@@ -36,7 +36,7 @@ const runSeeds = async (db) => {
 const resetDB = async () => {
   try {
     console.log("Running DB Reset...");
-    console.log("Establishing DB connection: ");
+    console.log("Establishing DB connection...");
     const client = new Client(connObj);
     await client.connect();
     console.log("Connection established!\n");
@@ -50,7 +50,7 @@ const resetDB = async () => {
     console.log("-- COMPLETED --");
     client.end();
   } catch (e) {
-    console.log("ERROR OCCURRED:\n", e);
+    console.error("ERROR OCCURRED:", e.message);
     client.end();
   }
 };

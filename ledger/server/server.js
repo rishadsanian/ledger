@@ -39,9 +39,10 @@ const PORT = process.env.PORT || 8080;
 // Test the database connection
 pool.query("SELECT NOW()", (err, res) => {
   if (err) {
-    console.error("Error connecting to database:", err);
+    // Avoid printing connection details that may be part of the error object
+    console.error("Database connection error:", err.message);
   } else {
-    console.log("Connected to database at:", res.rows[0].now);
+    console.log("Database connection successful at:", res.rows[0].now);
   }
 });
 

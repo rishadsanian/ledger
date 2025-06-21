@@ -29,3 +29,19 @@
 ![image](https://github.com/rishadsanian/ledger/assets/77033627/bca4cadb-2f6e-458e-b34d-3bf401942d56)
 
 
+
+## Environment Setup
+
+1. Duplicate `ledger/server/.env.example` as `ledger/server/.env` and fill in your database credentials.
+2. The `.env` file is listed in `.gitignore` and should **never** be committed or printed in logs.
+
+## Resetting the Database
+
+The server provides a script to rebuild the database from the schema and seed files.
+
+```bash
+cd ledger/server
+npm run db:reset
+```
+
+This command drops existing tables and repopulates them with seed data. Ensure you have backups before running it in production.
