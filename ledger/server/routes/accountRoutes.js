@@ -20,7 +20,5 @@ router.get('/sub-accounts', accountController.getAllSubAccounts);
 // Create Sub-Account
 router.post('/sub-accounts', accountController.createSubAccount);
 
-// Get All Classes
 router.get('/classes', accountController.getAllClasses);
-
 module.exports = router;
