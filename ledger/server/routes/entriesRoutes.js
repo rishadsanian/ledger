@@ -9,7 +9,7 @@ const entriesController = require('../controllers/entriesController');
 router.post('/', entriesController.createEntry);
 
 // Get  Entries by Period
-router.get('/', entriesController.getEntriesbyPeriod);
+router.get('/', entriesController.getEntriesByPeriod);
 
 // // Get Account by ID
 // router.get('/:id', accountController.getAccountById);

@@ -1,6 +1,6 @@
 // entriesController.js
 /* eslint-disable camelcase */
-const pool = require("../db"); // Ensure this is your pg pool instance
+const pool = require('../db/config');
 const transactionService = require("../services/transactionService");
 
 const createEntry = async (req, res) => {
@@ -44,4 +44,20 @@ const createEntry = async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
+};
+
+const getEntriesByPeriod = async (req, res) => {
+  try {
+    const period = parseInt(req.query.period, 10) || 10;
+    const entries = await transactionService.getEntriesByPeriod(period);
+    res.status(200).json({ entries });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+module.exports = {
+  createEntry,
+  getEntriesByPeriod,
 };
