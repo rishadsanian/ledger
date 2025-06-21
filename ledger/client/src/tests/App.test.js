@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-test('renders learn react link', () => {
+test('renders dashboard with Total Income text', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const metricElement = screen.getByText(/Total Income/i);
+  expect(metricElement).toBeInTheDocument();
 });
