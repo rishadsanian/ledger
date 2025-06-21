@@ -5,16 +5,32 @@ const pool = require("../db/config");
 
 const createEntry = async (req, res) => {
   try {
-    const { account_number, sub_account_number, fk_user_id, amount, timestamp, reference, note, transaction_id } = req.body;
+    const {
+      fk_master_account,
+      fk_user_id,
+      amount,
+      timestamp,
+      reference,
+      note,
+      transaction_id,
+    } = req.body;
 
     // Insert a new transaction into the transactions table
     const query = `
-      INSERT INTO transactions (account_number, sub_account_number, fk_user_id, amount, timestamp, reference, note, transaction_id)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      INSERT INTO transactions (fk_master_account, fk_user_id, amount, timestamp, reference, note, transaction_id)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
     `;
 
-    const values = [account_number, sub_account_number, fk_user_id, amount, timestamp, reference, note, transaction_id];
+    const values = [
+      fk_master_account,
+      fk_user_id,
+      amount,
+      timestamp,
+      reference,
+      note,
+      transaction_id,
+    ];
 
     const result = await pool.query(query, values);
 

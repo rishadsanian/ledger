@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import { MdAddCircle } from "react-icons/md";
 import { MdClose } from "react-icons/md";
 
@@ -9,8 +9,7 @@ import { MdClose } from "react-icons/md";
 
 
 function CreateEntries() {
-  const [accountNumber, setAccountNumber] = useState("");
-  const [subAccountNumber, setSubAccountNumber] = useState("");
+  const [masterAccount, setMasterAccount] = useState("");
   const [userId, setUserId] = useState("");
   const [amount, setAmount] = useState("");
   const [timestamp, setTimestamp] = useState("");
@@ -32,8 +31,7 @@ function CreateEntries() {
     e.preventDefault();
 
     const newEntry = {
-      account_number: accountNumber,
-      sub_account_number: subAccountNumber,
+      fk_master_account: masterAccount,
       fk_user_id: userId,
       amount,
       timestamp,
@@ -71,16 +69,9 @@ function CreateEntries() {
     <form onSubmit={saveAccount}  class="px-4 py-4 text-sm" >
        <div class="flex flex-col gap-4">
       <TextField
-        label="Account Number"
-        value={accountNumber}
-        onChange={(e) => setAccountNumber(e.target.value)}
-        required
-        fullWidth
-      />
-      <TextField
-        label="Sub Account Number"
-        value={subAccountNumber}
-        onChange={(e) => setSubAccountNumber(e.target.value)}
+        label="Master Account"
+        value={masterAccount}
+        onChange={(e) => setMasterAccount(e.target.value)}
         required
         fullWidth
       />
