@@ -50,7 +50,7 @@ const resetDB = async () => {
     console.log("-- COMPLETED --");
     client.end();
   } catch (e) {
-    console.log("ERROR OCCURED:\n", e);
+    console.log("ERROR OCCURRED:\n", e);
     client.end();
   }
 };
